@@ -11,7 +11,7 @@ const Porjects = () => {
       <div className="w-full flex items-center justify-center  gap-4 flex-wrap  lg:flex-nowrap " >
         <CardProjects
           link={
-            "https://sunglassesproject-ois19chrw-lucassantos96s-projects.vercel.app/"
+            "https://sunglassesproject-git-main-lucassantos96s-projects.vercel.app"
           }
           image={"/projetoOculos.png"}
           title="Um sol pra cada um"
@@ -20,7 +20,7 @@ const Porjects = () => {
 
             <CardProjects
           link={
-            "https://ticket-generator-kwl1-4cgwz4bmn-lucassantos96s-projects.vercel.app/"
+            "https://ticket-generator-kwl1-git-main-lucassantos96s-projects.vercel.app"
           }
           image={"/projectTicket.png"}
           title="Ticket Generator"
