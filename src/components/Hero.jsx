@@ -13,6 +13,7 @@ const Hero = () => {
 
   return (
     <section className="mx-[20px]  lg:mx-32 lg:flex lg:flex-row-reverse lg:justify-between lg:pt-24 lg:pb-24 lg:items-center">
+
       <div className="flex justify-center">
         <Image
           src={"/eu.png"}
@@ -31,7 +32,7 @@ const Hero = () => {
         />
       </div>
 
-      <div className="lg:flex lg:flex-col lg:items-start">
+      <div className="flex flex-col items-center lg:items-start">
         <div className="mt-4 flex justify-center flex-col lg:text-left">
           <h2 className="text-sm text-white lg:text-3xl">
             Oi, Sou Lucas Santos
