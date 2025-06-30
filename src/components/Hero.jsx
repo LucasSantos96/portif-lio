@@ -48,7 +48,7 @@ const Hero = () => {
 
         <div className="flex gap-2 mt-5  lg:mt-20">
           <button
-            className="flex px-4 py0 rounded-[20px] text-white bg-[#F57D38] h-[34px] items-center gap-1 cursor-pointer "
+            className=" text-sm flex px-4 py0 rounded-[20px] text-white bg-[#F57D38] h-[34px] items-center gap-1 cursor-pointer "
             onClick={handleSubmit}
           >
             Fale comigo
@@ -63,7 +63,7 @@ const Hero = () => {
           <a
             href="/lucasDev.pdf"
             download
-            className="flex px-4 py0 rounded-[20px] text-white bg-[#0A80ED] h-[34px] items-center gap-1 cursor-pointer"
+            className="text-sm flex px-4 py0 rounded-[20px] text-white bg-[#0A80ED] h-[34px] items-center gap-1 cursor-pointer"
           >
             Baixar curriculo
             <Image

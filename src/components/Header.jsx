@@ -13,9 +13,10 @@ const Header = () => {
   };
 
   return (
-    <header className=" text-white flex  py-4 mb-4    lg:justify-center lg:py-7 border-b border-[#ffffff2c] ">
+    <header className=" text-white flex  py-6 mb-4    lg:justify-center lg:py-7 border-b border-[#ffffff2c] ">
+
       {/*menu mobile */}
-        <nav className={`${isOpen ? "flex" : "hidden"} lg:hidden  flex-col absolute right-0   top-0  gap-6 bg-[#000] h-full list-none px-4 pt-10  text-sm `}>
+        <nav className={`${isOpen ? "flex" : "hidden"} lg:hidden  flex-col absolute right-0   top-0  gap-6 bg-[#000] h-full list-none px-8 pt-16  text-sm `}>
           <li >
           <Link href={"#sobre"}>Sobre</Link>
 
@@ -33,12 +34,12 @@ const Header = () => {
       <button
         onClick={toggleMenu}
         aria-label="Abrir Menu"
-        className="lg:hidden px-4 absolute right-0 top-2"
+        className="lg:hidden px-4 absolute right-0 top-3"
       >
         {isOpen ? (
-          <Image src={"/x.png"} alt="Menu" width={20} height={20} />
+          <Image src={"/x.png"} alt="Menu" width={30} height={20} />
         ) : (
-          <Image src={"/menu.png"} alt="Menu" width={20} height={20} />
+          <Image src={"/menu.png"} alt="Menu" width={30} height={20} />
         )}
       </button>
 

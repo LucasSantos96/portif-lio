@@ -9,13 +9,13 @@ const Skills = () => {
         </div>
         <div className='flex flex-wrap gap-2 justify-center '>
             <CardSkills image={"/Html5.png"} text='HTML5'/>
-            <CardSkills image={"/Css3.png"} text='CSS3'/>
+            <CardSkills image={"/CSS3.png"} text='CSS3'/>
             <CardSkills image={"/JavaScript.png"} text='JAVASCRIPT'/>
             <CardSkills image={"/React.png"} text='REACT'/>
             <CardSkills image={"/Next.js.png"} text='NEXTJS'/>
-            <CardSkills image={"/Tailwindcss.png"} text='TAILWINDCSS'/>
+            <CardSkills image={"/Tailwindcss.png"} text='TAILWIND'/>
             <CardSkills image={"/Nodejs.png"} text='NODEJS'/>
-            <CardSkills image={"/Mongodb.png"} text='MONGODB'/>
+            <CardSkills image={"/MongoDB.png"} text='MONGODB'/>
             <CardSkills image={"/Git.png"} text='GIT'/>
 
 
