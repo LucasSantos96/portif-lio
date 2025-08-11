@@ -37,18 +37,18 @@ const Hero = () => {
           <h2 className="text-sm text-white lg:text-3xl">
             Oi, Sou Lucas Santos
           </h2>
-          <h1 className="text-[20px] uppercase font-bold text-[#0A80ED] lg:text-[40px]">
-            Desenvolvedor full-stack
+          <h1 className="text-2xl uppercase font-bold text-[#0A80ED] lg:text-5xl">
+            Desenvolvedor <br />full-stack
           </h1>
-          <p className="text-sm text-white lg:text-3xl">
+          <p className="text-sm font-light mt-5 text-[#979696] lg:text-2xl">
             apaixonado por criar aplicações web{" "}
             <br className="hidden lg:flex" /> inovadoras e fáceis de usar.
           </p>
         </div>
 
-        <div className="flex gap-2 mt-5  lg:mt-20">
+        <div className="flex flex-col lg:flex-row gap-4 mt-5  lg:mt-16">
           <button
-            className=" text-sm flex px-4 py0 rounded-[20px] text-white bg-[#F57D38] h-[34px] items-center gap-1 cursor-pointer "
+            className=" text-sm flex px-10 py-4 rounded-full text-white bg-[#F57D38] items-center gap-1 cursor-pointer "
             onClick={handleSubmit}
           >
             Fale comigo
@@ -63,7 +63,7 @@ const Hero = () => {
           <a
             href="/lucasDev.pdf"
             download
-            className="text-sm flex px-4 py0 rounded-[20px] text-white bg-[#0A80ED] h-[34px] items-center gap-1 cursor-pointer"
+            className="text-sm flex px-10 py-4 rounded-full text-white bg-[#0A80ED] items-center gap-1 cursor-pointer"
           >
             Baixar curriculo
             <Image
