@@ -28,32 +28,32 @@ const Porjects = () => {
           src={'/Next.js.png'}
           alt="project"
           width={36}
-          height={100}
-          className="rounded-full mb-4 hover:opacity-40 hover:shadow-[0_4px_24px_0_rgba(245,125,56,0.3)] transition duration-300"
+          height={36}
+          className=""
         />,
          <Image
              key={'2'}
           src={'/Tailwindcss.png'}
           alt="project"
           width={36}
-          height={100}
-          className="rounded-full mb-4 hover:opacity-40 hover:shadow-[0_4px_24px_0_rgba(245,125,56,0.3)] transition duration-300"
+          height={36}
+          className=""
         />,
          <Image
              key={'3'}
-          src={'/Javascript.png'}
+          src={'/JavaScript.png'}
           alt="project"
           width={36}
-          height={100}
-          className="rounded-full mb-4 hover:opacity-40 hover:shadow-[0_4px_24px_0_rgba(245,125,56,0.3)] transition duration-300"
+          height={36}
+          className=""
         />,
          <Image
              key={'4'}
           src={'/Git.png'}
           alt="project"
           width={36}
-          height={100}
-          className="rounded-full mb-4 hover:opacity-40 hover:shadow-[0_4px_24px_0_rgba(245,125,56,0.3)] transition duration-300"
+          height={36}
+          className=""
         />
           ]}
         />
@@ -72,8 +72,8 @@ const Porjects = () => {
           src={'/Next.js.png'}
           alt="project"
           width={36}
-          height={100}
-          className="rounded-full mb-4 hover:opacity-40 hover:shadow-[0_4px_24px_0_rgba(245,125,56,0.3)] transition duration-300"
+          height={36}
+          className=""
         />,
          <Image
              key={2}
@@ -81,17 +81,17 @@ const Porjects = () => {
           src={'/Tailwindcss.png'}
           alt="project"
           width={36}
-          height={100}
-          className="rounded-full mb-4 hover:opacity-40 hover:shadow-[0_4px_24px_0_rgba(245,125,56,0.3)] transition duration-300"
+          height={36}
+          className=""
         />,
          <Image
              key={3}
 
-          src={'/Javascript.png'}
+          src={'/JavaScript.png'}
           alt="project"
           width={36}
-          height={100}
-          className="rounded-full mb-4 hover:opacity-40 hover:shadow-[0_4px_24px_0_rgba(245,125,56,0.3)] transition duration-300"
+          height={36}
+          className=""
         />,
          <Image
              key={4}
@@ -99,8 +99,8 @@ const Porjects = () => {
           src={'/Git.png'}
           alt="project"
           width={36}
-          height={100}
-          className="rounded-full mb-4 hover:opacity-40 hover:shadow-[0_4px_24px_0_rgba(245,125,56,0.3)] transition duration-300"
+          height={36}
+          className=""
         />
           ]}
         />
@@ -121,8 +121,8 @@ const Porjects = () => {
           src={'/Next.js.png'}
           alt="project"
           width={36}
-          height={100}
-          className="rounded-full mb-4 hover:opacity-40 hover:shadow-[0_4px_24px_0_rgba(245,125,56,0.3)] transition duration-300"
+          height={36}
+          className=""
         /> ,
          <Image
              key={6}
@@ -130,8 +130,8 @@ const Porjects = () => {
           src={'/Tailwindcss.png'}
           alt="project"
           width={36}
-          height={100}
-          className="rounded-full mb-4 hover:opacity-40 hover:shadow-[0_4px_24px_0_rgba(245,125,56,0.3)] transition duration-300"
+          height={36}
+          className=""
         /> ,
          <Image
              key={8}
@@ -139,8 +139,8 @@ const Porjects = () => {
           src={'/Git.png'}
           alt="project"
           width={36}
-          height={100}
-          className="rounded-full mb-4 hover:opacity-40 hover:shadow-[0_4px_24px_0_rgba(245,125,56,0.3)] transition duration-300"
+          height={36}
+          className=""
         />,
          <Image
              key={9}
@@ -148,8 +148,8 @@ const Porjects = () => {
           src={'/typescript.png'}
           alt="project"
           width={36}
-          height={100}
-          className="rounded-full mb-4 hover:opacity-40 hover:shadow-[0_4px_24px_0_rgba(245,125,56,0.3)] transition duration-300"
+          height={36}
+          className=""
         />
 
           ]}
@@ -171,8 +171,8 @@ const Porjects = () => {
           src={'/Html5.png'}
           alt="project"
           width={36}
-          height={100}
-          className="rounded-full mb-4 hover:opacity-40 hover:shadow-[0_4px_24px_0_rgba(245,125,56,0.3)] transition duration-300"
+          height={36}
+          className=""
         />,
          <Image
              key={11}
@@ -180,17 +180,17 @@ const Porjects = () => {
           src={'/CSS3.png'}
           alt="project"
           width={36}
-          height={100}
-          className="rounded-full mb-4 hover:opacity-40 hover:shadow-[0_4px_24px_0_rgba(245,125,56,0.3)] transition duration-300"
+          height={36}
+          className=""
         />,
          <Image
              key={12}
 
-          src={'/Javascript.png'}
+          src={'/JavaScript.png'}
           alt="project"
           width={36}
-          height={100}
-          className="rounded-full mb-4 hover:opacity-40 hover:shadow-[0_4px_24px_0_rgba(245,125,56,0.3)] transition duration-300"
+          height={36}
+          className=""
         />,
          <Image
              key={13}
@@ -198,8 +198,8 @@ const Porjects = () => {
           src={'/Git.png'}
           alt="project"
           width={36}
-          height={100}
-          className="rounded-full mb-4 hover:opacity-40 hover:shadow-[0_4px_24px_0_rgba(245,125,56,0.3)] transition duration-300"
+          height={36}
+          className=""
         />
           ]}
         />
@@ -219,8 +219,8 @@ const Porjects = () => {
           src={'/Html5.png'}
           alt="project"
           width={36}
-          height={100}
-          className="rounded-full mb-4 hover:opacity-40 hover:shadow-[0_4px_24px_0_rgba(245,125,56,0.3)] transition duration-300"
+          height={36}
+          className=""
         />,
          <Image
              key={15}
@@ -228,17 +228,17 @@ const Porjects = () => {
           src={'/CSS3.png'}
           alt="project"
           width={36}
-          height={100}
-          className="rounded-full mb-4 hover:opacity-40 hover:shadow-[0_4px_24px_0_rgba(245,125,56,0.3)] transition duration-300"
+          height={36}
+          className=""
         />,
          <Image
              key={16}
 
-          src={'/Javascript.png'}
+          src={'/JavaScript.png'}
           alt="project"
           width={36}
-          height={100}
-          className="rounded-full mb-4 hover:opacity-40 hover:shadow-[0_4px_24px_0_rgba(245,125,56,0.3)] transition duration-300"
+          height={36}
+          className=""
         />,
          <Image
              key={17}
@@ -246,8 +246,8 @@ const Porjects = () => {
           src={'/Git.png'}
           alt="project"
           width={36}
-          height={100}
-          className="rounded-full mb-4 hover:opacity-40 hover:shadow-[0_4px_24px_0_rgba(245,125,56,0.3)] transition duration-300"
+          height={36}
+          className=""
         />
           ]}
         />

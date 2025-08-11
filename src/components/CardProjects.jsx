@@ -15,7 +15,7 @@ const CardProjects = ({ image, title, subtitle, link, tecImg }) => {
 
 
   return (
-    <div className="w-[390px] cursor-pointer px-3 pt-2 pb-8 bg-[#ffffff4b] rounded-2xl  transition-transform duration-300 hover:scale-105">
+    <div className="w-[340px] cursor-pointer px-3 pt-2 pb-8 bg-[#ffffff4b] rounded-2xl  transition-transform duration-300 hover:scale-105">
       <Link href={link} target="_blank" className="">
         <Image
           src={image}
