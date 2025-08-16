@@ -5,15 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const Contact = () => {
-  const handleEmailClick = () => {
-    const email = 'homeoficelucas@gmail.com';
-    const subject = 'Proposta de Projeto';
-    const body = 'Olá Lucas! Gostaria de conversar sobre um projeto.';
-    
-    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    
-    window.location.href = mailtoLink;
-  };
   return (
     <section className="my-20 mx-4 text-white mb-14 flex flex-col items-center lg:mx-32 lg:py-28" id="contato">
       
@@ -150,12 +141,12 @@ const Contact = () => {
              {/* CTA */}
        <div className="text-center mt-12">
          <p className="text-[#b0afaf] mb-4">Tem um projeto em mente?</p>
-         <button 
-           onClick={handleEmailClick}
+         <a 
+           href="mailto:homeoficelucas@gmail.com?subject=Proposta de Projeto&body=Olá Lucas! Gostaria de conversar sobre um projeto."
            className="inline-block bg-[#0980ec] hover:bg-[#0659a6] text-white font-medium py-3 px-8 rounded-full transition-colors duration-300 cursor-pointer"
          >
            Vamos Conversar!
-         </button>
+         </a>
        </div>
 
     </section>
