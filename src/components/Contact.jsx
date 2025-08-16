@@ -141,12 +141,14 @@ const Contact = () => {
              {/* CTA */}
        <div className="text-center mt-12">
          <p className="text-[#b0afaf] mb-4">Tem um projeto em mente?</p>
-         <a 
-           href="mailto:homeoficelucas@gmail.com?subject=Proposta de Projeto&body=Olá Lucas! Gostaria de conversar sobre um projeto."
-           className="inline-block bg-[#0980ec] hover:bg-[#0659a6] text-white font-medium py-3 px-8 rounded-full transition-colors duration-300 cursor-pointer"
-         >
-           Vamos Conversar!
-         </a>
+         <a
+  href="https://mail.google.com/mail/?view=cm&to=homeoficelucas@gmail.com&su=Proposta%20de%20Projeto&body=Olá%20Lucas!%20Gostaria%20de%20conversar%20sobre%20um%20projeto."
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-block bg-[#0980ec] hover:bg-[#0659a6] text-white font-medium py-3 px-8 rounded-full transition-colors duration-300 cursor-pointer"
+>
+  Vamos Conversar!
+</a>
        </div>
 
     </section>
