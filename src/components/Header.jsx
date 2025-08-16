@@ -29,6 +29,10 @@ const Header = () => {
           <Link href={"#projetos"}>Projetos</Link>
 
           </li>
+          <li >
+          <Link href={"#contato"}>Contato</Link>
+
+          </li>
         </nav>
       {/*Botão menu mobile */}
       <button
@@ -53,6 +57,9 @@ const Header = () => {
         </li>
         <li className="hover:text-[#F57D38]">
           <Link href={"#projetos"}>Projetos</Link>
+        </li>
+        <li className="hover:text-[#F57D38]">
+          <Link href={"#contato"}>Contato</Link>
         </li>
       </nav>
     </header>

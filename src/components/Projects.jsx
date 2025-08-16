@@ -11,6 +11,58 @@ const Porjects = () => {
 
       <div className="w-full flex items-center justify-center  gap-10 flex-wrap   " >
 
+                 <CardProjects
+           link={
+             "https://blognode-mntu.onrender.com/"
+           }
+           image={"/blognode.png"}
+           title="BlogNode"
+                     subtitle="Projeto BlogNode – Aplicação fullstack desenvolvida com Node.js, Express, MongoDB e Bootstrap. Inclui sistema completo de autenticação, CRUD de postagens com categorias, listagem de posts recentes e layout responsivo. Foco em boas práticas de desenvolvimento, estrutura modular e integração front-end/back-end."
+
+          tecImg={[
+            <Image
+              key={'blog1'}
+              src={'/Nodejs.png'}
+              alt="Node.js"
+              width={36}
+              height={36}
+              className=""
+            />,
+            <Image
+              key={'blog2'}
+              src={'/MongoDB.png'}
+              alt="MongoDB"
+              width={36}
+              height={36}
+              className=""
+            />,
+            <Image
+              key={'blog3'}
+              src={'/JavaScript.png'}
+              alt="JavaScript"
+              width={36}
+              height={36}
+              className=""
+            />,
+            <Image
+              key={'blog4'}
+              src={'/Git.png'}
+              alt="Git"
+              width={36}
+              height={36}
+              className=""
+            />,
+            <Image
+            key={'blog5'}
+            src={'/bootstrap.png'}
+            alt="bootstrap"
+            width={36}
+            height={36}
+            className=""
+          />
+          ]}
+        />
+
          <CardProjects
           link={
             "https://lpyoga.vercel.app/"
