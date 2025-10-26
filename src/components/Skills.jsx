@@ -11,10 +11,13 @@ const Skills = () => {
             <CardSkills image={"/Html5.png"} text='HTML5'/>
             <CardSkills image={"/CSS3.png"} text='CSS3'/>
             <CardSkills image={"/JavaScript.png"} text='JAVASCRIPT'/>
+            <CardSkills image={"/typescript2.png"} text='TYPESCRIPT'/>
             <CardSkills image={"/React.png"} text='REACT'/>
             <CardSkills image={"/Next.js.png"} text='NEXTJS'/>
             <CardSkills image={"/Tailwindcss.png"} text='TAILWIND'/>
+            <CardSkills image={"/bootstrap2.png"} text='BOOTSTRAP'/>
             <CardSkills image={"/Nodejs.png"} text='NODEJS'/>
+            <CardSkills image={"/mysql.png"} text='MYSQL'/>
             <CardSkills image={"/MongoDB.png"} text='MONGODB'/>
             <CardSkills image={"/Git.png"} text='GIT'/>
 

@@ -11,6 +11,54 @@ const Porjects = () => {
 
       <div className="w-full flex items-center justify-center  gap-10 flex-wrap   " >
 
+
+
+
+<CardProjects
+  link={
+    "https://lp-stefani.vercel.app/"
+  }
+  image={"/stefani.png"} // Certifique-se de adicionar a imagem do projeto na pasta public
+  title="Stefani Fotografia"
+  subtitle="Landing page desenvolvida para uma fotógrafa profissional, com foco em apresentar seu trabalho de forma elegante e responsiva. Projeto construído com Next.js, TypeScript e Tailwind CSS, seguindo boas práticas de desenvolvimento e design moderno."
+  
+  tecImg={[
+    <Image
+      key={'stefani1'}
+      src={'/Next.js.png'}
+      alt="Next.js"
+      width={36}
+      height={36}
+      className=""
+    />,
+    <Image
+      key={'stefani2'}
+      src={'/Tailwindcss.png'}
+      alt="Tailwind CSS"
+      width={36}
+      height={36}
+      className=""
+    />,
+    <Image
+      key={'stefani3'}
+      src={'/typescript.png'}
+      alt="TypeScript"
+      width={36}
+      height={36}
+      className=""
+    />,
+    <Image
+      key={'stefani4'}
+      src={'/Git.png'}
+      alt="Git"
+      width={36}
+      height={36}
+      className=""
+    />
+  ]}
+/>
+
+
                  <CardProjects
            link={
              "https://blognode-mntu.onrender.com/"

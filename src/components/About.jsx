@@ -9,7 +9,7 @@ const About = () => {
                 Sobre mim
             </h2>
             <p className='font-light text-sm text-[#b0afaf] lg:text-[18px]'>
-                Cursando analise e desenvolvimento de sistemas e estou em transição de carreira. Já desenvolvi sites como freelance e já empreendi  na area de barbearia e também com confeitaria, trabalhei por mais de 10 anos em barbearia, onde desenvolvi habilidades em marketing, mídias sociais, vendas, proatividade, além de aprimorar minha comunicação e trabalho em equipe. Minha experiência como empreendedor e freelancer também me proporcionou conhecimentos em gestão de projetos, pesquisa on-line e organização, fundamentais para o desenvolvimento de aplicações.
+                Desenvolvedor com experiência prática na criação de sites e aplicações web, atuando como freelancer em projetos personalizados para diferentes negócios. Ao longo de mais de 10 anos de experiência em barbearia e empreendedorismo, desenvolvi habilidades como comunicação, trabalho em equipe, proatividade e organização. Essa trajetória me proporcionou uma visão estratégica e conhecimentos em gestão de projetos, pesquisa e planejamento, que aplico no desenvolvimento de soluções digitais eficientes e bem estruturadas.
             </p>
         </div>
         <div className='flex justify-center mt-5'>

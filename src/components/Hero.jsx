@@ -20,7 +20,7 @@ const Hero = () => {
           alt="Foto"
           width={284}
           height={224}
-          className=" lg:hidden"
+          className="animate-float lg:hidden"
         />
 
         <Image
@@ -28,7 +28,7 @@ const Hero = () => {
           alt="Foto"
           width={510}
           height={224}
-          className="hidden lg:flex"
+          className="hidden lg:flex animate-float"
         />
       </div>
 
@@ -40,15 +40,15 @@ const Hero = () => {
           <h1 className="text-2xl uppercase font-bold text-[#0A80ED] lg:text-5xl">
             Desenvolvedor <br />full-stack
           </h1>
-          <p className="text-sm font-light mt-5 text-[#979696] lg:text-2xl">
-            apaixonado por criar aplicações web{" "}
+          <p className="text-sm font-light  text-[#979696] lg:text-2xl">
+            Apaixonado por criar aplicações web{" "}
             <br className="hidden lg:flex" /> inovadoras e fáceis de usar.
           </p>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-4 mt-5  lg:mt-16">
           <button
-            className=" text-sm flex px-10 py-4 rounded-full text-white bg-[#F57D38] items-center gap-1 cursor-pointer "
+            className=" text-sm flex px-10 py-4 rounded-full text-white bg-[#F57D38] items-center gap-1 cursor-pointer hover:scale-105 duration-300 hover:opacity-70 shadow-lg shadow-[#f57d383d]"
             onClick={handleSubmit}
           >
             Fale comigo
@@ -63,7 +63,7 @@ const Hero = () => {
           <a
             href="/lucasdev.pdf"
             download
-            className="text-sm flex px-10 py-4 rounded-full text-white bg-[#0A80ED] items-center gap-1 cursor-pointer"
+            className="text-sm flex px-10 py-4 rounded-full text-white bg-[#0A80ED] items-center gap-1 cursor-pointer hover:scale-105 duration-300 hover:opacity-70 shadow-lg shadow-[#0a7fed46]"
           >
             Baixar curriculo
             <Image
