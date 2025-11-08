@@ -14,49 +14,117 @@ const Porjects = () => {
 
 
 
-<CardProjects
-  link={
-    "https://lp-stefani.vercel.app/"
-  }
-  image={"/stefani.png"} // Certifique-se de adicionar a imagem do projeto na pasta public
-  title="Stefani Fotografia"
-  subtitle="Landing page desenvolvida para uma fotógrafa profissional, com foco em apresentar seu trabalho de forma elegante e responsiva. Projeto construído com Next.js, TypeScript e Tailwind CSS, seguindo boas práticas de desenvolvimento e design moderno."
-  
-  tecImg={[
-    <Image
-      key={'stefani1'}
-      src={'/Next.js.png'}
-      alt="Next.js"
-      width={36}
-      height={36}
-      className=""
-    />,
-    <Image
-      key={'stefani2'}
-      src={'/Tailwindcss.png'}
-      alt="Tailwind CSS"
-      width={36}
-      height={36}
-      className=""
-    />,
-    <Image
-      key={'stefani3'}
-      src={'/typescript.png'}
-      alt="TypeScript"
-      width={36}
-      height={36}
-      className=""
-    />,
-    <Image
-      key={'stefani4'}
-      src={'/Git.png'}
-      alt="Git"
-      width={36}
-      height={36}
-      className=""
-    />
-  ]}
-/>
+        <CardProjects
+          link={
+            "https://github.com/LucasSantos96/api_barber"
+          }
+          image={"/system-barber.png"}
+          title="API Barber"
+          subtitle="Sistema completo de gestão de clientes para barbearia desenvolvido com Next.js, Node.js e Prisma. Inclui cadastro, edição e exclusão de clientes, associação de planos com duração de 30 dias, contagem regressiva automática de dias restantes, renovação de planos com um clique e status dinâmico (ativo/inativo). Integração frontend/backend completa, suporte a MySQL (produção) e SQLite (local), e configuração com PM2 para execução contínua."
+          
+          tecImg={[
+            <Image
+              key={'barber1'}
+              src={'/Next.js.png'}
+              alt="Next.js"
+              width={36}
+              height={36}
+              className=""
+            />,
+            <Image
+              key={'barber3'}
+              src={'/typescript.png'}
+              alt="TypeScript"
+              width={36}
+              height={36}
+              className=""
+            />,
+            <Image
+              key={'barber4'}
+              src={'/Tailwindcss.png'}
+              alt="Tailwind CSS"
+              width={36}
+              height={36}
+              className=""
+            />,
+            <Image
+            key={'barber5'}
+            src={'/prisma.png'}
+            alt="Prisma ORM"
+            width={36}
+            height={36}
+            className=""
+          />,
+            <Image
+              key={'barber6'}
+              src={'/Nodejs.png'}
+              alt="Node.js"
+              width={36}
+              height={36}
+              className=""
+            />,
+            <Image
+              key={'barber7'}
+              src={'/mysql.png'}
+              alt="MySQL"
+              width={36}
+              height={36}
+              className=""
+            />,
+            <Image
+              key={'barber8'}
+              src={'/Git.png'}
+              alt="Git"
+              width={36}
+              height={36}
+              className=""
+            />
+          ]}
+        />
+
+        <CardProjects
+          link={
+            "https://lp-stefani.vercel.app/"
+          }
+          image={"/stefani.png"} // Certifique-se de adicionar a imagem do projeto na pasta public
+          title="Stefani Fotografia"
+          subtitle="Landing page desenvolvida para uma fotógrafa profissional, com foco em apresentar seu trabalho de forma elegante e responsiva. Projeto construído com Next.js, TypeScript e Tailwind CSS, seguindo boas práticas de desenvolvimento e design moderno."
+          
+          tecImg={[
+            <Image
+              key={'stefani1'}
+              src={'/Next.js.png'}
+              alt="Next.js"
+              width={36}
+              height={36}
+              className=""
+            />,
+            <Image
+              key={'stefani2'}
+              src={'/Tailwindcss.png'}
+              alt="Tailwind CSS"
+              width={36}
+              height={36}
+              className=""
+            />,
+            <Image
+              key={'stefani3'}
+              src={'/typescript.png'}
+              alt="TypeScript"
+              width={36}
+              height={36}
+              className=""
+            />,
+            <Image
+              key={'stefani4'}
+              src={'/Git.png'}
+              alt="Git"
+              width={36}
+              height={36}
+              className=""
+            />
+          ]}
+        />
 
 
                  <CardProjects
