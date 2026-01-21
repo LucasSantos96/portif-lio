@@ -61,7 +61,7 @@ const Hero = () => {
           </button>
 
           <a
-            href="/Lucas_Fullstack.pdf"
+            href="/lucasFullstack.pdf"
             download
             className="text-sm flex px-10 py-4 rounded-full text-white bg-[#0A80ED] items-center gap-1 cursor-pointer hover:scale-105 duration-300 hover:opacity-70 shadow-lg shadow-[#0a7fed46]"
           >
