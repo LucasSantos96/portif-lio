@@ -32,17 +32,17 @@ const Porjects = () => {
               className=""
             />,
             <Image
-              key={'barber3'}
-              src={'/typescript.png'}
-              alt="TypeScript"
+              key={'barber4'}
+              src={'/Tailwindcss.png'}
+              alt="Tailwind CSS"
               width={36}
               height={36}
               className=""
             />,
             <Image
-              key={'barber4'}
-              src={'/Tailwindcss.png'}
-              alt="Tailwind CSS"
+              key={'barber3'}
+              src={'/typescript.png'}
+              alt="TypeScript"
               width={36}
               height={36}
               className=""
@@ -79,6 +79,74 @@ const Porjects = () => {
               height={36}
               className=""
             />
+          ]}
+        />
+
+        <CardProjects
+          link={
+            "https://saas-study-21vg.vercel.app/"
+          }
+          image={"/eduai.png"}
+          title="Edu ai"
+          subtitle="Sistema inteligente de geração de planos de estudo automatizado com n8n e DeepSeek, desenvolvido com React, Node.js e SQLite. A plataforma utiliza webhooks para orquestrar fluxos complexos no n8n, realizando buscas automáticas e criando cronogramas personalizados via inteligência artificial (DeepSeek) para qualquer tema. Inclui dashboard de gestão, autenticação segura (JWT), visualização modular de conteúdos e integração backend/frontend completa, focada em produtividade e automação de fluxos acadêmicos."
+          
+          tecImg={[
+            <Image
+              key={'stud3'}
+              src={'/React.png'}
+              alt="React"
+              width={40}
+              height={36}
+              className=""
+            />,
+            <Image
+              key={'stud4'}
+              src={'/Nodejs.png'}
+              alt="Node.js"
+              width={40}
+              height={36}
+              className=""
+            />,
+            <Image
+              key={'stud5'}
+              src={'/sqlite-icon.webp'}
+              alt="SQLite"
+              width={40}
+              height={36}
+              className=""
+            />,
+            <Image
+              key={'stud6'}
+              src={'/Git.png'}
+              alt="Git"
+              width={40}
+              height={36}
+              className=""
+            />,
+            <Image
+            key={'stud1'}
+            src={'/n8n.png'}
+            alt="n8n"
+            width={36}
+            height={36}
+            className=""
+          />,
+          <Image
+            key={'stud2'}
+            src={'/deepseek.png'}
+            alt="DeepSeek"
+            width={36}
+            height={36}
+            className=""
+          />,
+          <Image
+            key={'stud7'}
+            src={'/antigravity-icon.png'}
+            alt="Antigravity"
+            width={36}
+            height={36}
+            className=""
+          />
           ]}
         />
 
