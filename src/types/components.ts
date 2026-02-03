@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 // Component Props Types
 export interface CardSkillsProps {
-    image: string;
+    icon: ReactNode;
     text: string;
 }
 

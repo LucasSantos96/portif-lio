@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import { MessageCircle, Download } from "lucide-react";
 
 const Hero: React.FC = () => {
     const handleSubmit = (): void => {
@@ -37,8 +38,8 @@ const Hero: React.FC = () => {
                     <h2 className="text-sm text-white lg:text-3xl">
                         Oi, Sou Lucas Santos
                     </h2>
-                    <h1 className="text-2xl uppercase font-bold text-[#0A80ED] lg:text-5xl">
-                        Desenvolvedor <br />full-stack
+                    <h1 className="text-2xl font-bold text-[#0A80ED] lg:text-5xl capitalize">
+                        Desenvolvedor <br />Full-Stack
                     </h1>
                     <p className="text-sm font-light  text-[#979696] lg:text-2xl">
                         Apaixonado por criar aplicações web{" "}
@@ -48,30 +49,22 @@ const Hero: React.FC = () => {
 
                 <div className="flex flex-col lg:flex-row gap-4 mt-5  lg:mt-16">
                     <button
-                        className=" text-sm flex px-10 py-4 rounded-full text-white bg-[#F57D38] items-center gap-1 cursor-pointer hover:scale-105 duration-300 hover:opacity-70 shadow-lg shadow-[#f57d383d]"
+                        className=" text-sm flex items-center gap-2 px-10 py-4 rounded-full text-white bg-[#F57D38] cursor-pointer hover:scale-105 duration-300 hover:opacity-70 shadow-lg shadow-[#f57d383d]"
                         onClick={handleSubmit}
+                        aria-label="Entrar em contato via WhatsApp"
                     >
                         Fale comigo
-                        <Image
-                            src={"/ChatBubble.png"}
-                            alt="chat icon"
-                            width={20}
-                            height={24}
-                        />
+                        <MessageCircle size={20} />
                     </button>
 
                     <a
                         href="/lucasFullstack.pdf"
                         download
-                        className="text-sm flex px-10 py-4 rounded-full text-white bg-[#0A80ED] items-center gap-1 cursor-pointer hover:scale-105 duration-300 hover:opacity-70 shadow-lg shadow-[#0a7fed46]"
+                        className="text-sm flex items-center gap-2 px-10 py-4 rounded-full text-white bg-[#0A80ED] cursor-pointer hover:scale-105 duration-300 hover:opacity-70 shadow-lg shadow-[#0a7fed46]"
+                        aria-label="Baixar currículo em PDF"
                     >
                         Baixar curriculo
-                        <Image
-                            src={"/Download.png"}
-                            alt="chat icon"
-                            width={24}
-                            height={24}
-                        />
+                        <Download size={20} />
                     </a>
                 </div>
             </div>

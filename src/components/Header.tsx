@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
+import { Menu, X } from "lucide-react";
 
 const Header: React.FC = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -36,13 +36,13 @@ const Header: React.FC = () => {
             {/*Botão menu mobile */}
             <button
                 onClick={toggleMenu}
-                aria-label="Abrir Menu"
+                aria-label={isOpen ? "Fechar menu de navegação" : "Abrir menu de navegação"}
                 className="lg:hidden px-4 absolute right-0 top-3"
             >
                 {isOpen ? (
-                    <Image src={"/x.png"} alt="Menu" width={30} height={20} />
+                    <X size={30} />
                 ) : (
-                    <Image src={"/menu.png"} alt="Menu" width={30} height={20} />
+                    <Menu size={30} />
                 )}
             </button>
 
