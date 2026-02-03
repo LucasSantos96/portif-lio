@@ -9,7 +9,7 @@ const About: React.FC = () => {
                     Sobre mim
                 </h2>
                 <p className='font-light text-sm text-[#b0afaf] lg:text-[18px]'>
-                    Desenvolvedor com experiência prática na criação de sites e aplicações web, atuando como freelancer em projetos personalizados para diferentes negócios. Ao longo de mais de 10 anos de experiência em barbearia e empreendedorismo, desenvolvi habilidades como comunicação, trabalho em equipe, proatividade e organização. Essa trajetória me proporcionou uma visão estratégica e conhecimentos em gestão de projetos, pesquisa e planejamento, que aplico no desenvolvimento de soluções digitais eficientes e bem estruturadas.
+                    Desenvolvedor Full Stack especializado em transformar desafios de negócios em soluções digitais inteligentes. Com mais de 10 anos de jornada no empreendedorismo, trago uma visão estratégica que vai além do código: foco em ROI, produtividade e experiência do usuário. Sou especialista em construir não apenas sites, mas ecossistemas que trabalham para você, integrando <strong>automacões avançadas (n8n, Python)</strong> para eliminar processos manuais e escalar operações. Meu objetivo é criar tecnologia que gera valor real e libera tempo para o que realmente importa no seu negócio.
                 </p>
             </div>
             <div className='flex justify-center mt-5'>
