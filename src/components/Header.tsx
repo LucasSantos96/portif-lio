@@ -12,37 +12,33 @@ const Header: React.FC = () => {
     };
 
     return (
-        <header className=" text-white flex  py-6 mb-4    lg:justify-center lg:py-7 border-b border-[#ffffff2c] ">
+        <header className="w-full text-white flex py-6 mb-4 lg:justify-center lg:py-7 border-b border-[#ffffff2c]">
 
             {/*menu mobile */}
-            <nav className={`${isOpen ? "flex" : "hidden"} lg:hidden  flex-col absolute right-0   top-0  gap-6 bg-[#000] h-full list-none px-14 pt-16  text-sm shadow-[#578be760] shadow-2xl`}>
-                <li >
-                    <Link href={"#sobre"}>Sobre</Link>
-
+            <nav className={`${isOpen ? "flex" : "hidden"} lg:hidden flex-col fixed inset-0 z-50 gap-10 bg-[#000000fa] items-center justify-center list-none text-2xl shadow-2xl transition-all duration-300`}>
+                <li onClick={toggleMenu}>
+                    <Link href={"#sobre"} className="hover:text-[#F57D38]">Sobre</Link>
                 </li>
-                <li >
-                    <Link href={"#habilidades"}>Habilidades</Link>
-
+                <li onClick={toggleMenu}>
+                    <Link href={"#habilidades"} className="hover:text-[#F57D38]">Habilidades</Link>
                 </li>
-                <li >
-                    <Link href={"#projetos"}>Projetos</Link>
-
+                <li onClick={toggleMenu}>
+                    <Link href={"#projetos"} className="hover:text-[#F57D38]">Projetos</Link>
                 </li>
-                <li >
-                    <Link href={"#contato"}>Contato</Link>
-
+                <li onClick={toggleMenu}>
+                    <Link href={"#contato"} className="hover:text-[#F57D38]">Contato</Link>
                 </li>
             </nav>
             {/*Botão menu mobile */}
             <button
                 onClick={toggleMenu}
                 aria-label={isOpen ? "Fechar menu de navegação" : "Abrir menu de navegação"}
-                className="lg:hidden px-4 absolute right-0 top-3"
+                className="lg:hidden px-4 absolute right-4 top-2 z-[60]"
             >
                 {isOpen ? (
-                    <X size={30} />
+                    <X size={32} />
                 ) : (
-                    <Menu size={30} />
+                    <Menu size={32} />
                 )}
             </button>
 

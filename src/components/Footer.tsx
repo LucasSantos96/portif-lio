@@ -6,30 +6,30 @@ import { SiWhatsapp } from '@icons-pack/react-simple-icons';
 
 const Footer: React.FC = () => {
     return (
-        <footer className='bg-[#00000080] justify-center'>
-            <div className='flex items-center lg:mx-[120px] mx-5 justify-between'>
-                <div className='py-14'>
-                    <h2 className='text-2xl text-[#fff] font-medium'>Lucas Santos</h2>
-                    <p className='text-[#0980ec]'>Desenvolvedor fullstack</p>
+        <footer className='bg-[#00000080]'>
+            <div className='flex flex-col lg:flex-row items-center lg:items-start lg:mx-[120px] mx-5 py-10 lg:py-14 justify-between gap-10 lg:gap-0'>
+                <div className='flex flex-col items-center lg:items-start text-center lg:text-left'>
+                    <h2 className='text-2xl text-[#fff] font-medium uppercase tracking-wider'>Lucas Santos</h2>
+                    <p className='text-[#0980ec] font-light'>Desenvolvedor Fullstack</p>
 
                     <div className='flex items-center gap-2 mt-4'>
                         <Mail
-                            size={24}
-                            className="text-white bg-[#ffffff71] p-1 rounded-full"
+                            size={20}
+                            className="text-white bg-[#ffffff20] p-1 rounded-full"
                         />
-                        <p className='text-white text-[12px] '>homeoficelucas@gmail.com</p>
+                        <p className='text-white text-sm font-light'>homeoficelucas@gmail.com</p>
                     </div>
                 </div>
-                <div>
-                    <h2 className='text-2xl text-[#fff] font-light'>Redes sociais</h2>
-                    <div className='flex gap-4 mt-4'>
+                <div className='flex flex-col items-center lg:items-start'>
+                    <h2 className='text-2xl text-[#fff] font-light mb-4'>Redes sociais</h2>
+                    <div className='flex gap-6'>
                         <a
                             href="https://www.linkedin.com/in/lucas-santos-de-oliveira-874497325/"
                             target='_blank'
                             aria-label="Visitar perfil no LinkedIn"
                             className="hover:scale-110 transition-transform duration-300"
                         >
-                            <Linkedin size={36} className="text-white hover:text-[#0A80ED]" />
+                            <Linkedin size={32} className="text-white hover:text-[#0A80ED]" />
                         </a>
 
                         <a
@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
                             aria-label="Visitar perfil no GitHub"
                             className="hover:scale-110 transition-transform duration-300"
                         >
-                            <Github size={36} className="text-white hover:text-[#0A80ED]" />
+                            <Github size={32} className="text-white hover:text-[#0A80ED]" />
                         </a>
 
                         <a
@@ -47,7 +47,7 @@ const Footer: React.FC = () => {
                             aria-label="Entrar em contato via WhatsApp"
                             className="hover:scale-110 transition-transform duration-300"
                         >
-                            <SiWhatsapp size={36} color="#25D366" />
+                            <SiWhatsapp size={32} color="#25D366" />
                         </a>
                     </div>
 
