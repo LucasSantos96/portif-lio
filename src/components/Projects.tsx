@@ -17,11 +17,11 @@ import {
     SiCss
 } from '@icons-pack/react-simple-icons';
 
-const Porjects: React.FC = () => {
+const Projects: React.FC = () => {
     const iconSize = 36;
 
     return (
-        <section className="my-20 mx-4 text-white mb-14 flex flex-col items-center  lg:mx-32  lg:py-28" id="projetos">
+        <section className="my-20 mx-4 text-white mb-14 flex flex-col items-center lg:mx-32 lg:py-28" id="projetos">
 
             <div>
                 <h2 className="text-[20px] mb-5 lg:text-[40px] lg:text-center">Projetos</h2>
@@ -192,4 +192,4 @@ const Porjects: React.FC = () => {
     );
 };
 
-export default Porjects;
+export default Projects;
