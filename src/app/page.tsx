@@ -5,13 +5,13 @@ import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
 
 export default function Home() {
-  return (
-   <main>
-    <Hero/>
-    <About/>
-    <Skills/>
-    <Porjects/>
-    <Contact/>
-   </main>
-  );
+    return (
+        <main>
+            <Hero />
+            <About />
+            <Skills />
+            <Porjects />
+            <Contact />
+        </main>
+    );
 }
