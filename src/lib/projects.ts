@@ -1,5 +1,6 @@
 import "server-only";
 
+import { getDatabaseUrl } from "@/lib/database-url";
 import { prisma } from "@/lib/prisma";
 import type { NewPortfolioProjectInput, PortfolioProject } from "@/types";
 
@@ -18,8 +19,10 @@ interface DbPortfolioProject {
 }
 
 function assertDatabaseConfigured() {
-  if (!process.env.DATABASE_URL) {
-    throw new Error("DATABASE_URL não configurada.");
+  if (!getDatabaseUrl()) {
+    throw new Error(
+      "Configure DATABASE_URL ou POSTGRES_PRISMA_URL para conectar o Prisma no ambiente atual.",
+    );
   }
 }
 
@@ -44,7 +47,7 @@ function normalizeTechnologies(technologies: string[]) {
 }
 
 export async function getPortfolioProjects(): Promise<PortfolioProject[]> {
-  if (!process.env.DATABASE_URL) {
+  if (!getDatabaseUrl()) {
     return [];
   }
 
@@ -55,7 +58,11 @@ export async function getPortfolioProjects(): Promise<PortfolioProject[]> {
 
     return (data as DbPortfolioProject[]).map(mapDbProject);
   } catch (error) {
-    console.error("Erro ao buscar projetos com Prisma:", error);
+    if (error instanceof Error) {
+      console.error("Erro ao buscar projetos com Prisma:", error.name, error.message);
+    } else {
+      console.error("Erro ao buscar projetos com Prisma:", error);
+    }
     return [];
   }
 }
