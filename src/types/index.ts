@@ -1,1 +1,7 @@
-export type { CardSkillsProps, CardProjectsProps, RootLayoutProps } from './components';
+export type {
+    CardSkillsProps,
+    CardProjectsProps,
+    PortfolioProject,
+    NewPortfolioProjectInput,
+    RootLayoutProps,
+} from './components';
