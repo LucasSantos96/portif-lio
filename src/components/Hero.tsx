@@ -58,7 +58,7 @@ const Hero: React.FC = () => {
                     </button>
 
                     <a
-                        href="/lucasFullstack.pdf"
+                        href="/Lucas-Santos-Full-stack.pdf"
                         download
                         className="text-sm flex items-center gap-2 px-10 py-4 rounded-full text-white bg-[#0A80ED] cursor-pointer hover:scale-105 duration-300 hover:opacity-70 shadow-lg shadow-[#0a7fed46]"
                         aria-label="Baixar currículo em PDF"
