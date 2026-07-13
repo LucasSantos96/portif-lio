@@ -74,10 +74,10 @@ const Contact: React.FC = () => {
                 </p>
             </div>
 
-            <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
 
                 {/* Informações de Contato */}
-                <div className="bg-[#ffffff4b] rounded-2xl p-8">
+                <div className="bg-white/10 backdrop-blur-2xl border border-white/15 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] rounded-2xl p-8">
                     <h3 className="text-xl font-semibold mb-6 text-center">Informações</h3>
 
                     <div className="space-y-6">
@@ -131,78 +131,13 @@ const Contact: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Redes Sociais */}
-                <div className="bg-[#ffffff4b] rounded-2xl p-8">
-                    <h3 className="text-xl font-semibold mb-6 text-center">Redes Sociais</h3>
+                {/* Formulário de Contato */}
+                <div className="bg-white/10 backdrop-blur-2xl border border-white/15 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] rounded-2xl p-8">
+                    <h3 className="text-xl font-semibold mb-6 text-center">
+                        Tem um projeto em mente?
+                    </h3>
 
-                    <div className="space-y-4">
-                        <a
-                            href="https://www.linkedin.com/in/lucas-santos-de-oliveira-874497325/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-4 p-4 bg-[#ffffff1a] rounded-xl hover:bg-[#ffffff2a] transition-colors duration-300"
-                        >
-                            <Image
-                                src="/linkedin.png"
-                                alt="LinkedIn"
-                                width={32}
-                                height={32}
-                                className=""
-                            />
-                            <div>
-                                <p className="font-medium">LinkedIn</p>
-                                <p className="text-sm text-[#b0afaf]">Conecte-se profissionalmente</p>
-                            </div>
-                        </a>
-
-                        <a
-                            href="https://github.com/LucasSantos96"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-4 p-4 bg-[#ffffff1a] rounded-xl hover:bg-[#ffffff2a] transition-colors duration-300"
-                        >
-                            <Image
-                                src="/github.png"
-                                alt="GitHub"
-                                width={32}
-                                height={32}
-                                className=""
-                            />
-                            <div>
-                                <p className="font-medium">GitHub</p>
-                                <p className="text-sm text-[#b0afaf]">Veja meus projetos</p>
-                            </div>
-                        </a>
-
-                        <a
-                            href="https://wa.me/5522981073895"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-4 p-4 bg-[#ffffff1a] rounded-xl hover:bg-[#ffffff2a] transition-colors duration-300"
-                        >
-                            <Image
-                                src="/whatsapp.png"
-                                alt="WhatsApp"
-                                width={32}
-                                height={32}
-                                className=""
-                            />
-                            <div>
-                                <p className="font-medium">WhatsApp</p>
-                                <p className="text-sm text-[#b0afaf]">Mensagem direta</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            {/* Formulário de Contato */}
-            <div className="w-full max-w-2xl mt-12 bg-[#ffffff4b] rounded-2xl p-8">
-                <h3 className="text-xl font-semibold mb-6 text-center">
-                    Tem um projeto em mente?
-                </h3>
-
-                <form onSubmit={handleSubmit} className="space-y-4">
+                    <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="space-y-1.5">
                         <Label htmlFor="contact-service">Serviço de interesse</Label>
                         <Select
@@ -285,7 +220,8 @@ const Contact: React.FC = () => {
                     >
                         {status === "loading" ? "Enviando..." : "Enviar mensagem"}
                     </Button>
-                </form>
+                    </form>
+                </div>
             </div>
 
         </section>
