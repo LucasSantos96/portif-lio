@@ -23,7 +23,7 @@
 ### Task 1: Add `images.unsplash.com` to Next.js image config
 
 **Files:**
-- Modify: `next.config.ts`
+- Modify: `next.config.mjs`
 
 **Interfaces:**
 - Produces: `images.remotePatterns` includes `images.unsplash.com`, so `next/image` can render the Sites/Sistemas Web card photos in Task 4.
