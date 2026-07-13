@@ -54,25 +54,25 @@ const Services: React.FC = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
         {photoServices.map((service) => (
           <div
             key={service.title}
-            className="relative rounded-2xl overflow-hidden min-h-[220px] flex items-end"
+            className="group relative rounded-2xl overflow-hidden min-h-[280px] flex items-end transition-all duration-500 ease-in-out hover:-translate-y-2 hover:shadow-xl"
           >
             <Image
               src={service.imageUrl}
               alt={service.title}
               fill
               sizes="(min-width: 768px) 50vw, 100vw"
-              className="object-cover"
+              className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#121417]/95 via-[#121417]/55 to-[#121417]/15" />
             <div className="absolute top-4 left-4 bg-[#0980ecdd] size-10 rounded-full flex items-center justify-center text-lg">
               {service.icon}
             </div>
             <div className="relative z-10 p-6">
-              <h3 className="text-lg font-semibold mb-1.5">
+              <h3 className="text-lg font-semibold mb-1.5 transition-colors duration-300 group-hover:text-[#5fb0ff]">
                 {service.title}
               </h3>
               <p className="text-sm text-[#e6e6e6] max-w-[90%]">
@@ -82,7 +82,7 @@ const Services: React.FC = () => {
           </div>
         ))}
 
-        <div className="bg-[#ffffff1a] hover:bg-[#ffffff2a] transition-colors duration-300 rounded-2xl p-6 min-h-[220px] flex flex-col justify-center">
+        <div className="group bg-[#ffffff1a] hover:bg-[#ffffff2a] rounded-2xl p-6 min-h-[280px] flex flex-col justify-center transition-all duration-500 ease-in-out hover:-translate-y-2 hover:shadow-xl">
           <div className="bg-[#0980ec] size-[52px] rounded-full flex items-center justify-center text-xl mb-4">
             🤝
           </div>
@@ -93,18 +93,19 @@ const Services: React.FC = () => {
             Parceiro implementador e consultor de TI para sistemas de gestão e
             cardápio digital.
           </p>
-          <div className="flex gap-3 flex-wrap">
+          <div className="flex gap-4 flex-wrap">
             {partnerLogos.map((logo) => (
               <div
                 key={logo.name}
-                className="bg-[#ffffff1a] rounded-lg px-3 py-2 flex items-center"
+                className="size-16 rounded-full overflow-hidden ring-1 ring-white/15 shrink-0 transition-transform duration-300 hover:scale-105"
+                title={logo.name}
               >
                 <Image
                   src={logo.src}
                   alt={logo.name}
-                  width={80}
-                  height={24}
-                  className="h-6 w-auto object-contain"
+                  width={64}
+                  height={64}
+                  className="h-full w-full object-cover"
                 />
               </div>
             ))}
