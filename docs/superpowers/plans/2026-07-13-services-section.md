@@ -809,7 +809,11 @@ Replace with:
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="space-y-1.5">
                         <Label htmlFor="contact-service">Serviço de interesse</Label>
-                        <Select value={service} onValueChange={setService} required>
+                        <Select
+                            value={service}
+                            onValueChange={(value) => setService(value as string | null)}
+                            required
+                        >
                             <SelectTrigger id="contact-service">
                                 <SelectValue placeholder="Selecione um serviço" />
                             </SelectTrigger>
