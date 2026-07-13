@@ -23,13 +23,13 @@ Grid 2×2 (`grid-cols-1 md:grid-cols-2`), 4 cards do mesmo tamanho, dentro do co
 
 **Card 4 — Consultoria & Implementação de ERP:**
 - Mesmo tamanho dos outros 3, **sem foto**: card sólido `bg-[#ffffff1a]`, ícone circular, título "Consultoria & Implementação de Sistemas de Gestão", texto curto explicando a atuação como parceiro implementador / consultor de TI.
-- Abaixo do texto, uma linha de "pills" (`bg-[#ffffff1a] rounded-lg px-3 py-2`, texto + ponto colorido) para **Bling**, **Olist** e **CardápioWeb** — não são logos de imagem (ver limitação abaixo), são indicadores estilizados com o nome da marca.
+- Abaixo do texto, uma linha com os logos reais (`<Image>`) de **Bling**, **Olist** e **CardápioWeb**, cada um dentro de um "pill"/chip (`bg-[#ffffff1a] rounded-lg px-3 py-2`), tamanho pequeno (ex. altura ~24-28px), lado a lado.
 
 ### Imagens
 
 - **Sites / Sistemas Web:** hotlink direto para URLs do Unsplash (`images.unsplash.com`), sem baixar/hospedar localmente. Requer adicionar `images.unsplash.com` a `images.remotePatterns` em `next.config.ts`.
 - **Automações com n8n:** arquivo local `public/services/n8n-flow.png` (screenshot fornecido pelo usuário durante o brainstorming), sem necessidade de config extra de `next/image`.
-- **Logos Bling/Olist/CardápioWeb:** **não foram baixadas** — o ambiente de execução usado neste brainstorming não tem acesso de rede para baixar arquivos binários de fontes externas. O design aprovado usa pills de texto com ponto colorido como substituto visual (ver mockup aprovado). Caso o usuário forneça os arquivos de logo depois (PNG/SVG em `public/services/`), a troca é simples: substituir o `<span>` colorido por `<Image>` dentro da pill.
+- **Logos Bling/Olist/CardápioWeb:** arquivos reais já disponíveis em `public/services/bling.webp`, `public/services/olist.webp` e `public/services/cardapioweb.webp`. Sem necessidade de config extra de `next/image` (arquivos locais).
 
 ## Formulário de Contato
 
@@ -74,4 +74,3 @@ Botão de envio com estado de loading/disabled durante o submit; feedback de suc
 ## Fora de escopo
 
 - Autenticação/anti-spam no formulário de contato (captcha, rate limiting) — pode ser adicionado depois se houver abuso.
-- Download/hospedagem de logos oficiais reais dos parceiros (bloqueado pela limitação de rede do ambiente atual).
