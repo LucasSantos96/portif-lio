@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import type { RootLayoutProps } from "@/types";
 import { cn } from "@/lib/utils";
 import Script from "next/script";
+import { LocaleProvider } from "@/i18n/LocaleProvider";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -36,9 +37,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 <noscript dangerouslySetInnerHTML={{
                     __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBF5N76D" height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
                 }} />
-                <Header />
-                {children}
-                <Footer />
+                <LocaleProvider>
+                    <Header />
+                    {children}
+                    <Footer />
+                </LocaleProvider>
             </body>
         </html>
     );
