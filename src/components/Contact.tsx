@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useLocale } from '@/i18n/useLocale';
 
 import { CONTACT_SERVICES } from "@/lib/contact-validation";
 import { Button } from "@/components/ui/button";
@@ -18,6 +19,8 @@ import {
 } from "@/components/ui/select";
 
 const Contact: React.FC = () => {
+    const { t } = useLocale();
+
     const [service, setService] = useState<string | null>(null);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -67,10 +70,9 @@ const Contact: React.FC = () => {
         <section className="my-20 mx-4 text-white mb-14 flex flex-col items-center lg:mx-32 lg:py-28" id="contato">
 
             <div className="text-center mb-12">
-                <h2 className="text-[20px] mb-5 lg:text-[40px]">Entre em Contato</h2>
+                <h2 className="text-[20px] mb-5 lg:text-[40px]">{t.contact.title}</h2>
                 <p className="text-[#b0afaf] text-sm lg:text-base max-w-2xl">
-                    Estou sempre aberto a novas oportunidades e colaborações.
-                    Vamos conversar sobre como posso ajudar no seu próximo projeto!
+                    {t.contact.subtitle}
                 </p>
             </div>
 
@@ -78,7 +80,7 @@ const Contact: React.FC = () => {
 
                 {/* Informações de Contato */}
                 <div className="bg-white/10 backdrop-blur-2xl border border-white/15 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] rounded-2xl p-8">
-                    <h3 className="text-xl font-semibold mb-6 text-center">Informações</h3>
+                    <h3 className="text-xl font-semibold mb-6 text-center">{t.contact.infoTitle}</h3>
 
                     <div className="space-y-6">
                         <div className="flex items-center gap-4">
@@ -92,7 +94,7 @@ const Contact: React.FC = () => {
                                 />
                             </div>
                             <div>
-                                <p className="text-sm text-[#b0afaf]">Email</p>
+                                <p className="text-sm text-[#b0afaf]">{t.contact.emailLabel}</p>
                                 <p className="font-medium">homeoficelucas@gmail.com</p>
                             </div>
                         </div>
@@ -108,7 +110,7 @@ const Contact: React.FC = () => {
                                 />
                             </div>
                             <div>
-                                <p className="text-sm text-[#b0afaf]">WhatsApp</p>
+                                <p className="text-sm text-[#b0afaf]">{t.contact.whatsappLabel}</p>
                                 <p className="font-medium">+55 (22) 98107-3895</p>
                             </div>
                         </div>
@@ -124,7 +126,7 @@ const Contact: React.FC = () => {
                                 />
                             </div>
                             <div>
-                                <p className="text-sm text-[#b0afaf]">GitHub</p>
+                                <p className="text-sm text-[#b0afaf]">{t.contact.githubLabel}</p>
                                 <p className="font-medium">github.com/LucasSantos96</p>
                             </div>
                         </div>
@@ -134,7 +136,7 @@ const Contact: React.FC = () => {
                 {/* Formulário de Contato */}
                 <div className="bg-white/10 backdrop-blur-2xl border border-white/15 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] rounded-2xl p-8">
                     <h3 className="text-xl font-semibold mb-6 text-center">
-                        Tem um projeto em mente?
+                        {t.contact.ctaText}
                     </h3>
 
                     <form onSubmit={handleSubmit} className="space-y-4">

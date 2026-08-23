@@ -2,6 +2,7 @@
 
 import React from 'react';
 import CardSkills from './CardSkills';
+import { useLocale } from '@/i18n/useLocale';
 import {
     SiHtml5,
     SiCss,
@@ -32,6 +33,7 @@ import 'swiper/css/autoplay';
 
 const Skills: React.FC = () => {
     const iconSize = 64;
+    const { t } = useLocale();
 
     const skills = [
         { icon: <SiHtml5 size={iconSize} color="#E34F26" />, text: 'HTML5' },
@@ -67,7 +69,7 @@ const Skills: React.FC = () => {
                 }
             `}</style>
             <div>
-                <h2 className='text-[20px] mb-[30px] lg:text-[40px] text-center'>Habilidades</h2>
+                <h2 className='text-[20px] mb-[30px] lg:text-[40px] text-center'>{t.skills.title}</h2>
             </div>
 
             <div className="relative w-full">

@@ -2,12 +2,15 @@ import "server-only";
 
 import { getDatabaseUrl } from "@/lib/database-url";
 import { prisma } from "@/lib/prisma";
+import { translateText } from "@/lib/translate";
 import type { NewPortfolioProjectInput, PortfolioProject } from "@/types";
 
 interface DbPortfolioProject {
   id: bigint;
   title: string;
   description: string;
+  titleEn: string | null;
+  descriptionEn: string | null;
   projectUrl: string;
   imageUrl: string;
   technologies: string[];
@@ -31,6 +34,8 @@ function mapDbProject(project: DbPortfolioProject): PortfolioProject {
     id: Number(project.id),
     title: project.title,
     description: project.description,
+    titleEn: project.titleEn,
+    descriptionEn: project.descriptionEn,
     projectUrl: project.projectUrl,
     imageUrl: project.imageUrl,
     technologies: project.technologies,
@@ -77,8 +82,13 @@ export async function createPortfolioProject(input: NewPortfolioProjectInput) {
   const payload = buildProjectPayload(input);
   payload.sortOrder = input.sortOrder ?? (minSortOrder._min.sortOrder ?? 0) - 1;
 
+  const [titleEn, descriptionEn] = await Promise.all([
+    translateText(payload.title),
+    translateText(payload.description),
+  ]);
+
   const data = await prisma.portfolioProject.create({
-    data: payload,
+    data: { ...payload, titleEn, descriptionEn },
   });
 
   return mapDbProject(data as DbPortfolioProject);
@@ -90,11 +100,25 @@ export async function updatePortfolioProject(
 ) {
   assertDatabaseConfigured();
 
+  const current = await prisma.portfolioProject.findUniqueOrThrow({
+    where: { id },
+  });
+
   const payload = buildProjectPayload(input);
+
+  const titleChanged = payload.title !== current.title;
+  const descriptionChanged = payload.description !== current.description;
+
+  const [titleEn, descriptionEn] = await Promise.all([
+    titleChanged ? translateText(payload.title) : Promise.resolve(current.titleEn),
+    descriptionChanged
+      ? translateText(payload.description)
+      : Promise.resolve(current.descriptionEn),
+  ]);
 
   const data = await prisma.portfolioProject.update({
     where: { id },
-    data: payload,
+    data: { ...payload, titleEn, descriptionEn },
   });
 
   return mapDbProject(data as DbPortfolioProject);
