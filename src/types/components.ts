@@ -18,6 +18,8 @@ export interface PortfolioProject {
     id: number;
     title: string;
     description: string;
+    titleEn: string | null;
+    descriptionEn: string | null;
     projectUrl: string;
     imageUrl: string;
     technologies: string[];
