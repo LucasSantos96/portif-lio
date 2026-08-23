@@ -3,11 +3,14 @@
 import React from "react";
 import Image from "next/image";
 import { MessageCircle, Download } from "lucide-react";
+import { useLocale } from "@/i18n/useLocale";
 
 const Hero: React.FC = () => {
+    const { t } = useLocale();
+
     const handleSubmit = (): void => {
         window.open(
-            "https://wa.me/5522981073895?text=Olá%20vim%20do%20seu%20portifólio",
+            `https://wa.me/5522981073895?text=${encodeURIComponent(t.hero.whatsappMessage)}`,
             "_blank"
         );
     };
@@ -36,14 +39,13 @@ const Hero: React.FC = () => {
             <div className="flex flex-col items-center lg:items-start">
                 <div className="mt-4 flex justify-center flex-col lg:text-left">
                     <h2 className="text-sm text-white lg:text-3xl">
-                        Oi, Sou Lucas Santos
+                        {t.hero.greeting}
                     </h2>
                     <h1 className="text-2xl font-bold text-[#0A80ED] lg:text-5xl capitalize">
-                        Desenvolvedor <br />Full-Stack
+                        {t.hero.titleLine1} <br />{t.hero.titleLine2}
                     </h1>
                     <p className="text-sm font-light  text-[#979696] lg:text-2xl">
-                        Apaixonado por criar aplicações web{" "}
-                        <br className="hidden lg:flex" /> inovadoras e fáceis de usar.
+                        {t.hero.subtitle}
                     </p>
                 </div>
 
@@ -51,9 +53,9 @@ const Hero: React.FC = () => {
                     <button
                         className=" text-sm flex items-center gap-2 px-10 py-4 rounded-full text-white bg-[#F57D38] cursor-pointer hover:scale-105 duration-300 hover:opacity-70 shadow-lg shadow-[#f57d383d]"
                         onClick={handleSubmit}
-                        aria-label="Entrar em contato via WhatsApp"
+                        aria-label={t.hero.ctaWhatsappAria}
                     >
-                        Fale comigo
+                        {t.hero.ctaWhatsapp}
                         <MessageCircle size={20} />
                     </button>
 
@@ -61,9 +63,9 @@ const Hero: React.FC = () => {
                         href="/Lucas-Santos-Full-stack.pdf"
                         download
                         className="text-sm flex items-center gap-2 px-10 py-4 rounded-full text-white bg-[#0A80ED] cursor-pointer hover:scale-105 duration-300 hover:opacity-70 shadow-lg shadow-[#0a7fed46]"
-                        aria-label="Baixar currículo em PDF"
+                        aria-label={t.hero.ctaResumeAria}
                     >
-                        Baixar curriculo
+                        {t.hero.ctaResume}
                         <Download size={20} />
                     </a>
                 </div>
