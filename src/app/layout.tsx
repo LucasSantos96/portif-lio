@@ -33,6 +33,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             />
             <body
                 className={`${spaceGrotesk.variable} antialiased`}
+                suppressHydrationWarning
             >
                 <noscript dangerouslySetInnerHTML={{
                     __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBF5N76D" height="0" width="0" style="display:none;visibility:hidden"></iframe>`,

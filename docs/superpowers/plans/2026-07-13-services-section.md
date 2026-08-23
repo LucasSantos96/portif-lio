@@ -23,7 +23,7 @@
 ### Task 1: Add `images.unsplash.com` to Next.js image config
 
 **Files:**
-- Modify: `next.config.ts`
+- Modify: `next.config.mjs`
 
 **Interfaces:**
 - Produces: `images.remotePatterns` includes `images.unsplash.com`, so `next/image` can render the Sites/Sistemas Web card photos in Task 4.
@@ -809,7 +809,11 @@ Replace with:
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="space-y-1.5">
                         <Label htmlFor="contact-service">Serviço de interesse</Label>
-                        <Select value={service} onValueChange={setService} required>
+                        <Select
+                            value={service}
+                            onValueChange={(value) => setService(value as string | null)}
+                            required
+                        >
                             <SelectTrigger id="contact-service">
                                 <SelectValue placeholder="Selecione um serviço" />
                             </SelectTrigger>

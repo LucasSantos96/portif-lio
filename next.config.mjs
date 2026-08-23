@@ -10,6 +10,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "opengraph.githubassets.com",
       },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
       ...(supabaseHostname
         ? [
             {
