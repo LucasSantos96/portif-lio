@@ -26,6 +26,10 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
+  useEffect(() => {
+    document.documentElement.lang = locale === "en" ? "en" : "pt-BR";
+  }, [locale]);
+
   const setLocale = (next: Locale) => {
     setLocaleState(next);
     try {

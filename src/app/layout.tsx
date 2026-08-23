@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
     return (
-        <html lang="pt-Br" className={cn("font-sans", geist.variable)}>
+        <html lang="pt-BR" className={cn("font-sans", geist.variable)}>
             <Script
                 id="google-tag-manager"
                 strategy="beforeInteractive"

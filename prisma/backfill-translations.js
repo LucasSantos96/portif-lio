@@ -2,9 +2,18 @@ const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 
+const MYMEMORY_MAX_QUERY_LENGTH = 500;
+
 async function translateText(text) {
   const trimmed = text.trim();
   if (!trimmed) return null;
+
+  if (trimmed.length > MYMEMORY_MAX_QUERY_LENGTH) {
+    console.error(
+      "Erro ao traduzir texto (MyMemory): texto excede o limite de 500 caracteres",
+    );
+    return null;
+  }
 
   try {
     const url = new URL("https://api.mymemory.translated.net/get");
@@ -18,6 +27,15 @@ async function translateText(text) {
     }
 
     const data = await response.json();
+
+    if (String(data?.responseStatus) !== "200") {
+      console.error(
+        "Erro ao traduzir texto (MyMemory): responseStatus inválido",
+        data?.responseStatus,
+      );
+      return null;
+    }
+
     const translated = data?.responseData?.translatedText;
 
     if (typeof translated !== "string" || !translated.trim()) {
@@ -48,12 +66,20 @@ async function main() {
         : translateText(project.description),
     ]);
 
-    await prisma.portfolioProject.update({
-      where: { id: project.id },
-      data: { titleEn, descriptionEn },
-    });
+    if (titleEn === null && descriptionEn === null) {
+      console.log(
+        `Ignorado (tradução falhou, ainda pendente): "${project.title}"`,
+      );
+    } else {
+      await prisma.portfolioProject.update({
+        where: { id: project.id },
+        data: { titleEn, descriptionEn },
+      });
 
-    console.log(`Traduzido: "${project.title}" -> "${titleEn ?? "(falhou)"}"`);
+      console.log(`Traduzido: "${project.title}" -> "${titleEn ?? "(falhou)"}"`);
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
   }
 
   console.log("Backfill concluído.");
