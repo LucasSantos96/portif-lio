@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "postbuild": "node prisma/keepalive-cron.js",
     "start": "next start",
     "lint": "next lint",
     "prisma:generate": "prisma generate",
