@@ -3,16 +3,20 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useLocale } from '@/i18n/useLocale';
 
 const Contact: React.FC = () => {
+    const { t } = useLocale();
+
+    const mailtoHref = `https://mail.google.com/mail/?view=cm&to=homeoficelucas@gmail.com&su=${encodeURIComponent(t.contact.emailSubject)}&body=${encodeURIComponent(t.contact.emailBody)}`;
+
     return (
         <section className="my-20 mx-4 text-white mb-14 flex flex-col items-center lg:mx-32 lg:py-28" id="contato">
 
             <div className="text-center mb-12">
-                <h2 className="text-[20px] mb-5 lg:text-[40px]">Entre em Contato</h2>
+                <h2 className="text-[20px] mb-5 lg:text-[40px]">{t.contact.title}</h2>
                 <p className="text-[#b0afaf] text-sm lg:text-base max-w-2xl">
-                    Estou sempre aberto a novas oportunidades e colaborações.
-                    Vamos conversar sobre como posso ajudar no seu próximo projeto!
+                    {t.contact.subtitle}
                 </p>
             </div>
 
@@ -20,7 +24,7 @@ const Contact: React.FC = () => {
 
                 {/* Informações de Contato */}
                 <div className="bg-[#ffffff4b] rounded-2xl p-8">
-                    <h3 className="text-xl font-semibold mb-6 text-center">Informações</h3>
+                    <h3 className="text-xl font-semibold mb-6 text-center">{t.contact.infoTitle}</h3>
 
                     <div className="space-y-6">
                         <div className="flex items-center gap-4">
@@ -34,7 +38,7 @@ const Contact: React.FC = () => {
                                 />
                             </div>
                             <div>
-                                <p className="text-sm text-[#b0afaf]">Email</p>
+                                <p className="text-sm text-[#b0afaf]">{t.contact.emailLabel}</p>
                                 <p className="font-medium">homeoficelucas@gmail.com</p>
                             </div>
                         </div>
@@ -50,7 +54,7 @@ const Contact: React.FC = () => {
                                 />
                             </div>
                             <div>
-                                <p className="text-sm text-[#b0afaf]">WhatsApp</p>
+                                <p className="text-sm text-[#b0afaf]">{t.contact.whatsappLabel}</p>
                                 <p className="font-medium">+55 (22) 98107-3895</p>
                             </div>
                         </div>
@@ -66,7 +70,7 @@ const Contact: React.FC = () => {
                                 />
                             </div>
                             <div>
-                                <p className="text-sm text-[#b0afaf]">GitHub</p>
+                                <p className="text-sm text-[#b0afaf]">{t.contact.githubLabel}</p>
                                 <p className="font-medium">github.com/LucasSantos96</p>
                             </div>
                         </div>
@@ -75,7 +79,7 @@ const Contact: React.FC = () => {
 
                 {/* Redes Sociais */}
                 <div className="bg-[#ffffff4b] rounded-2xl p-8">
-                    <h3 className="text-xl font-semibold mb-6 text-center">Redes Sociais</h3>
+                    <h3 className="text-xl font-semibold mb-6 text-center">{t.contact.socialTitle}</h3>
 
                     <div className="space-y-4">
                         <a
@@ -93,7 +97,7 @@ const Contact: React.FC = () => {
                             />
                             <div>
                                 <p className="font-medium">LinkedIn</p>
-                                <p className="text-sm text-[#b0afaf]">Conecte-se profissionalmente</p>
+                                <p className="text-sm text-[#b0afaf]">{t.contact.linkedinDesc}</p>
                             </div>
                         </a>
 
@@ -112,7 +116,7 @@ const Contact: React.FC = () => {
                             />
                             <div>
                                 <p className="font-medium">GitHub</p>
-                                <p className="text-sm text-[#b0afaf]">Veja meus projetos</p>
+                                <p className="text-sm text-[#b0afaf]">{t.contact.githubDesc}</p>
                             </div>
                         </a>
 
@@ -131,7 +135,7 @@ const Contact: React.FC = () => {
                             />
                             <div>
                                 <p className="font-medium">WhatsApp</p>
-                                <p className="text-sm text-[#b0afaf]">Mensagem direta</p>
+                                <p className="text-sm text-[#b0afaf]">{t.contact.whatsappDesc}</p>
                             </div>
                         </a>
                     </div>
@@ -140,14 +144,14 @@ const Contact: React.FC = () => {
 
             {/* CTA */}
             <div className="text-center mt-12">
-                <p className="text-[#b0afaf] mb-4">Tem um projeto em mente?</p>
+                <p className="text-[#b0afaf] mb-4">{t.contact.ctaText}</p>
                 <a
-                    href="https://mail.google.com/mail/?view=cm&to=homeoficelucas@gmail.com&su=Proposta%20de%20Projeto&body=Olá%20Lucas!%20Gostaria%20de%20conversar%20sobre%20um%20projeto."
+                    href={mailtoHref}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-block bg-[#0980ec] hover:bg-[#0659a6] text-white font-medium py-3 px-8 rounded-full transition-colors duration-300 cursor-pointer"
                 >
-                    Vamos Conversar!
+                    {t.contact.ctaButton}
                 </a>
             </div>
 
