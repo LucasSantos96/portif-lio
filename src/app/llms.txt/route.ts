@@ -1,4 +1,5 @@
 import pt from "@/i18n/dictionaries/pt";
+import { getPublishedArticles, localizeArticle } from "@/lib/articles";
 import { getPortfolioProjects } from "@/lib/projects";
 import { absoluteUrl, site } from "@/lib/site";
 import type { PortfolioProject } from "@/types";
@@ -20,6 +21,7 @@ export async function GET() {
   const published = (await getPortfolioProjects()).filter((project) => project.published);
   const projects = published.filter((project) => project.category === "project");
   const tools = published.filter((project) => project.category === "tool");
+  const articles = (await getPublishedArticles()).map((article) => localizeArticle(article, "pt"));
   const { services } = pt;
 
   const sections = [
@@ -38,6 +40,15 @@ export async function GET() {
       : null,
     tools.length
       ? ["## Ferramentas", ...tools.map((tool) => projectLine(tool, tool.githubRepo ?? tool.projectUrl))].join("\n")
+      : null,
+    articles.length
+      ? [
+          "## Artigos",
+          ...articles.map(
+            (article) => `- [${article.title}](${absoluteUrl(article.path)}): ${oneLine(article.excerpt)}`,
+          ),
+          `- Versão em inglês: [${absoluteUrl("/en/blog")}](${absoluteUrl("/en/blog")})`,
+        ].join("\n")
       : null,
     [
       "## Contato",

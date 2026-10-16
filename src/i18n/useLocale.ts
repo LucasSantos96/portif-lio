@@ -10,5 +10,11 @@ export function useLocale() {
     throw new Error("useLocale deve ser usado dentro de um LocaleProvider");
   }
   const t = dictionaries[ctx.locale];
-  return { locale: ctx.locale, setLocale: ctx.setLocale, t };
+  return {
+    locale: ctx.locale,
+    setLocale: ctx.setLocale,
+    alternatePath: ctx.alternatePath,
+    setAlternatePath: ctx.setAlternatePath,
+    t,
+  };
 }

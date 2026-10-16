@@ -1,5 +1,5 @@
 import { absoluteUrl, site } from "@/lib/site";
-import type { PortfolioProject } from "@/types";
+import type { LocalizedArticle, PortfolioProject } from "@/types";
 
 const personId = absoluteUrl("/#person");
 const websiteId = absoluteUrl("/#website");
@@ -57,6 +57,78 @@ export function projectJsonLd(project: PortfolioProject) {
           { "@type": "ListItem", position: 1, name: site.name, item: absoluteUrl("/") },
           { "@type": "ListItem", position: 2, name: "Projetos", item: absoluteUrl("/#projetos") },
           { "@type": "ListItem", position: 3, name: project.title, item: url },
+        ],
+      },
+    ],
+  };
+}
+
+function blogUrls(locale: "pt" | "en") {
+  return { index: absoluteUrl(locale === "en" ? "/en/blog" : "/blog") };
+}
+
+export function blogIndexJsonLd(locale: "pt" | "en", description: string, articles: LocalizedArticle[]) {
+  const { index } = blogUrls(locale);
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Blog",
+        "@id": `${index}#blog`,
+        name: `${site.name}, Blog`,
+        url: index,
+        description,
+        inLanguage: locale === "en" ? "en" : "pt-BR",
+        author: { "@id": personId },
+        blogPost: articles.slice(0, 20).map((article) => ({
+          "@type": "BlogPosting",
+          headline: article.title,
+          url: absoluteUrl(article.path),
+          datePublished: article.publishedAt,
+        })),
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: site.name, item: absoluteUrl("/") },
+          { "@type": "ListItem", position: 2, name: "Blog", item: index },
+        ],
+      },
+    ],
+  };
+}
+
+export function articleJsonLd(article: LocalizedArticle) {
+  const url = absoluteUrl(article.path);
+  const { index } = blogUrls(article.locale);
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": `${url}#article`,
+        headline: article.title,
+        description: article.excerpt,
+        url,
+        mainEntityOfPage: { "@type": "WebPage", "@id": url },
+        image: [article.coverUrl ?? absoluteUrl(`${article.path}/opengraph-image`)],
+        datePublished: article.publishedAt,
+        dateModified: article.updatedAt,
+        inLanguage: article.locale === "en" ? "en" : "pt-BR",
+        keywords: article.tags.join(", "),
+        wordCount: article.body.split(/\s+/).filter(Boolean).length,
+        author: { "@id": personId },
+        publisher: { "@id": personId },
+        isPartOf: { "@id": `${index}#blog` },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: site.name, item: absoluteUrl("/") },
+          { "@type": "ListItem", position: 2, name: "Blog", item: index },
+          { "@type": "ListItem", position: 3, name: article.title, item: url },
         ],
       },
     ],

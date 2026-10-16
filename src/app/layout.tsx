@@ -6,6 +6,7 @@ import MotionProvider from "@/components/motion/MotionProvider";
 import SmoothScroll from "@/components/motion/SmoothScroll";
 import type { Metadata, Viewport } from "next";
 import type { RootLayoutProps } from "@/types";
+import { headers } from "next/headers";
 import Script from "next/script";
 import { LocaleProvider } from "@/i18n/LocaleProvider";
 import { site, siteUrl } from "@/lib/site";
@@ -48,9 +49,13 @@ export const viewport: Viewport = {
     themeColor: "#0e191c",
 };
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default async function RootLayout({ children }: RootLayoutProps) {
+    // Definido pelo middleware nas rotas do blog; nas demais o idioma vem da escolha do visitante.
+    const siteLocale = (await headers()).get("x-site-locale");
+    const forcedLocale = siteLocale === "en" ? "en" : siteLocale === "pt" ? "pt" : undefined;
+
     return (
-        <html lang="pt-BR" className={bricolage.variable}>
+        <html lang={forcedLocale === "en" ? "en" : "pt-BR"} className={bricolage.variable}>
             <head>
                 <Script
                     id="google-tag-manager"
@@ -64,7 +69,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 <noscript dangerouslySetInnerHTML={{
                     __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBF5N76D" height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
                 }} />
-                <LocaleProvider>
+                <LocaleProvider forcedLocale={forcedLocale}>
                     <MotionProvider>
                         <SmoothScroll />
                         <Header />

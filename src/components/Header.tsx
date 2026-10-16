@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Briefcase, FolderOpen, Layers, Mail, UserRound } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { BookOpen, Briefcase, FolderOpen, Layers, Mail, UserRound } from "lucide-react";
 
 import { TubelightNavbar, type TubelightNavItem } from "@/components/ui/tubelight-navbar";
 import { useLocale } from "@/i18n/useLocale";
@@ -55,10 +55,18 @@ function useActiveSection(enabled: boolean) {
 
 const Header: React.FC = () => {
     const pathname = usePathname();
-    const { locale, setLocale, t } = useLocale();
+    const router = useRouter();
+    const { locale, setLocale, alternatePath, t } = useLocale();
     const isHome = pathname === "/";
     const sectionInView = useActiveSection(isHome);
-    const activeId = isHome ? sectionInView : pathname.startsWith("/projetos") ? "projetos" : null;
+    const isBlog = pathname === "/blog" || pathname.startsWith("/blog/") || pathname.startsWith("/en/blog");
+    const activeId = isHome
+        ? sectionInView
+        : isBlog
+            ? "blog"
+            : pathname.startsWith("/projetos")
+                ? "projetos"
+                : null;
 
     const [scrolled, setScrolled] = useState(false);
 
@@ -79,13 +87,24 @@ const Header: React.FC = () => {
         { id: "servicos", name: t.header.nav.services, href: `${prefix}#servicos`, icon: Briefcase },
         { id: "habilidades", name: t.header.nav.skills, href: `${prefix}#habilidades`, icon: Layers },
         { id: "projetos", name: t.header.nav.projects, href: `${prefix}#projetos`, icon: FolderOpen },
+        { id: "blog", name: t.header.nav.blog, href: locale === "en" ? "/en/blog" : "/blog", icon: BookOpen },
         { id: "contato", name: t.header.nav.contact, href: `${prefix}#contato`, icon: Mail },
     ];
 
     const langToggle = (
         <button
             type="button"
-            onClick={() => setLocale(locale === "pt" ? "en" : "pt")}
+            onClick={() => {
+                const next = locale === "pt" ? "en" : "pt";
+
+                // Páginas com URL por idioma (blog) levam à versão equivalente.
+                if (alternatePath) {
+                    router.push(alternatePath);
+                    return;
+                }
+
+                setLocale(next);
+            }}
             className="flex h-11 items-center gap-1 rounded-full border border-white/10 bg-night/70 px-4 text-sm font-medium backdrop-blur-xl transition-colors hover:border-white/25"
         >
             <span className={locale === "pt" ? "text-lamp" : "text-fog"}>PT</span>
