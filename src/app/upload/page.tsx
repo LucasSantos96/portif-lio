@@ -1,9 +1,16 @@
+import type { Metadata } from "next";
 import { cookies } from "next/headers";
 
 import UploadLoginCard from "@/components/upload/UploadLoginCard";
 import UploadProjectForm from "@/components/upload/UploadProjectForm";
 import { getPortfolioProjects } from "@/lib/projects";
 import { isUploadSessionValid, UPLOAD_SESSION_COOKIE } from "@/lib/upload-auth";
+
+// Painel privado: fora da busca e sem passar autoridade para os links.
+export const metadata: Metadata = {
+  title: "Gerenciar projetos",
+  robots: { index: false, follow: false },
+};
 
 export default async function UploadPage() {
   const cookieStore = await cookies();

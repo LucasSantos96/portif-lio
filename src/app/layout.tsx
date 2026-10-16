@@ -8,6 +8,7 @@ import type { Metadata, Viewport } from "next";
 import type { RootLayoutProps } from "@/types";
 import Script from "next/script";
 import { LocaleProvider } from "@/i18n/LocaleProvider";
+import { site, siteUrl } from "@/lib/site";
 
 const bricolage = Bricolage_Grotesque({
     variable: "--font-bricolage",
@@ -17,9 +18,30 @@ const bricolage = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-    title: "Lucas Santos, desenvolvedor full-stack",
-    description:
-        "Sites, sistemas web e agentes de IA com n8n, LangChain, LangGraph e Mastra. Portfólio de Lucas Santos de Oliveira.",
+    metadataBase: new URL(siteUrl),
+    title: {
+        default: site.title,
+        template: `%s | ${site.name}`,
+    },
+    description: site.description,
+    applicationName: site.name,
+    authors: [{ name: site.fullName, url: site.links.linkedin }],
+    creator: site.fullName,
+    alternates: { canonical: "/" },
+    openGraph: {
+        type: "website",
+        siteName: site.name,
+        locale: site.locale,
+        alternateLocale: [site.alternateLocale],
+        title: site.title,
+        description: site.description,
+        url: "/",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: site.title,
+        description: site.description,
+    },
 };
 
 export const viewport: Viewport = {

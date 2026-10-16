@@ -125,7 +125,6 @@ const Hero: React.FC = () => {
                             href={whatsappHref}
                             target="_blank"
                             rel="noopener noreferrer"
-                            aria-label={t.hero.ctaWhatsappAria}
                             className="inline-flex h-13 items-center justify-center gap-2.5 rounded-full bg-lamp px-7 text-base font-semibold text-night shadow-[0_0_40px_-8px_var(--lamp)] transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_56px_-6px_var(--lamp)]"
                         >
                             <SiWhatsapp className="size-5" aria-hidden />

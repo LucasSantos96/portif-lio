@@ -86,12 +86,13 @@ const Header: React.FC = () => {
         <button
             type="button"
             onClick={() => setLocale(locale === "pt" ? "en" : "pt")}
-            aria-label={t.header.langToggleLabel}
             className="flex h-11 items-center gap-1 rounded-full border border-white/10 bg-night/70 px-4 text-sm font-medium backdrop-blur-xl transition-colors hover:border-white/25"
         >
             <span className={locale === "pt" ? "text-lamp" : "text-fog"}>PT</span>
-            <span className="text-fog/50" aria-hidden>/</span>
+            <span className="text-fog/50">/</span>
             <span className={locale === "en" ? "text-lamp" : "text-fog"}>EN</span>
+            {/* O nome acessível começa pelo texto visível (PT / EN) e explica a ação. */}
+            <span className="sr-only">{t.header.langToggleLabel}</span>
         </button>
     );
 

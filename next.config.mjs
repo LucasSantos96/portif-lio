@@ -4,6 +4,9 @@ const supabaseHostname = process.env.NEXT_PUBLIC_SUPABASE_URL
   : undefined;
 
 const nextConfig = {
+  // Metadados sempre no <head>, também para crawlers que não estão na lista
+  // padrão do Next (que os enviaria no <body> nas páginas dinâmicas).
+  htmlLimitedBots: /.*/,
   images: {
     remotePatterns: [
       {
