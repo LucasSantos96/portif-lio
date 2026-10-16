@@ -20,6 +20,8 @@ export async function POST(request: Request) {
     email: body.email as string,
     phone: body.phone as string,
     message: body.message,
+    // Origem opcional (ex.: título do artigo). Só texto curto, para não virar canal de abuso.
+    source: typeof body.source === "string" ? body.source.trim().slice(0, 160) || undefined : undefined,
   };
 
   try {

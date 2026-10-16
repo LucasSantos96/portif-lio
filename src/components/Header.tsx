@@ -1,83 +1,152 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { BookOpen, Briefcase, FolderOpen, Layers, Mail, UserRound } from "lucide-react";
+
+import { TubelightNavbar, type TubelightNavItem } from "@/components/ui/tubelight-navbar";
 import { useLocale } from "@/i18n/useLocale";
+import { cn } from "@/lib/utils";
+
+const SECTION_IDS = ["sobre", "servicos", "habilidades", "projetos", "contato"] as const;
+
+function useActiveSection(enabled: boolean) {
+    const [active, setActive] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (!enabled) {
+            return;
+        }
+
+        const visible = new Map<string, number>();
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                for (const entry of entries) {
+                    visible.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0);
+                }
+
+                let best: string | null = null;
+                let bestRatio = 0;
+                for (const [id, ratio] of visible) {
+                    if (ratio > bestRatio) {
+                        best = id;
+                        bestRatio = ratio;
+                    }
+                }
+                setActive(best);
+            },
+            { rootMargin: "-35% 0px -45% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
+        );
+
+        for (const id of SECTION_IDS) {
+            const element = document.getElementById(id);
+            if (element) {
+                observer.observe(element);
+            }
+        }
+
+        return () => observer.disconnect();
+    }, [enabled]);
+
+    return active;
+}
 
 const Header: React.FC = () => {
-    const [isOpen, setIsOpen] = useState<boolean>(false);
-    const { locale, setLocale, t } = useLocale();
+    const pathname = usePathname();
+    const router = useRouter();
+    const { locale, setLocale, alternatePath, t } = useLocale();
+    const isHome = pathname === "/";
+    const sectionInView = useActiveSection(isHome);
+    const isBlog = pathname === "/blog" || pathname.startsWith("/blog/") || pathname.startsWith("/en/blog");
+    const activeId = isHome
+        ? sectionInView
+        : isBlog
+            ? "blog"
+            : pathname.startsWith("/projetos")
+                ? "projetos"
+                : null;
 
-    const toggleMenu = (): void => {
-        setIsOpen(!isOpen);
-    };
+    const [scrolled, setScrolled] = useState(false);
 
-    const toggleLocale = (): void => {
-        setLocale(locale === "pt" ? "en" : "pt");
-    };
+    useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 24);
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
+    }, []);
 
-    const LangToggle = (
+    if (pathname.startsWith("/upload")) {
+        return null;
+    }
+
+    const prefix = isHome ? "" : "/";
+    const items: TubelightNavItem[] = [
+        { id: "sobre", name: t.header.nav.about, href: `${prefix}#sobre`, icon: UserRound },
+        { id: "servicos", name: t.header.nav.services, href: `${prefix}#servicos`, icon: Briefcase },
+        { id: "habilidades", name: t.header.nav.skills, href: `${prefix}#habilidades`, icon: Layers },
+        { id: "projetos", name: t.header.nav.projects, href: `${prefix}#projetos`, icon: FolderOpen },
+        { id: "blog", name: t.header.nav.blog, href: locale === "en" ? "/en/blog" : "/blog", icon: BookOpen },
+        { id: "contato", name: t.header.nav.contact, href: `${prefix}#contato`, icon: Mail },
+    ];
+
+    const langToggle = (
         <button
-            onClick={toggleLocale}
-            aria-label={t.header.langToggleLabel}
-            className="flex items-center gap-1 text-sm font-medium tracking-wide"
+            type="button"
+            onClick={() => {
+                const next = locale === "pt" ? "en" : "pt";
+
+                // Páginas com URL por idioma (blog) levam à versão equivalente.
+                if (alternatePath) {
+                    router.push(alternatePath);
+                    return;
+                }
+
+                setLocale(next);
+            }}
+            className="flex h-11 items-center gap-1 rounded-full border border-white/10 bg-night/70 px-4 text-sm font-medium backdrop-blur-xl transition-colors hover:border-white/25"
         >
-            <span className={locale === "pt" ? "text-[#F57D38]" : "text-white/60"}>PT</span>
-            <span className="text-white/40">/</span>
-            <span className={locale === "en" ? "text-[#F57D38]" : "text-white/60"}>EN</span>
+            <span className={locale === "pt" ? "text-lamp" : "text-fog"}>PT</span>
+            <span className="text-fog/50">/</span>
+            <span className={locale === "en" ? "text-lamp" : "text-fog"}>EN</span>
+            {/* O nome acessível começa pelo texto visível (PT / EN) e explica a ação. */}
+            <span className="sr-only">{t.header.langToggleLabel}</span>
         </button>
     );
 
     return (
-        <header className="w-full text-white flex py-6 mb-4 lg:justify-center lg:py-7 border-b border-[#ffffff2c]">
-
-            {/*menu mobile */}
-            <nav className={`${isOpen ? "flex" : "hidden"} lg:hidden flex-col fixed inset-0 z-50 gap-10 bg-[#000000fa] items-center justify-center list-none text-2xl shadow-2xl transition-all duration-300`}>
-                <li onClick={toggleMenu}>
-                    <Link href={"#sobre"} className="hover:text-[#F57D38]">{t.header.nav.about}</Link>
-                </li>
-                <li onClick={toggleMenu}>
-                    <Link href={"#habilidades"} className="hover:text-[#F57D38]">{t.header.nav.skills}</Link>
-                </li>
-                <li onClick={toggleMenu}>
-                    <Link href={"#projetos"} className="hover:text-[#F57D38]">{t.header.nav.projects}</Link>
-                </li>
-                <li onClick={toggleMenu}>
-                    <Link href={"#contato"} className="hover:text-[#F57D38]">{t.header.nav.contact}</Link>
-                </li>
-                <li>{LangToggle}</li>
-            </nav>
-            {/*Botão menu mobile */}
-            <button
-                onClick={toggleMenu}
-                aria-label={isOpen ? t.header.closeMenu : t.header.openMenu}
-                className="lg:hidden px-4 absolute right-4 top-2 z-[60]"
-            >
-                {isOpen ? (
-                    <X size={32} />
-                ) : (
-                    <Menu size={32} />
+        <>
+            <header
+                className={cn(
+                    "fixed inset-x-0 top-0 z-40 transition-[padding] duration-500",
+                    scrolled ? "py-3" : "py-5",
                 )}
-            </button>
+            >
+                <div className="mx-auto flex max-w-[1240px] items-center justify-between gap-4 px-4 md:px-8">
+                    <Link
+                        href="/"
+                        aria-label={t.header.home}
+                        className="type-heading text-lg text-paper"
+                    >
+                        Lucas Santos
+                    </Link>
 
-            {/*menu desktop */}
-            <nav className="hidden list-none gap-10 lg:flex lg:items-center">
-                <li className="hover:text-[#F57D38]">
-                    <Link href={"#sobre"}>{t.header.nav.about}</Link>
-                </li>
-                <li className="hover:text-[#F57D38]">
-                    <Link href={"#habilidades"}>{t.header.nav.skills}</Link>
-                </li>
-                <li className="hover:text-[#F57D38]">
-                    <Link href={"#projetos"}>{t.header.nav.projects}</Link>
-                </li>
-                <li className="hover:text-[#F57D38]">
-                    <Link href={"#contato"}>{t.header.nav.contact}</Link>
-                </li>
-                <li>{LangToggle}</li>
+                    <nav aria-label="Principal" className="hidden md:block">
+                        <TubelightNavbar items={items} activeId={activeId} />
+                    </nav>
+
+                    {langToggle}
+                </div>
+            </header>
+
+            <nav
+                aria-label="Principal"
+                className="fixed inset-x-0 bottom-4 z-40 flex justify-center px-4 md:hidden"
+            >
+                <TubelightNavbar items={items} activeId={activeId} compact />
             </nav>
-        </header>
+        </>
     );
 };
 

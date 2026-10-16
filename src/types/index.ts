@@ -1,7 +1,13 @@
 export type {
-    CardSkillsProps,
-    CardProjectsProps,
     PortfolioProject,
+    ProjectCategory,
     NewPortfolioProjectInput,
     RootLayoutProps,
 } from './components';
+
+export type {
+    Article,
+    ArticleLocale,
+    LocalizedArticle,
+    NewArticleInput,
+} from './article';

@@ -4,12 +4,13 @@ export interface ContactRequestBody {
   email?: string;
   phone?: string;
   message?: string;
+  source?: string;
 }
 
 export const CONTACT_SERVICES = [
   "Sites",
   "Sistemas Web",
-  "Automações com n8n",
+  "Automações e agentes de IA",
   "Consultoria & Implementação de ERP",
 ] as const;
 

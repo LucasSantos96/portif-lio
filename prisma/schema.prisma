@@ -16,6 +16,9 @@ model PortfolioProject {
   descriptionEn String?  @map("description_en")
   projectUrl   String   @unique @map("project_url")
   imageUrl     String   @map("image_url")
+  galleryImages String[] @default([]) @map("gallery_images")
+  videoUrls    String[] @default([]) @map("video_urls")
+  category     String   @default("project")
   technologies String[] @default([])
   githubRepo   String?  @map("github_repo")
   source       String   @default("manual")
@@ -25,4 +28,27 @@ model PortfolioProject {
   updatedAt    DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
 
   @@map("portfolio_projects")
+}
+
+model Article {
+  id          BigInt    @id @default(autoincrement())
+  slug        String    @unique
+  slugEn      String    @unique @map("slug_en")
+  title       String
+  titleEn     String    @map("title_en")
+  excerpt     String
+  excerptEn   String    @map("excerpt_en")
+  body        String
+  bodyEn      String    @map("body_en")
+  coverUrl    String?   @map("cover_url")
+  coverAlt    String?   @map("cover_alt")
+  coverAltEn  String?   @map("cover_alt_en")
+  tags        String[]  @default([])
+  tagsEn      String[]  @default([]) @map("tags_en")
+  published   Boolean   @default(false)
+  publishedAt DateTime? @map("published_at") @db.Timestamptz(6)
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime  @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@map("articles")
 }

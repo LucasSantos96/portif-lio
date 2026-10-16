@@ -3,7 +3,7 @@ import "server-only";
 import { getDatabaseUrl } from "@/lib/database-url";
 import { prisma } from "@/lib/prisma";
 import { translateText } from "@/lib/translate";
-import type { NewPortfolioProjectInput, PortfolioProject } from "@/types";
+import type { NewPortfolioProjectInput, PortfolioProject, ProjectCategory } from "@/types";
 
 interface DbPortfolioProject {
   id: bigint;
@@ -13,12 +13,16 @@ interface DbPortfolioProject {
   descriptionEn: string | null;
   projectUrl: string;
   imageUrl: string;
+  galleryImages: string[];
+  videoUrls: string[];
+  category: string;
   technologies: string[];
   githubRepo: string | null;
   source: string;
   published: boolean;
   sortOrder: number;
   createdAt: Date;
+  updatedAt: Date;
 }
 
 function assertDatabaseConfigured() {
@@ -38,17 +42,25 @@ function mapDbProject(project: DbPortfolioProject): PortfolioProject {
     descriptionEn: project.descriptionEn,
     projectUrl: project.projectUrl,
     imageUrl: project.imageUrl,
+    galleryImages: project.galleryImages ?? [],
+    videoUrls: project.videoUrls ?? [],
+    category: project.category === "tool" ? "tool" : "project",
     technologies: project.technologies,
     githubRepo: project.githubRepo,
     source: project.source as "manual" | "github",
     published: project.published,
     sortOrder: project.sortOrder,
     createdAt: project.createdAt.toISOString(),
+    updatedAt: project.updatedAt.toISOString(),
   };
 }
 
 function normalizeTechnologies(technologies: string[]) {
   return [...new Set(technologies.map((item) => item.trim()).filter(Boolean))];
+}
+
+function normalizeList(items: string[]) {
+  return [...new Set(items.map((item) => item.trim()).filter(Boolean))];
 }
 
 export async function getPortfolioProjects(): Promise<PortfolioProject[]> {
@@ -69,6 +81,26 @@ export async function getPortfolioProjects(): Promise<PortfolioProject[]> {
       console.error("Erro ao buscar projetos com Prisma:", error);
     }
     return [];
+  }
+}
+
+export async function getPortfolioProjectById(
+  id: number,
+): Promise<PortfolioProject | null> {
+  if (!getDatabaseUrl()) {
+    return null;
+  }
+
+  try {
+    const data = await prisma.portfolioProject.findUnique({ where: { id } });
+    return data ? mapDbProject(data as DbPortfolioProject) : null;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("Erro ao buscar projeto com Prisma:", error.name, error.message);
+    } else {
+      console.error("Erro ao buscar projeto com Prisma:", error);
+    }
+    return null;
   }
 }
 
@@ -138,6 +170,9 @@ function buildProjectPayload(input: NewPortfolioProjectInput) {
     description: input.description.trim(),
     projectUrl: input.projectUrl.trim(),
     imageUrl: input.imageUrl.trim(),
+    galleryImages: normalizeList(input.galleryImages ?? []),
+    videoUrls: normalizeList(input.videoUrls ?? []),
+    category: (input.category ?? "project") satisfies ProjectCategory,
     technologies: normalizeTechnologies(input.technologies),
     githubRepo: input.githubRepo?.trim() || null,
     source: input.source ?? "manual",

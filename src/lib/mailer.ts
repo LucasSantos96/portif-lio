@@ -6,6 +6,7 @@ export interface ContactEmailData {
   email: string;
   phone: string;
   message?: string;
+  source?: string;
 }
 
 function getTransporter() {
@@ -39,6 +40,7 @@ export async function sendContactNotification(data: ContactEmailData) {
       `Email: ${data.email}`,
       `Telefone: ${data.phone}`,
       `Mensagem: ${data.message?.trim() || "(não informada)"}`,
+      ...(data.source ? [`Origem: ${data.source}`] : []),
     ].join("\n"),
   });
 }

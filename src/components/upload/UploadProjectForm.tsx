@@ -19,7 +19,15 @@ import { CSS } from "@dnd-kit/utilities";
 import Image from "next/image";
 import { type ChangeEvent, type DragEvent, type FormEvent, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { GripVertical } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  GripVertical,
+  ImageUp,
+  Plus,
+  Star,
+  Trash2,
+} from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -34,7 +42,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
-import type { PortfolioProject } from "@/types";
+import { getYoutubeId, getYoutubeThumbnail } from "@/lib/youtube";
+import type { PortfolioProject, ProjectCategory } from "@/types";
 
 interface GithubImportResult {
   title: string;
@@ -54,16 +63,27 @@ interface FormState {
   description: string;
   projectUrl: string;
   imageUrl: string;
+  galleryImages: string[];
+  videoUrls: string[];
+  category: ProjectCategory;
   technologies: string;
   githubRepo: string;
   published: boolean;
 }
+
+const categoryOptions: { value: ProjectCategory; label: string; hint: string }[] = [
+  { value: "project", label: "Projeto", hint: "Card com capa e página de galeria." },
+  { value: "tool", label: "Ferramenta", hint: "Seção Ferramentas, sem imagem, com link direto." },
+];
 
 const emptyForm: FormState = {
   title: "",
   description: "",
   projectUrl: "",
   imageUrl: "",
+  galleryImages: [],
+  videoUrls: [],
+  category: "project",
   technologies: "",
   githubRepo: "",
   published: true,
@@ -86,6 +106,9 @@ function projectToForm(project: PortfolioProject): FormState {
     description: project.description,
     projectUrl: project.projectUrl,
     imageUrl: project.imageUrl,
+    galleryImages: project.galleryImages,
+    videoUrls: project.videoUrls,
+    category: project.category,
     technologies: project.technologies.join(", "),
     githubRepo: project.githubRepo ?? "",
     published: project.published,
@@ -123,7 +146,7 @@ function SortableProjectCard({
     <div
       ref={setNodeRef}
       style={style}
-      className={`rounded-2xl border border-white/10 bg-zinc-950/70 p-4 ${
+      className={`rounded-2xl border border-white/10 bg-night/70 p-4 ${
         isDragging ? "opacity-60 shadow-2xl" : ""
       }`}
     >
@@ -141,9 +164,17 @@ function SortableProjectCard({
 
           <div>
             <h3 className="font-medium text-white">{project.title}</h3>
+            {project.category === "tool" ? (
+              <Badge variant="outline" className="mt-1 border-lamp/40 text-lamp">Ferramenta</Badge>
+            ) : null}
             <p className="mt-1 text-xs text-zinc-500">
               {project.published ? "Publicado" : "Rascunho"} - {new Date(project.createdAt).toLocaleString("pt-BR")}
             </p>
+            {project.category === "project" ? (
+              <p className="mt-1 text-xs text-zinc-500">
+                {1 + project.galleryImages.length} foto(s), {project.videoUrls.length} vídeo(s)
+              </p>
+            ) : null}
           </div>
         </div>
 
@@ -193,6 +224,10 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
   const [imageUploading, setImageUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [isDraggingFile, setIsDraggingFile] = useState(false);
+  const [galleryUploading, setGalleryUploading] = useState(false);
+  const [galleryProgress, setGalleryProgress] = useState<{ done: number; total: number } | null>(null);
+  const [isDraggingGallery, setIsDraggingGallery] = useState(false);
+  const [videoInput, setVideoInput] = useState("");
   const [reorderLoading, setReorderLoading] = useState(false);
   const [logoutLoading, setLogoutLoading] = useState(false);
   const [deleteId, setDeleteId] = useState<number | null>(null);
@@ -209,8 +244,9 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
   );
 
   const isEditing = editingProjectId !== null;
+  const isTool = form.category === "tool";
 
-  function updateField(field: keyof FormState, value: string | boolean) {
+  function updateField(field: keyof FormState, value: string | boolean | string[]) {
     setForm((current) => ({ ...current, [field]: value } as FormState));
   }
 
@@ -293,6 +329,31 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
     }
   }
 
+  /** Envia um arquivo ao bucket e devolve a URL pública (ou null, já com o erro na tela). */
+  async function uploadToStorage(file: File) {
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const response = await fetch("/api/upload/image", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = (await response.json()) as { publicUrl?: string; message?: string };
+
+      if (!response.ok || !result.publicUrl) {
+        setError(result.message ?? `Não foi possível enviar ${file.name}.`);
+        return null;
+      }
+
+      return result.publicUrl;
+    } catch {
+      setError(`Erro de conexão ao enviar ${file.name}.`);
+      return null;
+    }
+  }
+
   async function uploadImageFile(file: File) {
     if (!file.type.startsWith("image/")) {
       setError("Selecione uma imagem válida.");
@@ -304,33 +365,130 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
     setImageUploading(true);
     setUploadProgress(15);
 
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
+    const publicUrl = await uploadToStorage(file);
 
-      const response = await fetch("/api/upload/image", {
-        method: "POST",
-        body: formData,
-      });
-
-      setUploadProgress(80);
-
-      const result = (await response.json()) as { publicUrl?: string; message?: string };
-
-      if (!response.ok || !result.publicUrl) {
-        setError(result.message ?? "Não foi possível fazer upload da imagem.");
-        return;
-      }
-
-      updateField("imageUrl", result.publicUrl);
+    if (publicUrl) {
+      updateField("imageUrl", publicUrl);
       setUploadProgress(100);
-      setSuccess("Imagem enviada para o Supabase Storage.");
-    } catch {
-      setError("Erro de conexão ao enviar a imagem.");
-    } finally {
-      setTimeout(() => setUploadProgress(0), 500);
-      setImageUploading(false);
+      setSuccess("Capa enviada para o Supabase Storage.");
     }
+
+    setTimeout(() => setUploadProgress(0), 500);
+    setImageUploading(false);
+  }
+
+  async function uploadGalleryFiles(fileList: FileList | File[]) {
+    const files = [...fileList].filter((file) => file.type.startsWith("image/"));
+
+    if (!files.length) {
+      setError("Selecione imagens válidas para a galeria.");
+      return;
+    }
+
+    setError(null);
+    setSuccess(null);
+    setGalleryUploading(true);
+    setGalleryProgress({ done: 0, total: files.length });
+
+    const uploaded: string[] = [];
+
+    for (const [index, file] of files.entries()) {
+      const publicUrl = await uploadToStorage(file);
+      if (publicUrl) {
+        uploaded.push(publicUrl);
+      }
+      setGalleryProgress({ done: index + 1, total: files.length });
+    }
+
+    setForm((current) => ({
+      ...current,
+      galleryImages: [...current.galleryImages, ...uploaded],
+    }));
+
+    if (uploaded.length) {
+      setSuccess(
+        uploaded.length === files.length
+          ? `${uploaded.length} foto(s) adicionada(s) à galeria. Salve o projeto para publicar.`
+          : `${uploaded.length} de ${files.length} fotos enviadas. Confira o erro acima.`,
+      );
+    }
+
+    setGalleryUploading(false);
+    setTimeout(() => setGalleryProgress(null), 800);
+  }
+
+  async function handleGalleryInput(event: ChangeEvent<HTMLInputElement>) {
+    if (event.target.files?.length) {
+      await uploadGalleryFiles(event.target.files);
+    }
+    event.target.value = "";
+  }
+
+  async function handleGalleryDrop(event: DragEvent<HTMLLabelElement>) {
+    event.preventDefault();
+    setIsDraggingGallery(false);
+
+    if (event.dataTransfer.files?.length) {
+      await uploadGalleryFiles(event.dataTransfer.files);
+    }
+  }
+
+  function moveGalleryImage(index: number, step: number) {
+    setForm((current) => {
+      const target = index + step;
+      if (target < 0 || target >= current.galleryImages.length) {
+        return current;
+      }
+      return { ...current, galleryImages: arrayMove(current.galleryImages, index, target) };
+    });
+  }
+
+  function removeGalleryImage(index: number) {
+    setForm((current) => ({
+      ...current,
+      galleryImages: current.galleryImages.filter((_, itemIndex) => itemIndex !== index),
+    }));
+  }
+
+  function setGalleryImageAsCover(index: number) {
+    setForm((current) => {
+      const nextCover = current.galleryImages[index];
+      const rest = current.galleryImages.filter((_, itemIndex) => itemIndex !== index);
+      return {
+        ...current,
+        imageUrl: nextCover,
+        galleryImages: current.imageUrl ? [current.imageUrl, ...rest] : rest,
+      };
+    });
+  }
+
+  function addVideo() {
+    const url = videoInput.trim();
+
+    if (!url) {
+      return;
+    }
+
+    if (!getYoutubeId(url)) {
+      setError("Cole um link do YouTube (youtube.com/watch, youtu.be ou shorts).");
+      return;
+    }
+
+    if (form.videoUrls.includes(url)) {
+      setError("Esse vídeo já foi adicionado.");
+      return;
+    }
+
+    setError(null);
+    updateField("videoUrls", [...form.videoUrls, url]);
+    setVideoInput("");
+  }
+
+  function removeVideo(url: string) {
+    updateField(
+      "videoUrls",
+      form.videoUrls.filter((item) => item !== url),
+    );
   }
 
   async function handleImageUpload(event: ChangeEvent<HTMLInputElement>) {
@@ -385,6 +543,9 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
           description: form.description,
           projectUrl: form.projectUrl,
           imageUrl: form.imageUrl,
+          galleryImages: form.galleryImages,
+          videoUrls: form.videoUrls,
+          category: form.category,
           technologies: form.technologies,
           githubRepo: form.githubRepo,
           source: form.githubRepo ? "github" : "manual",
@@ -534,7 +695,7 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
       </div>
 
       <div className="grid gap-8 xl:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)]">
-        <Card className="bg-[#181B20] text-white ring-white/10">
+        <Card className="bg-night-raised text-white ring-white/10">
           <CardHeader>
             <CardTitle>{isEditing ? "Editar projeto" : "Novo item do portfólio"}</CardTitle>
             <CardDescription className="text-zinc-400">
@@ -548,7 +709,7 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
                 value={form.githubRepo}
                 onChange={(event) => updateField("githubRepo", event.target.value)}
                 placeholder="https://github.com/owner/repo"
-                className="border-white/15 bg-zinc-950 text-white"
+                className="border-white/15 bg-night text-white"
               />
               <Button type="button" onClick={handleGithubImport} disabled={importLoading}>
                 {importLoading ? "Importando..." : "Importar do GitHub"}
@@ -556,6 +717,33 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-5">
+              <fieldset className="space-y-2">
+                <legend className="text-sm font-medium">Categoria</legend>
+                <div className="grid gap-2 sm:grid-cols-2">
+                  {categoryOptions.map((option) => (
+                    <label
+                      key={option.value}
+                      className={`cursor-pointer rounded-xl border px-4 py-3 transition has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-primary ${
+                        form.category === option.value
+                          ? "border-primary bg-primary/10"
+                          : "border-white/10 bg-night hover:border-white/25"
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="category"
+                        value={option.value}
+                        checked={form.category === option.value}
+                        onChange={() => updateField("category", option.value)}
+                        className="sr-only"
+                      />
+                      <span className="block text-sm font-medium text-white">{option.label}</span>
+                      <span className="block text-xs text-zinc-400">{option.hint}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+
               <div className="grid gap-5 md:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="title">Título</Label>
@@ -564,7 +752,7 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
                     value={form.title}
                     onChange={(event) => updateField("title", event.target.value)}
                     placeholder="Ex.: API Barber"
-                    className="border-white/15 bg-zinc-950 text-white"
+                    className="border-white/15 bg-night text-white"
                     required
                   />
                 </div>
@@ -576,77 +764,255 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
                     value={form.projectUrl}
                     onChange={(event) => updateField("projectUrl", event.target.value)}
                     placeholder="https://..."
-                    className="border-white/15 bg-zinc-950 text-white"
+                    className="border-white/15 bg-night text-white"
                     required
                   />
                 </div>
               </div>
 
-              <div className="space-y-3">
-                <div className="space-y-2">
-                  <Label htmlFor="imageFile">Capa do projeto</Label>
-                  <Input
-                    id="imageFile"
-                    ref={fileInputRef}
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageUpload}
-                    disabled={imageUploading}
-                    className="hidden"
-                  />
-                  <label
-                    htmlFor="imageFile"
-                    onDrop={handleImageDrop}
-                    onDragOver={handleDragOver}
-                    onDragLeave={handleDragLeave}
-                    className={`flex cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border border-dashed px-6 py-8 text-center transition ${
-                      isDraggingFile
-                        ? "border-primary bg-primary/10"
-                        : "border-white/15 bg-zinc-950 hover:border-white/30 hover:bg-white/5"
-                    }`}
-                  >
-                    <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white">
-                      {imageUploading ? "Enviando capa..." : "Fazer upload da imagem"}
-                    </div>
-                    <p className="text-sm text-zinc-300">
-                      Arraste e solte a imagem aqui ou clique para enviar ao bucket `portifolio`.
-                    </p>
-                    <p className="text-xs text-zinc-500">
-                      Aceita PNG, JPG, WEBP e outras imagens.
-                    </p>
-                  </label>
-
-                  {uploadProgress > 0 ? (
+              {isTool ? null : (
+                <>
+                  <div className="space-y-3">
                     <div className="space-y-2">
-                      <div className="h-2 overflow-hidden rounded-full bg-zinc-800">
-                        <div
-                          className="h-full rounded-full bg-primary transition-all duration-300"
-                          style={{ width: `${uploadProgress}%` }}
+                      <Label htmlFor="imageFile">Capa do projeto</Label>
+                      <Input
+                        id="imageFile"
+                        ref={fileInputRef}
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageUpload}
+                        disabled={imageUploading}
+                        className="hidden"
+                      />
+                      <label
+                        htmlFor="imageFile"
+                        onDrop={handleImageDrop}
+                        onDragOver={handleDragOver}
+                        onDragLeave={handleDragLeave}
+                        className={`flex cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border border-dashed px-6 py-8 text-center transition ${
+                          isDraggingFile
+                            ? "border-primary bg-primary/10"
+                            : "border-white/15 bg-night hover:border-white/30 hover:bg-white/5"
+                        }`}
+                      >
+                        <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white">
+                          {imageUploading ? "Enviando capa..." : "Fazer upload da imagem"}
+                        </div>
+                        <p className="text-sm text-zinc-300">
+                          Arraste e solte a imagem aqui ou clique para enviar ao bucket `portifolio`.
+                        </p>
+                        <p className="text-xs text-zinc-500">
+                          Aceita PNG, JPG, WEBP e outras imagens.
+                        </p>
+                      </label>
+
+                      {uploadProgress > 0 ? (
+                        <div className="space-y-2">
+                          <div className="h-2 overflow-hidden rounded-full bg-zinc-800">
+                            <div
+                              className="h-full rounded-full bg-primary transition-all duration-300"
+                              style={{ width: `${uploadProgress}%` }}
+                            />
+                          </div>
+                          <p className="text-xs text-zinc-500">Upload {uploadProgress}%</p>
+                        </div>
+                      ) : null}
+
+                      <p className="text-xs text-zinc-500">
+                        {form.imageUrl
+                          ? "Imagem pronta para salvar no projeto."
+                          : "O link da imagem sera preenchido automaticamente apos o upload."}
+                      </p>
+                    </div>
+
+                    {form.imageUrl ? (
+                      <div className="overflow-hidden rounded-xl border border-white/10 bg-night">
+                        <Image
+                          src={form.imageUrl}
+                          alt="Prévia da capa"
+                          width={800}
+                          height={450}
+                          className="h-56 w-full object-cover"
                         />
                       </div>
-                      <p className="text-xs text-zinc-500">Upload {uploadProgress}%</p>
-                    </div>
-                  ) : null}
-
-                  <p className="text-xs text-zinc-500">
-                    {form.imageUrl
-                      ? "Imagem pronta para salvar no projeto."
-                      : "O link da imagem sera preenchido automaticamente apos o upload."}
-                  </p>
-                </div>
-
-                {form.imageUrl ? (
-                  <div className="overflow-hidden rounded-xl border border-white/10 bg-zinc-950">
-                    <Image
-                      src={form.imageUrl}
-                      alt="Prévia da capa"
-                      width={800}
-                      height={450}
-                      className="h-56 w-full object-cover"
-                    />
+                    ) : null}
                   </div>
-                ) : null}
-              </div>
+
+                  <div className="space-y-3">
+                    <div>
+                      <Label htmlFor="galleryFiles">Galeria de fotos</Label>
+                      <p className="mt-1 text-xs text-zinc-500">
+                        Aparecem na página do projeto depois da capa. Envie várias de uma vez.
+                      </p>
+                    </div>
+                    <Input
+                      id="galleryFiles"
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      onChange={handleGalleryInput}
+                      disabled={galleryUploading}
+                      className="hidden"
+                    />
+                    <label
+                      htmlFor="galleryFiles"
+                      onDrop={handleGalleryDrop}
+                      onDragOver={(event) => {
+                        event.preventDefault();
+                        setIsDraggingGallery(true);
+                      }}
+                      onDragLeave={(event) => {
+                        event.preventDefault();
+                        setIsDraggingGallery(false);
+                      }}
+                      className={`flex cursor-pointer items-center justify-center gap-3 rounded-2xl border border-dashed px-6 py-6 text-center text-sm transition ${
+                        isDraggingGallery
+                          ? "border-primary bg-primary/10"
+                          : "border-white/15 bg-night hover:border-white/30 hover:bg-white/5"
+                      }`}
+                    >
+                      <ImageUp className="size-5 text-zinc-300" aria-hidden />
+                      <span className="text-zinc-300">
+                        {galleryProgress
+                          ? `Enviando ${galleryProgress.done} de ${galleryProgress.total}...`
+                          : "Adicionar fotos à galeria"}
+                      </span>
+                    </label>
+
+                    {form.galleryImages.length ? (
+                      <ul className="grid grid-cols-2 gap-3 md:grid-cols-3">
+                        {form.galleryImages.map((image, index) => (
+                          <li
+                            key={image}
+                            className="overflow-hidden rounded-xl border border-white/10 bg-night"
+                          >
+                            <div className="relative aspect-[4/3]">
+                              <Image
+                                src={image}
+                                alt={`Foto ${index + 1} da galeria`}
+                                fill
+                                sizes="200px"
+                                className="object-cover"
+                              />
+                            </div>
+                            <div className="flex items-center justify-between gap-1 p-1.5">
+                              <div className="flex gap-1">
+                                <Button
+                                  type="button"
+                                  size="icon-sm"
+                                  variant="ghost"
+                                  onClick={() => moveGalleryImage(index, -1)}
+                                  disabled={index === 0}
+                                  aria-label="Mover para antes"
+                                >
+                                  <ChevronLeft />
+                                </Button>
+                                <Button
+                                  type="button"
+                                  size="icon-sm"
+                                  variant="ghost"
+                                  onClick={() => moveGalleryImage(index, 1)}
+                                  disabled={index === form.galleryImages.length - 1}
+                                  aria-label="Mover para depois"
+                                >
+                                  <ChevronRight />
+                                </Button>
+                              </div>
+                              <div className="flex gap-1">
+                                <Button
+                                  type="button"
+                                  size="icon-sm"
+                                  variant="ghost"
+                                  onClick={() => setGalleryImageAsCover(index)}
+                                  aria-label="Usar como capa"
+                                  title="Usar como capa"
+                                >
+                                  <Star />
+                                </Button>
+                                <Button
+                                  type="button"
+                                  size="icon-sm"
+                                  variant="ghost"
+                                  onClick={() => removeGalleryImage(index)}
+                                  aria-label="Remover foto"
+                                  className="text-red-300 hover:text-red-200"
+                                >
+                                  <Trash2 />
+                                </Button>
+                              </div>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </div>
+
+                  <div className="space-y-3">
+                    <div>
+                      <Label htmlFor="videoUrl">Vídeos do YouTube</Label>
+                      <p className="mt-1 text-xs text-zinc-500">
+                        Cole o link do vídeo (youtube.com/watch, youtu.be ou shorts). Pode ser não listado.
+                      </p>
+                    </div>
+                    <div className="grid gap-3 md:grid-cols-[1fr_auto]">
+                      <Input
+                        id="videoUrl"
+                        value={videoInput}
+                        onChange={(event) => setVideoInput(event.target.value)}
+                        onKeyDown={(event) => {
+                          if (event.key === "Enter") {
+                            event.preventDefault();
+                            addVideo();
+                          }
+                        }}
+                        placeholder="https://www.youtube.com/watch?v=..."
+                        className="border-white/15 bg-night text-white"
+                      />
+                      <Button type="button" variant="outline" onClick={addVideo} className="border-white/20 bg-transparent text-white hover:bg-white/10">
+                        <Plus />
+                        Adicionar vídeo
+                      </Button>
+                    </div>
+
+                    {form.videoUrls.length ? (
+                      <ul className="space-y-2">
+                        {form.videoUrls.map((url) => {
+                          const videoId = getYoutubeId(url);
+                          return (
+                            <li
+                              key={url}
+                              className="flex items-center gap-3 rounded-xl border border-white/10 bg-night p-2"
+                            >
+                              {videoId ? (
+                                <div className="relative aspect-video w-24 shrink-0 overflow-hidden rounded-lg">
+                                  <Image
+                                    src={getYoutubeThumbnail(videoId)}
+                                    alt=""
+                                    fill
+                                    sizes="96px"
+                                    className="object-cover"
+                                  />
+                                </div>
+                              ) : null}
+                              <span className="min-w-0 flex-1 truncate text-sm text-zinc-300">{url}</span>
+                              <Button
+                                type="button"
+                                size="icon-sm"
+                                variant="ghost"
+                                onClick={() => removeVideo(url)}
+                                aria-label="Remover vídeo"
+                                className="text-red-300 hover:text-red-200"
+                              >
+                                <Trash2 />
+                              </Button>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    ) : null}
+                  </div>
+                </>
+              )}
 
               <div className="space-y-2">
                 <Label htmlFor="description">Descrição</Label>
@@ -655,7 +1021,7 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
                   value={form.description}
                   onChange={(event) => updateField("description", event.target.value)}
                   placeholder="Descreva o projeto e o impacto"
-                  className="min-h-32 border-white/15 bg-zinc-950 text-white"
+                  className="min-h-32 border-white/15 bg-night text-white"
                   required
                 />
               </div>
@@ -667,7 +1033,7 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
                   value={form.technologies}
                   onChange={(event) => updateField("technologies", event.target.value)}
                   placeholder="Next.js, TypeScript, Tailwind"
-                  className="border-white/15 bg-zinc-950 text-white"
+                  className="border-white/15 bg-night text-white"
                   required
                 />
 
@@ -707,7 +1073,7 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
                 ) : null}
               </div>
 
-              <div className="flex items-center justify-between rounded-xl border border-white/10 bg-zinc-950 px-4 py-3">
+              <div className="flex items-center justify-between rounded-xl border border-white/10 bg-night px-4 py-3">
                 <div>
                   <Label htmlFor="published" className="text-white">Publicado</Label>
                   <p className="text-xs text-zinc-500">
@@ -725,7 +1091,7 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
               {success ? <p className="text-sm text-emerald-400">{success}</p> : null}
 
               <div className="flex flex-col gap-3 md:flex-row">
-                <Button type="submit" disabled={loading || imageUploading || !form.imageUrl} className="w-full md:w-auto">
+                <Button type="submit" disabled={loading || imageUploading || galleryUploading || (!isTool && !form.imageUrl)} className="w-full md:w-auto">
                   {loading
                     ? isEditing
                       ? "Atualizando..."
@@ -750,7 +1116,7 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
           </CardContent>
         </Card>
 
-        <Card className="bg-[#181B20] text-white ring-white/10">
+        <Card className="bg-night-raised text-white ring-white/10">
           <CardHeader>
             <CardTitle>Projetos cadastrados</CardTitle>
             <CardDescription className="text-zinc-400">

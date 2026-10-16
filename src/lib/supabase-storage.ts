@@ -4,13 +4,13 @@ import { createClient } from "@supabase/supabase-js";
 
 const bucketName = "portifolio";
 
-export function getSupabaseStorageClient() {
+export function getSupabaseAdminClient() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   if (!supabaseUrl || !serviceRoleKey) {
     throw new Error(
-      "Configure NEXT_PUBLIC_SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY para usar o Storage.",
+      "Configure NEXT_PUBLIC_SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY para acessar o Supabase.",
     );
   }
 
@@ -20,7 +20,7 @@ export function getSupabaseStorageClient() {
 }
 
 export async function uploadProjectImage(file: File) {
-  const client = getSupabaseStorageClient();
+  const client = getSupabaseAdminClient();
   const fileExtension = file.name.split(".").pop() || "png";
   const fileName = `${Date.now()}-${crypto.randomUUID()}.${fileExtension}`;
   const filePath = `projects/${fileName}`;
