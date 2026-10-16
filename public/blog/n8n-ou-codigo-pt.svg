@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 370" width="900" height="370" role="img" aria-label="Onde cada abordagem encaixa" font-family="system-ui,Segoe UI,Arial,sans-serif">
+<rect width="900" height="370" rx="16" fill="#0e191c"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7dd3c0"/></marker></defs>
+<text x="30" y="40" fill="#e8f1ee" font-size="20" font-weight="700">Onde cada abordagem encaixa</text>
+<text x="30" y="92" fill="#7dd3c0" font-size="15" font-weight="700">n8n</text>
+<rect x="30" y="106" width="261" height="70" rx="10" fill="#16282c" stroke="#7dd3c0" stroke-width="1.5"/>
+<text x="161" y="146" fill="#e8f1ee" font-size="14" text-anchor="middle">Gatilho</text>
+<line x1="294" y1="141" x2="316" y2="141" stroke="#7dd3c0" stroke-width="2" marker-end="url(#a)"/>
+<rect x="319" y="106" width="261" height="70" rx="10" fill="#16282c" stroke="#7dd3c0" stroke-width="1.5"/>
+<text x="450" y="137" fill="#e8f1ee" font-size="14" text-anchor="middle">Nós visuais</text>
+<text x="450" y="155" fill="#e8f1ee" font-size="14" text-anchor="middle">encadeados</text>
+<line x1="584" y1="141" x2="606" y2="141" stroke="#7dd3c0" stroke-width="2" marker-end="url(#a)"/>
+<rect x="609" y="106" width="261" height="70" rx="10" fill="#16282c" stroke="#7dd3c0" stroke-width="1.5"/>
+<text x="739" y="146" fill="#e8f1ee" font-size="14" text-anchor="middle">Ação</text>
+<text x="30" y="242" fill="#f0a37a" font-size="15" font-weight="700">Código</text>
+<rect x="30" y="256" width="189" height="70" rx="10" fill="#16282c" stroke="#f0a37a" stroke-width="1.5"/>
+<text x="124" y="296" fill="#e8f1ee" font-size="14" text-anchor="middle">Gatilho</text>
+<line x1="222" y1="291" x2="244" y2="291" stroke="#7dd3c0" stroke-width="2" marker-end="url(#a)"/>
+<rect x="247" y="256" width="189" height="70" rx="10" fill="#16282c" stroke="#f0a37a" stroke-width="1.5"/>
+<text x="342" y="287" fill="#e8f1ee" font-size="14" text-anchor="middle">Agente em código</text>
+<text x="342" y="305" fill="#e8f1ee" font-size="14" text-anchor="middle">com regras e testes</text>
+<line x1="439" y1="291" x2="461" y2="291" stroke="#7dd3c0" stroke-width="2" marker-end="url(#a)"/>
+<rect x="464" y="256" width="189" height="70" rx="10" fill="#16282c" stroke="#f0a37a" stroke-width="1.5"/>
+<text x="558" y="287" fill="#e8f1ee" font-size="14" text-anchor="middle">Ferramentas</text>
+<text x="558" y="305" fill="#e8f1ee" font-size="14" text-anchor="middle">do seu sistema</text>
+<line x1="656" y1="291" x2="678" y2="291" stroke="#7dd3c0" stroke-width="2" marker-end="url(#a)"/>
+<rect x="681" y="256" width="189" height="70" rx="10" fill="#16282c" stroke="#f0a37a" stroke-width="1.5"/>
+<text x="776" y="296" fill="#e8f1ee" font-size="14" text-anchor="middle">Ação</text>
+</svg>

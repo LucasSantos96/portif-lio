@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520" role="img" aria-label="Three paths for a company's system" font-family="system-ui,Segoe UI,Arial,sans-serif">
+<rect width="900" height="520" rx="16" fill="#0e191c"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7dd3c0"/></marker></defs>
+<text x="30" y="40" fill="#e8f1ee" font-size="20" font-weight="700">Three paths for a company's system</text>
+<text x="30" y="92" fill="#7dd3c0" font-size="15" font-weight="700">Off-the-shelf ERP</text>
+<rect x="30" y="106" width="261" height="70" rx="10" fill="#16282c" stroke="#7dd3c0" stroke-width="1.5"/>
+<text x="161" y="146" fill="#e8f1ee" font-size="14" text-anchor="middle">Company process</text>
+<line x1="294" y1="141" x2="316" y2="141" stroke="#7dd3c0" stroke-width="2" marker-end="url(#a)"/>
+<rect x="319" y="106" width="261" height="70" rx="10" fill="#16282c" stroke="#7dd3c0" stroke-width="1.5"/>
+<text x="450" y="146" fill="#e8f1ee" font-size="14" text-anchor="middle">Adapt to the ERP</text>
+<line x1="584" y1="141" x2="606" y2="141" stroke="#7dd3c0" stroke-width="2" marker-end="url(#a)"/>
+<rect x="609" y="106" width="261" height="70" rx="10" fill="#16282c" stroke="#7dd3c0" stroke-width="1.5"/>
+<text x="739" y="146" fill="#e8f1ee" font-size="14" text-anchor="middle">Use it as shipped</text>
+<text x="30" y="242" fill="#f0a37a" font-size="15" font-weight="700">Custom build</text>
+<rect x="30" y="256" width="261" height="70" rx="10" fill="#16282c" stroke="#f0a37a" stroke-width="1.5"/>
+<text x="161" y="296" fill="#e8f1ee" font-size="14" text-anchor="middle">Company process</text>
+<line x1="294" y1="291" x2="316" y2="291" stroke="#7dd3c0" stroke-width="2" marker-end="url(#a)"/>
+<rect x="319" y="256" width="261" height="70" rx="10" fill="#16282c" stroke="#f0a37a" stroke-width="1.5"/>
+<text x="450" y="296" fill="#e8f1ee" font-size="14" text-anchor="middle">New software</text>
+<line x1="584" y1="291" x2="606" y2="291" stroke="#7dd3c0" stroke-width="2" marker-end="url(#a)"/>
+<rect x="609" y="256" width="261" height="70" rx="10" fill="#16282c" stroke="#f0a37a" stroke-width="1.5"/>
+<text x="739" y="296" fill="#e8f1ee" font-size="14" text-anchor="middle">You maintain it all</text>
+<text x="30" y="392" fill="#e6d36f" font-size="15" font-weight="700">Middle path</text>
+<rect x="30" y="406" width="261" height="70" rx="10" fill="#16282c" stroke="#e6d36f" stroke-width="1.5"/>
+<text x="161" y="437" fill="#e8f1ee" font-size="14" text-anchor="middle">Off-the-shelf ERP</text>
+<text x="161" y="455" fill="#e8f1ee" font-size="14" text-anchor="middle">(Olist, Bling)</text>
+<line x1="294" y1="441" x2="316" y2="441" stroke="#7dd3c0" stroke-width="2" marker-end="url(#a)"/>
+<rect x="319" y="406" width="261" height="70" rx="10" fill="#16282c" stroke="#e6d36f" stroke-width="1.5"/>
+<text x="450" y="446" fill="#e8f1ee" font-size="14" text-anchor="middle">ERP API</text>
+<line x1="584" y1="441" x2="606" y2="441" stroke="#7dd3c0" stroke-width="2" marker-end="url(#a)"/>
+<rect x="609" y="406" width="261" height="70" rx="10" fill="#16282c" stroke="#e6d36f" stroke-width="1.5"/>
+<text x="739" y="437" fill="#e8f1ee" font-size="14" text-anchor="middle">Custom piece</text>
+<text x="739" y="455" fill="#e8f1ee" font-size="14" text-anchor="middle">only for the gap</text>
+</svg>
