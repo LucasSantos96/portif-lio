@@ -16,6 +16,8 @@ model PortfolioProject {
   descriptionEn String?  @map("description_en")
   projectUrl   String   @unique @map("project_url")
   imageUrl     String   @map("image_url")
+  galleryImages String[] @default([]) @map("gallery_images")
+  videoUrls    String[] @default([]) @map("video_urls")
   technologies String[] @default([])
   githubRepo   String?  @map("github_repo")
   source       String   @default("manual")

@@ -1,31 +1,45 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/*
+ * Paleta tirada do vídeo da hero: um escritório à noite iluminado por duas
+ * fontes de luz. O monitor (frio) marca o que é técnico e interativo; a
+ * luminária (quente) marca a ação principal. Todo o resto fica na sombra.
+ */
 :root {
-  --background: oklch(0.16 0.012 260);
-  --foreground: oklch(0.97 0.01 255);
-  --card: oklch(0.22 0.012 260);
-  --card-foreground: oklch(0.97 0.01 255);
-  --popover: oklch(0.22 0.012 260);
-  --popover-foreground: oklch(0.97 0.01 255);
-  --primary: oklch(0.65 0.16 255);
-  --primary-foreground: oklch(0.97 0.01 255);
-  --secondary: oklch(0.28 0.01 255);
-  --secondary-foreground: oklch(0.95 0.008 255);
-  --muted: oklch(0.26 0.008 255);
-  --muted-foreground: oklch(0.8 0.01 255);
-  --accent: oklch(0.29 0.01 255);
-  --accent-foreground: oklch(0.96 0.01 255);
-  --destructive: oklch(0.62 0.2 24);
-  --border: oklch(0.34 0.01 255);
-  --input: oklch(0.34 0.01 255);
-  --ring: oklch(0.72 0.11 250);
-  --radius: 0.75rem;
+  --night: #0e191c;
+  --night-raised: #142328;
+  --night-high: #1b2e34;
+  --line: #24383e;
+  --paper: #e8eeec;
+  --fog: #94a8aa;
+  --monitor: #8ed1d9;
+  --lamp: #f2b36b;
+
+  --background: var(--night);
+  --foreground: var(--paper);
+  --card: var(--night-raised);
+  --card-foreground: var(--paper);
+  --popover: var(--night-high);
+  --popover-foreground: var(--paper);
+  --primary: var(--lamp);
+  --primary-foreground: var(--night);
+  --secondary: var(--night-high);
+  --secondary-foreground: var(--paper);
+  --muted: var(--night-high);
+  --muted-foreground: var(--fog);
+  --accent: var(--night-high);
+  --accent-foreground: var(--paper);
+  --destructive: #f07a6a;
+  --border: var(--line);
+  --input: #2d454c;
+  --ring: var(--monitor);
+  --radius: 0.875rem;
 }
 
 @theme inline {
-  --font-sans: var(--font-space-grotesk);
-  --font-heading: var(--font-space-grotesk);
+  --font-sans: var(--font-bricolage);
+  --font-heading: var(--font-bricolage);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -44,10 +58,28 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --radius-sm: calc(var(--radius) * 0.8);
-  --radius-md: calc(var(--radius) * 0.9);
+  --color-night: var(--night);
+  --color-night-raised: var(--night-raised);
+  --color-night-high: var(--night-high);
+  --color-paper: var(--paper);
+  --color-fog: var(--fog);
+  --color-monitor: var(--monitor);
+  --color-lamp: var(--lamp);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.25);
+  --radius-xl: calc(var(--radius) * 1.4);
+
+  --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - var(--marquee-gap, 0px) / 2));
+  }
 }
 
 * {
@@ -56,23 +88,85 @@
 
 html {
   @apply font-sans;
-  scroll-behavior: smooth;
+  font-optical-sizing: auto;
 }
 
 body {
   @apply bg-background text-foreground antialiased;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+::selection {
+  background: color-mix(in oklab, var(--lamp) 35%, transparent);
+  color: var(--paper);
 }
 
-.animate-float {
-  animation: float 2s ease-in-out infinite;
+:focus-visible {
+  outline: 2px solid var(--monitor);
+  outline-offset: 3px;
+}
+
+/* Títulos: largura condensada da Bricolage para dar peso sem gritar. */
+.type-display {
+  font-variation-settings: "wdth" 78, "opsz" 96;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  text-wrap: balance;
+}
+
+.type-heading {
+  font-variation-settings: "wdth" 82, "opsz" 72;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+/* Borda que acende onde o cursor está (ver components/ui/glow-card.tsx). */
+.glow-border {
+  padding: 1px;
+  background: radial-gradient(
+    280px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+    var(--lamp),
+    transparent 65%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

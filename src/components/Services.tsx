@@ -1,38 +1,41 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import { Bot, Globe, LayoutDashboard, Workflow, type LucideIcon } from "lucide-react";
+import {
+  SiLangchain,
+  SiLanggraph,
+  SiN8n,
+  SiPython,
+  SiTypescript,
+} from "@icons-pack/react-simple-icons";
 
-interface ServiceCardData {
-  title: string;
-  description: string;
-  icon: string;
-  imageUrl: string;
+import Reveal from "@/components/motion/Reveal";
+import SectionHeading, { sectionContainer } from "@/components/SectionHeading";
+import { GlowCard } from "@/components/ui/glow-card";
+import { useLocale } from "@/i18n/useLocale";
+
+type IconComponent = React.ComponentType<{ className?: string; "aria-hidden"?: boolean }>;
+
+interface StackItem {
+  name: string;
+  icon: IconComponent;
 }
 
-const photoServices: ServiceCardData[] = [
-  {
-    title: "Sites",
-    description:
-      "Sites institucionais, landing pages e portfólios rápidos, responsivos e otimizados.",
-    icon: "🌐",
-    imageUrl:
-      "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Sistemas Web",
-    description:
-      "Sistemas sob medida para o seu negócio, com painel administrativo e integrações.",
-    icon: "🖥️",
-    imageUrl:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Automações com n8n",
-    description:
-      "Fluxos automatizados que conectam suas ferramentas e eliminam tarefas manuais.",
-    icon: "🔗",
-    imageUrl: "/services/n8n-flow.png",
-  },
-];
+// O Simple Icons ainda não tem a marca do Mastra; usamos um ícone neutro.
+const automationStack: Record<"orchestration" | "agents" | "languages", StackItem[]> = {
+  orchestration: [{ name: "n8n", icon: SiN8n }],
+  agents: [
+    { name: "LangChain", icon: SiLangchain },
+    { name: "LangGraph", icon: SiLanggraph },
+    { name: "Mastra", icon: Bot },
+  ],
+  languages: [
+    { name: "Python", icon: SiPython },
+    { name: "TypeScript", icon: SiTypescript },
+  ],
+};
 
 const partnerLogos = [
   { name: "Bling", src: "/services/bling.webp" },
@@ -40,76 +43,113 @@ const partnerLogos = [
   { name: "CardápioWeb", src: "/services/cardapioweb.webp" },
 ];
 
-const Services: React.FC = () => {
+function ServiceIcon({ icon: Icon }: { icon: LucideIcon }) {
   return (
-    <section
-      className="mt-20 mx-4 text-white mb-14 lg:mx-32 lg:py-20"
-      id="servicos"
-    >
-      <div className="text-center mb-12">
-        <h2 className="text-[20px] mb-5 lg:text-[40px]">Serviços</h2>
-        <p className="text-[#b0afaf] text-sm lg:text-base max-w-2xl mx-auto">
-          Do site institucional à automação de processos e implementação de
-          sistemas de gestão.
-        </p>
-      </div>
+    <span className="mb-6 flex size-11 items-center justify-center rounded-full border border-monitor/25 bg-monitor/10 text-monitor">
+      <Icon className="size-5" aria-hidden />
+    </span>
+  );
+}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-        {photoServices.map((service) => (
-          <div
-            key={service.title}
-            className="group relative rounded-2xl overflow-hidden min-h-[280px] flex items-end transition-all duration-500 ease-in-out hover:-translate-y-2 hover:shadow-xl"
-          >
-            <Image
-              src={service.imageUrl}
-              alt={service.title}
-              fill
-              sizes="(min-width: 768px) 50vw, 100vw"
-              className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#121417]/95 via-[#121417]/55 to-[#121417]/15" />
-            <div className="absolute top-4 left-4 bg-[#0980ecdd] size-10 rounded-full flex items-center justify-center text-lg">
-              {service.icon}
-            </div>
-            <div className="relative z-10 p-6">
-              <h3 className="text-lg font-semibold mb-1.5 transition-colors duration-300 group-hover:text-[#5fb0ff]">
-                {service.title}
-              </h3>
-              <p className="text-sm text-[#e6e6e6] max-w-[90%]">
-                {service.description}
-              </p>
-            </div>
-          </div>
-        ))}
+const Services: React.FC = () => {
+  const { t } = useLocale();
+  const s = t.services;
 
-        <div className="group bg-[#ffffff1a] hover:bg-[#ffffff2a] rounded-2xl p-6 min-h-[280px] flex flex-col justify-center transition-all duration-500 ease-in-out hover:-translate-y-2 hover:shadow-xl">
-          <div className="bg-[#0980ec] size-[52px] rounded-full flex items-center justify-center text-xl mb-4">
-            🤝
-          </div>
-          <h3 className="text-lg font-semibold mb-2">
-            Consultoria & Implementação de Sistemas de Gestão
-          </h3>
-          <p className="text-sm text-[#b0afaf] mb-4">
-            Parceiro implementador e consultor de TI para sistemas de gestão e
-            cardápio digital.
-          </p>
-          <div className="flex gap-4 flex-wrap">
-            {partnerLogos.map((logo) => (
-              <div
-                key={logo.name}
-                className="size-16 rounded-full overflow-hidden ring-1 ring-white/15 shrink-0 transition-transform duration-300 hover:scale-105"
-                title={logo.name}
-              >
-                <Image
-                  src={logo.src}
-                  alt={logo.name}
-                  width={64}
-                  height={64}
-                  className="h-full w-full object-cover"
-                />
+  return (
+    <section id="servicos" aria-labelledby="servicos-title" className="scroll-mt-24 py-20 md:py-28">
+      <div className={sectionContainer}>
+        <SectionHeading id="servicos-title" title={s.title} intro={s.intro} />
+
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-[auto_auto_auto]">
+          <Reveal className="md:col-span-2 lg:row-span-2">
+            <GlowCard className="h-full p-6 md:p-8">
+              <div className="flex h-full flex-col">
+                <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-2xl border border-white/[0.08] bg-[#14141a]">
+                  <Image
+                    src="/services/n8n-flow.png"
+                    alt={s.automation.imageAlt}
+                    fill
+                    sizes="(min-width: 1024px) 760px, 100vw"
+                    className="object-cover transition-transform duration-[1.2s] ease-out group-hover/glow:scale-[1.03]"
+                  />
+                </div>
+
+                <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
+                  <div>
+                    <ServiceIcon icon={Workflow} />
+                    <h3 className="type-heading text-3xl text-paper md:text-4xl">{s.automation.title}</h3>
+                    <p className="mt-4 max-w-[46ch] text-lg text-fog">{s.automation.description}</p>
+                  </div>
+
+                  <dl className="grid gap-4 md:min-w-[260px]">
+                    {(Object.keys(automationStack) as (keyof typeof automationStack)[]).map((group) => (
+                      <div key={group}>
+                        <dt className="mb-2 text-sm text-fog">{s.automation.groups[group]}</dt>
+                        <dd className="flex flex-wrap gap-2">
+                          {automationStack[group].map(({ name, icon: Icon }) => (
+                            <span
+                              key={name}
+                              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-paper"
+                            >
+                              <Icon className="size-4" aria-hidden />
+                              {name}
+                            </span>
+                          ))}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
               </div>
-            ))}
-          </div>
+            </GlowCard>
+          </Reveal>
+
+          <Reveal delay={0.08}>
+            <GlowCard className="h-full p-6 md:p-8">
+              <ServiceIcon icon={Globe} />
+              <h3 className="type-heading text-2xl text-paper md:text-3xl">{s.sites.title}</h3>
+              <p className="mt-3 text-fog">{s.sites.description}</p>
+            </GlowCard>
+          </Reveal>
+
+          <Reveal delay={0.12}>
+            <GlowCard className="h-full p-6 md:p-8">
+              <ServiceIcon icon={LayoutDashboard} />
+              <h3 className="type-heading text-2xl text-paper md:text-3xl">{s.systems.title}</h3>
+              <p className="mt-3 text-fog">{s.systems.description}</p>
+            </GlowCard>
+          </Reveal>
+
+          <Reveal delay={0.08} className="md:col-span-2 lg:col-span-3">
+            <GlowCard className="p-6 md:p-8">
+              <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+                <div className="max-w-[56ch]">
+                  <h3 className="type-heading text-2xl text-paper md:text-3xl">{s.erp.title}</h3>
+                  <p className="mt-3 text-fog">{s.erp.description}</p>
+                </div>
+
+                <div>
+                  <p className="mb-3 text-sm text-fog">{s.erp.partners}</p>
+                  <ul className="flex gap-5">
+                    {partnerLogos.map((logo) => (
+                      <li key={logo.name} className="flex flex-col items-center gap-2">
+                        <span className="size-16 overflow-hidden rounded-full ring-1 ring-white/15">
+                          <Image
+                            src={logo.src}
+                            alt=""
+                            width={64}
+                            height={64}
+                            className="h-full w-full object-cover"
+                          />
+                        </span>
+                        <span className="text-sm text-paper">{logo.name}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </GlowCard>
+          </Reveal>
         </div>
       </div>
     </section>

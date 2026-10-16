@@ -1,19 +1,5 @@
 import { ReactNode } from 'react';
 
-// Component Props Types
-export interface CardSkillsProps {
-    icon: ReactNode;
-    text: string;
-}
-
-export interface CardProjectsProps {
-    image: string;
-    title: string;
-    subtitle: string;
-    link: string;
-    tecImg: ReactNode | ReactNode[];
-}
-
 export interface PortfolioProject {
     id: number;
     title: string;
@@ -22,6 +8,8 @@ export interface PortfolioProject {
     descriptionEn: string | null;
     projectUrl: string;
     imageUrl: string;
+    galleryImages: string[];
+    videoUrls: string[];
     technologies: string[];
     githubRepo: string | null;
     source: "manual" | "github";
@@ -35,6 +23,8 @@ export interface NewPortfolioProjectInput {
     description: string;
     projectUrl: string;
     imageUrl: string;
+    galleryImages?: string[];
+    videoUrls?: string[];
     technologies: string[];
     githubRepo?: string | null;
     source?: "manual" | "github";

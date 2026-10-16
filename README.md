@@ -162,7 +162,7 @@ O portfólio é totalmente responsivo e otimizado para:
 ## 🔗 Links
 
 - **Portfólio**: [lucas-santos.vercel.app](https://lucas-santos.vercel.app)
-- **LinkedIn**: [Lucas Santos](https://www.linkedin.com/in/lucas-santos-de-oliveira-874497325/)
+- **LinkedIn**: [Lucas Santos](https://www.linkedin.com/in/lucassantosdeoliveira-dev/)
 - **GitHub**: [LucasSantos96](https://github.com/LucasSantos96)
 - **Email**: homeoficelucas@gmail.com
 
@@ -186,7 +186,7 @@ Contribuições são sempre bem-vindas! Sinta-se à vontade para:
 
 - 📧 **Email**: homeoficelucas@gmail.com
 - 📱 **WhatsApp**: +55 (22) 98107-3895
-- 💼 **LinkedIn**: [Lucas Santos](https://www.linkedin.com/in/lucas-santos-de-oliveira-874497325/)
+- 💼 **LinkedIn**: [Lucas Santos](https://www.linkedin.com/in/lucassantosdeoliveira-dev/)
 - 🐙 **GitHub**: [LucasSantos96](https://github.com/LucasSantos96)
 
 ---

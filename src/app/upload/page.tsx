@@ -12,7 +12,7 @@ export default async function UploadPage() {
   const projects = isAuthenticated ? await getPortfolioProjects() : [];
 
   return (
-    <main className="min-h-[calc(100vh-180px)] px-2 md:px-0">
+    <main className="min-h-screen px-2 pt-6 md:px-0">
       {isAuthenticated ? <UploadProjectForm initialProjects={projects} /> : <UploadLoginCard />}
     </main>
   );

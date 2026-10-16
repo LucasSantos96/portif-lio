@@ -1,68 +1,55 @@
 "use client";
 
 import React from 'react'
-
-import Link from 'next/link'
-import { Mail, Linkedin, Github } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { Github, Linkedin, Mail } from 'lucide-react';
 import { SiWhatsapp } from '@icons-pack/react-simple-icons';
+
+import { sectionContainer } from '@/components/SectionHeading';
 import { useLocale } from '@/i18n/useLocale';
 
 const Footer: React.FC = () => {
     const { t } = useLocale();
+    const pathname = usePathname();
+
+    const links = [
+        { href: "https://wa.me/5522981073895", label: t.footer.whatsappAria, icon: <SiWhatsapp className="size-5" aria-hidden /> },
+        { href: "mailto:homeoficelucas@gmail.com", label: t.footer.emailAria, icon: <Mail className="size-5" aria-hidden /> },
+        { href: "https://www.linkedin.com/in/lucassantosdeoliveira-dev/", label: t.footer.linkedinAria, icon: <Linkedin className="size-5" aria-hidden /> },
+        { href: "https://github.com/LucasSantos96", label: t.footer.githubAria, icon: <Github className="size-5" aria-hidden /> },
+    ];
+
+    if (pathname.startsWith("/upload")) {
+        return null;
+    }
 
     return (
-        <footer className='bg-[#00000080]'>
-            <div className='flex flex-col lg:flex-row items-center lg:items-start lg:mx-[120px] mx-5 py-10 lg:py-14 justify-between gap-10 lg:gap-0'>
-                <div className='flex flex-col items-center lg:items-start text-center lg:text-left'>
-                    <h2 className='text-2xl text-[#fff] font-medium uppercase tracking-wider'>Lucas Santos</h2>
-                    <p className='text-[#0980ec] font-light'>{t.footer.role}</p>
-
-                    <div className='flex items-center gap-2 mt-4'>
-                        <Mail
-                            size={20}
-                            className="text-white bg-[#ffffff20] p-1 rounded-full"
-                        />
-                        <p className='text-white text-sm font-light'>homeoficelucas@gmail.com</p>
-                    </div>
+        <footer className="border-t border-white/[0.08] pb-24 md:pb-0">
+            <div className={`${sectionContainer} flex flex-col gap-6 py-10 md:flex-row md:items-center md:justify-between`}>
+                <div>
+                    <p className="type-heading text-2xl text-paper">Lucas Santos</p>
+                    <p className="text-fog">{t.footer.role}</p>
                 </div>
-                <div className='flex flex-col items-center lg:items-start'>
-                    <h2 className='text-2xl text-[#fff] font-light mb-4'>{t.footer.socialTitle}</h2>
-                    <div className='flex gap-6'>
-                        <a
-                            href="https://www.linkedin.com/in/lucas-santos-de-oliveira-874497325/"
-                            target='_blank'
-                            aria-label={t.footer.linkedinAria}
-                            className="hover:scale-110 transition-transform duration-300"
-                        >
-                            <Linkedin size={32} className="text-white hover:text-[#0A80ED]" />
-                        </a>
 
-                        <a
-                            href="https://github.com/LucasSantos96"
-                            target='_blank'
-                            aria-label={t.footer.githubAria}
-                            className="hover:scale-110 transition-transform duration-300"
-                        >
-                            <Github size={32} className="text-white hover:text-[#0A80ED]" />
-                        </a>
+                <ul className="flex gap-2">
+                    {links.map((link) => (
+                        <li key={link.href}>
+                            <a
+                                href={link.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={link.label}
+                                className="flex size-11 items-center justify-center rounded-full border border-white/10 text-fog transition-colors hover:border-white/25 hover:text-paper"
+                            >
+                                {link.icon}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
 
-                        <a
-                            href="https://wa.me/5522981073895"
-                            target='_blank'
-                            aria-label={t.footer.whatsappAria}
-                            className="hover:scale-110 transition-transform duration-300"
-                        >
-                            <SiWhatsapp size={32} color="#25D366" />
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-
-
-            <hr className='border-[#565555]' />
-            <div className='bg-[#111111] w-full text-center'>
-                <p className='text-white py-2 text-[14px]'>{t.footer.developedBy} <span className='text-[#0A80ED]'><Link href={"https://github.com/LucasSantos96"} target='_blank'>Lucas Santos</Link></span></p>
+                <p className="text-sm text-fog">
+                    © {new Date().getFullYear()} Lucas Santos. {t.footer.rights}
+                </p>
             </div>
         </footer>
     )
