@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 370" width="900" height="370" role="img" aria-label="Landing page: ferramenta de IA x desenvolvedor" font-family="system-ui,Segoe UI,Arial,sans-serif">
+<rect width="900" height="370" rx="16" fill="#0e191c"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7dd3c0"/></marker></defs>
+<text x="30" y="40" fill="#e8f1ee" font-size="20" font-weight="700">Landing page: ferramenta de IA x desenvolvedor</text>
+<text x="30" y="92" fill="#7dd3c0" font-size="15" font-weight="700">Ferramenta de IA</text>
+<rect x="30" y="106" width="261" height="70" rx="10" fill="#16282c" stroke="#7dd3c0" stroke-width="1.5"/>
+<text x="161" y="146" fill="#e8f1ee" font-size="14" text-anchor="middle">Descreve a página</text>
+<line x1="294" y1="141" x2="316" y2="141" stroke="#7dd3c0" stroke-width="2" marker-end="url(#a)"/>
+<rect x="319" y="106" width="261" height="70" rx="10" fill="#16282c" stroke="#7dd3c0" stroke-width="1.5"/>
+<text x="450" y="146" fill="#e8f1ee" font-size="14" text-anchor="middle">Gera o layout</text>
+<line x1="584" y1="141" x2="606" y2="141" stroke="#7dd3c0" stroke-width="2" marker-end="url(#a)"/>
+<rect x="609" y="106" width="261" height="70" rx="10" fill="#16282c" stroke="#7dd3c0" stroke-width="1.5"/>
+<text x="739" y="146" fill="#e8f1ee" font-size="14" text-anchor="middle">Publica rápido</text>
+<text x="30" y="242" fill="#f0a37a" font-size="15" font-weight="700">Desenvolvedor</text>
+<rect x="30" y="256" width="261" height="70" rx="10" fill="#16282c" stroke="#f0a37a" stroke-width="1.5"/>
+<text x="161" y="296" fill="#e8f1ee" font-size="14" text-anchor="middle">Entende a oferta</text>
+<line x1="294" y1="291" x2="316" y2="291" stroke="#7dd3c0" stroke-width="2" marker-end="url(#a)"/>
+<rect x="319" y="256" width="261" height="70" rx="10" fill="#16282c" stroke="#f0a37a" stroke-width="1.5"/>
+<text x="450" y="287" fill="#e8f1ee" font-size="14" text-anchor="middle">Código e SEO</text>
+<text x="450" y="305" fill="#e8f1ee" font-size="14" text-anchor="middle">sob medida</text>
+<line x1="584" y1="291" x2="606" y2="291" stroke="#7dd3c0" stroke-width="2" marker-end="url(#a)"/>
+<rect x="609" y="256" width="261" height="70" rx="10" fill="#16282c" stroke="#f0a37a" stroke-width="1.5"/>
+<text x="739" y="287" fill="#e8f1ee" font-size="14" text-anchor="middle">Medição e</text>
+<text x="739" y="305" fill="#e8f1ee" font-size="14" text-anchor="middle">desempenho</text>
+</svg>
