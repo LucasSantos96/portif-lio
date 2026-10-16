@@ -18,7 +18,6 @@ const en: Dictionary = {
     subtitle:
       "I build custom software and automations with n8n, LangChain, LangGraph and Mastra to take repetitive work off your team.",
     ctaWhatsapp: "Message me on WhatsApp",
-    ctaWhatsappAria: "Contact via WhatsApp",
     whatsappMessage: "Hi, I found your portfolio",
     ctaResume: "Download resume",
     ctaResumeAria: "Download resume as PDF",
@@ -77,6 +76,11 @@ const en: Dictionary = {
     openGallery: "View gallery",
     photos: (count: number) => (count === 1 ? "1 photo" : `${count} photos`),
     videos: (count: number) => (count === 1 ? "1 video" : `${count} videos`),
+  },
+  tools: {
+    title: "Tools",
+    intro: "Open source tools I built to solve problems in my day-to-day development work.",
+    opensInNewTab: "(opens in a new tab)",
   },
   gallery: {
     back: "All projects",

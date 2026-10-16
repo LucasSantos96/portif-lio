@@ -16,7 +16,6 @@ const pt = {
     subtitle:
       "Construo software sob medida e automações com n8n, LangChain, LangGraph e Mastra para tirar o trabalho repetitivo da sua equipe.",
     ctaWhatsapp: "Conversar no WhatsApp",
-    ctaWhatsappAria: "Entrar em contato via WhatsApp",
     whatsappMessage: "Olá, vim do seu portfólio",
     ctaResume: "Baixar currículo",
     ctaResumeAria: "Baixar currículo em PDF",
@@ -76,6 +75,11 @@ const pt = {
     openGallery: "Ver galeria",
     photos: (count: number) => (count === 1 ? "1 foto" : `${count} fotos`),
     videos: (count: number) => (count === 1 ? "1 vídeo" : `${count} vídeos`),
+  },
+  tools: {
+    title: "Ferramentas",
+    intro: "Ferramentas open source que criei para resolver problemas do meu dia a dia de desenvolvimento.",
+    opensInNewTab: "(abre em nova aba)",
   },
   gallery: {
     back: "Todos os projetos",

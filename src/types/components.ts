@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
 
+export type ProjectCategory = "project" | "tool";
+
 export interface PortfolioProject {
     id: number;
     title: string;
@@ -10,12 +12,14 @@ export interface PortfolioProject {
     imageUrl: string;
     galleryImages: string[];
     videoUrls: string[];
+    category: ProjectCategory;
     technologies: string[];
     githubRepo: string | null;
     source: "manual" | "github";
     published: boolean;
     sortOrder: number;
     createdAt: string;
+    updatedAt: string;
 }
 
 export interface NewPortfolioProjectInput {
@@ -25,6 +29,7 @@ export interface NewPortfolioProjectInput {
     imageUrl: string;
     galleryImages?: string[];
     videoUrls?: string[];
+    category?: ProjectCategory;
     technologies: string[];
     githubRepo?: string | null;
     source?: "manual" | "github";

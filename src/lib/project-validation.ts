@@ -1,4 +1,5 @@
 import { getYoutubeId } from "@/lib/youtube";
+import type { ProjectCategory } from "@/types";
 
 export interface ProjectRequestBody {
   title?: string;
@@ -7,6 +8,7 @@ export interface ProjectRequestBody {
   imageUrl?: string;
   galleryImages?: string[];
   videoUrls?: string[];
+  category?: ProjectCategory;
   technologies?: string;
   githubRepo?: string;
   source?: "manual" | "github";
@@ -59,6 +61,7 @@ export function parseProjectBody(body: ProjectRequestBody) {
     imageUrl: body.imageUrl ?? "",
     galleryImages: toStringList(body.galleryImages),
     videoUrls: toStringList(body.videoUrls),
+    category: body.category === "tool" ? ("tool" as const) : ("project" as const),
     technologies: toTechnologyList(body.technologies),
     githubRepo: body.githubRepo,
     source: body.source,
@@ -67,15 +70,24 @@ export function parseProjectBody(body: ProjectRequestBody) {
 }
 
 export function validateProjectBody(body: ProjectRequestBody) {
-  if (!body.title || !body.description || !body.projectUrl || !body.imageUrl) {
-    return "Preencha título, descrição, link e foto.";
+  if (body.category !== undefined && body.category !== "project" && body.category !== "tool") {
+    return "Categoria inválida.";
+  }
+
+  // Ferramentas aparecem numa lista sem imagem, então a capa é opcional para elas.
+  const requiresImage = body.category !== "tool";
+
+  if (!body.title || !body.description || !body.projectUrl || (requiresImage && !body.imageUrl)) {
+    return requiresImage
+      ? "Preencha título, descrição, link e foto."
+      : "Preencha título, descrição e link.";
   }
 
   if (!isValidHttpUrl(body.projectUrl)) {
     return "Link do projeto deve ser uma URL válida (http/https).";
   }
 
-  if (!isValidImageValue(body.imageUrl)) {
+  if (body.imageUrl && !isValidImageValue(body.imageUrl)) {
     return "A foto deve ser uma URL válida, caminho local (/imagem.png) ou data URL.";
   }
 

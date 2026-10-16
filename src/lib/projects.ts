@@ -3,7 +3,7 @@ import "server-only";
 import { getDatabaseUrl } from "@/lib/database-url";
 import { prisma } from "@/lib/prisma";
 import { translateText } from "@/lib/translate";
-import type { NewPortfolioProjectInput, PortfolioProject } from "@/types";
+import type { NewPortfolioProjectInput, PortfolioProject, ProjectCategory } from "@/types";
 
 interface DbPortfolioProject {
   id: bigint;
@@ -15,12 +15,14 @@ interface DbPortfolioProject {
   imageUrl: string;
   galleryImages: string[];
   videoUrls: string[];
+  category: string;
   technologies: string[];
   githubRepo: string | null;
   source: string;
   published: boolean;
   sortOrder: number;
   createdAt: Date;
+  updatedAt: Date;
 }
 
 function assertDatabaseConfigured() {
@@ -42,12 +44,14 @@ function mapDbProject(project: DbPortfolioProject): PortfolioProject {
     imageUrl: project.imageUrl,
     galleryImages: project.galleryImages ?? [],
     videoUrls: project.videoUrls ?? [],
+    category: project.category === "tool" ? "tool" : "project",
     technologies: project.technologies,
     githubRepo: project.githubRepo,
     source: project.source as "manual" | "github",
     published: project.published,
     sortOrder: project.sortOrder,
     createdAt: project.createdAt.toISOString(),
+    updatedAt: project.updatedAt.toISOString(),
   };
 }
 
@@ -168,6 +172,7 @@ function buildProjectPayload(input: NewPortfolioProjectInput) {
     imageUrl: input.imageUrl.trim(),
     galleryImages: normalizeList(input.galleryImages ?? []),
     videoUrls: normalizeList(input.videoUrls ?? []),
+    category: (input.category ?? "project") satisfies ProjectCategory,
     technologies: normalizeTechnologies(input.technologies),
     githubRepo: input.githubRepo?.trim() || null,
     source: input.source ?? "manual",
