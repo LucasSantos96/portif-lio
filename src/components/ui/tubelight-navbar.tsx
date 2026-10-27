@@ -34,7 +34,7 @@ export function TubelightNavbar({
   return (
     <ul
       className={cn(
-        "flex items-center gap-1 rounded-full border border-white/10 bg-night/70 p-1 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)] backdrop-blur-xl",
+        "flex items-center gap-1 rounded-full border border-paper/10 bg-night/70 p-1 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)] backdrop-blur-xl",
         className,
       )}
     >
@@ -59,7 +59,7 @@ export function TubelightNavbar({
               {isActive ? (
                 <motion.span
                   layoutId="tubelight"
-                  className="absolute inset-0 -z-10 rounded-full bg-white/[0.06]"
+                  className="absolute inset-0 -z-10 rounded-full bg-paper/[0.06]"
                   transition={{ type: "spring", stiffness: 320, damping: 32 }}
                 >
                   <span className="absolute -top-1 left-1/2 h-1 w-8 -translate-x-1/2 rounded-t-full bg-lamp">

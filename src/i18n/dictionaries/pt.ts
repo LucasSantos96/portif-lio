@@ -10,6 +10,8 @@ const pt = {
       contact: "Contato",
     },
     langToggleLabel: "Mudar idioma para inglês",
+    themeToLight: "Mudar para o tema claro",
+    themeToDark: "Mudar para o tema escuro",
   },
   hero: {
     name: "Lucas Santos, desenvolvedor full-stack",

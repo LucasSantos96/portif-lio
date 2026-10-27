@@ -12,6 +12,8 @@ const en: Dictionary = {
       contact: "Contact",
     },
     langToggleLabel: "Switch language to Portuguese",
+    themeToLight: "Switch to light theme",
+    themeToDark: "Switch to dark theme",
   },
   hero: {
     name: "Lucas Santos, full-stack developer",

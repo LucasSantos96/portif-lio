@@ -21,7 +21,7 @@ export default function ArticleCta({ title, url }: ArticleCtaProps) {
   return (
     <section
       aria-labelledby="article-cta-title"
-      className="mt-16 rounded-[1.75rem] border border-white/[0.08] bg-night-raised p-6 md:p-10"
+      className="mt-16 rounded-[1.75rem] border border-paper/[0.08] bg-night-raised p-6 md:p-10"
     >
       <h2 id="article-cta-title" className="type-heading text-3xl text-paper md:text-4xl">
         {cta.title}
@@ -39,7 +39,7 @@ export default function ArticleCta({ title, url }: ArticleCtaProps) {
       </a>
 
       <p className="mt-10 mb-4 text-fog">{cta.formTitle}</p>
-      <ContactForm source={title} className="border-white/10 bg-night p-5 md:p-8" />
+      <ContactForm source={title} className="border-paper/10 bg-night p-5 md:p-8" />
     </section>
   );
 }

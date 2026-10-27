@@ -17,7 +17,7 @@ import { useLocale } from "@/i18n/useLocale";
 import { CONTACT_SERVICES } from "@/lib/contact-validation";
 import { cn } from "@/lib/utils";
 
-const fieldClass = "h-12 rounded-xl border-white/10 bg-night px-4 text-base md:text-base dark:bg-night";
+const fieldClass = "h-12 rounded-xl border-paper/10 bg-night px-4 text-base md:text-base dark:bg-night";
 
 interface ContactFormProps {
     /** De onde o contato veio (ex.: título de um artigo). Vai junto no e-mail para você. */
@@ -80,7 +80,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ source, className }) => {
     return (
         <form
             onSubmit={handleSubmit}
-            className={cn("space-y-5 rounded-[1.75rem] border border-white/[0.08] bg-night-raised p-6 md:p-10", className)}
+            className={cn("space-y-5 rounded-[1.75rem] border border-paper/[0.08] bg-night-raised p-6 md:p-10", className)}
         >
             <div className="space-y-2">
                 <Label htmlFor={`${uid}-service`}>{f.service}</Label>
@@ -150,7 +150,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ source, className }) => {
                     value={message}
                     onChange={(event) => setMessage(event.target.value)}
                     placeholder={f.messagePlaceholder}
-                    className="min-h-32 rounded-xl border-white/10 bg-night px-4 py-3 text-base md:text-base dark:bg-night"
+                    className="min-h-32 rounded-xl border-paper/10 bg-night px-4 py-3 text-base md:text-base dark:bg-night"
                 />
             </div>
 

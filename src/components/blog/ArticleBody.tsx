@@ -61,7 +61,7 @@ export default function ArticleBody({ markdown, className }: ArticleBodyProps) {
     blockquote: ({ node: _node, ...props }) => (
       <blockquote className="my-8 border-l-2 border-lamp pl-5 text-xl leading-relaxed text-paper italic" {...props} />
     ),
-    hr: () => <hr className="my-12 border-white/10" />,
+    hr: () => <hr className="my-12 border-paper/10" />,
     strong: ({ node: _node, ...props }) => <strong className="font-semibold text-paper" {...props} />,
     code: ({ node: _node, className: codeClass, ...props }) =>
       codeClass ? (
@@ -71,21 +71,21 @@ export default function ArticleBody({ markdown, className }: ArticleBodyProps) {
       ),
     pre: ({ node: _node, ...props }) => (
       <pre
-        className="my-6 overflow-x-auto rounded-2xl border border-white/10 bg-night-raised p-5 text-sm leading-relaxed text-paper/90"
+        className="my-6 overflow-x-auto rounded-2xl border border-paper/10 bg-night-raised p-5 text-sm leading-relaxed text-paper/90"
         tabIndex={0}
         {...props}
       />
     ),
     table: ({ node: _node, ...props }) => (
-      <div className="my-8 overflow-x-auto rounded-2xl border border-white/10" tabIndex={0}>
+      <div className="my-8 overflow-x-auto rounded-2xl border border-paper/10" tabIndex={0}>
         <table className="w-full min-w-[32rem] border-collapse text-left text-base" {...props} />
       </div>
     ),
     th: ({ node: _node, ...props }) => (
-      <th className="border-b border-white/10 bg-night-raised px-4 py-3 font-semibold text-paper" {...props} />
+      <th className="border-b border-paper/10 bg-night-raised px-4 py-3 font-semibold text-paper" {...props} />
     ),
     td: ({ node: _node, ...props }) => (
-      <td className="border-b border-white/[0.06] px-4 py-3 text-paper/85" {...props} />
+      <td className="border-b border-paper/[0.06] px-4 py-3 text-paper/85" {...props} />
     ),
     img: ({ node: _node, src, alt = "", ...props }) => (
       // Imagens do corpo podem vir de qualquer origem permitida no Markdown; <img> evita quebrar a página por host não configurado.
@@ -95,7 +95,7 @@ export default function ArticleBody({ markdown, className }: ArticleBodyProps) {
         alt={alt}
         loading="lazy"
         decoding="async"
-        className="my-8 h-auto w-full rounded-2xl border border-white/10"
+        className="my-8 h-auto w-full rounded-2xl border border-paper/10"
         {...props}
       />
     ),

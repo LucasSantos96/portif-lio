@@ -64,7 +64,7 @@ const Services: React.FC = () => {
           <Reveal className="md:col-span-2 lg:row-span-2">
             <GlowCard className="h-full p-6 md:p-8">
               <div className="flex h-full flex-col">
-                <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-2xl border border-white/[0.08] bg-[#14141a]">
+                <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-2xl border border-paper/[0.08] bg-[#14141a]">
                   <Image
                     src="/services/n8n-flow.png"
                     alt={s.automation.imageAlt}
@@ -89,7 +89,7 @@ const Services: React.FC = () => {
                           {automationStack[group].map(({ name, icon: Icon }) => (
                             <span
                               key={name}
-                              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-paper"
+                              className="inline-flex items-center gap-2 rounded-full border border-paper/10 bg-paper/[0.04] px-3 py-1.5 text-sm text-paper"
                             >
                               <Icon className="size-4" aria-hidden />
                               {name}
@@ -133,7 +133,7 @@ const Services: React.FC = () => {
                   <ul className="flex gap-5">
                     {partnerLogos.map((logo) => (
                       <li key={logo.name} className="flex flex-col items-center gap-2">
-                        <span className="size-16 overflow-hidden rounded-full ring-1 ring-white/15">
+                        <span className="size-16 overflow-hidden rounded-full ring-1 ring-paper/15">
                           <Image
                             src={logo.src}
                             alt=""

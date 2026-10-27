@@ -79,7 +79,7 @@ export default function ProjectGallery({ project, nextProject }: ProjectGalleryP
                   href={project.githubRepo ?? undefined}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/20 px-6 font-medium text-paper transition-colors hover:border-white/40 hover:bg-white/5"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-paper/20 px-6 font-medium text-paper transition-colors hover:border-paper/40 hover:bg-paper/5"
                 >
                   <Github className="size-4" aria-hidden />
                   {t.gallery.viewCode}
@@ -94,7 +94,7 @@ export default function ProjectGallery({ project, nextProject }: ProjectGalleryP
                   {project.technologies.map((technology) => (
                     <li
                       key={technology}
-                      className="rounded-full border border-white/10 px-3 py-1 text-sm text-paper/90"
+                      className="rounded-full border border-paper/10 px-3 py-1 text-sm text-paper/90"
                     >
                       {technology}
                     </li>
@@ -110,7 +110,7 @@ export default function ProjectGallery({ project, nextProject }: ProjectGalleryP
             type="button"
             onClick={() => setLightboxIndex(0)}
             aria-label={t.gallery.openPhoto(1)}
-            className="group relative block aspect-[16/9] w-full overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-night-high"
+            className="group relative block aspect-[16/9] w-full overflow-hidden rounded-[1.75rem] border border-paper/[0.08] bg-night-high"
           >
             <Image
               src={project.imageUrl}
@@ -162,7 +162,7 @@ export default function ProjectGallery({ project, nextProject }: ProjectGalleryP
                     type="button"
                     onClick={() => setLightboxIndex(index + 1)}
                     aria-label={t.gallery.openPhoto(index + 2)}
-                    className="group block w-full overflow-hidden rounded-[1.25rem] border border-white/[0.08] bg-night-high"
+                    className="group block w-full overflow-hidden rounded-[1.25rem] border border-paper/[0.08] bg-night-high"
                   >
                     <Image
                       src={photo.src}
@@ -180,7 +180,7 @@ export default function ProjectGallery({ project, nextProject }: ProjectGalleryP
         ) : null}
 
         {nextProject && next ? (
-          <Reveal className="mt-24 border-t border-white/10 pt-10 md:mt-36">
+          <Reveal className="mt-24 border-t border-paper/10 pt-10 md:mt-36">
             <Link href={`/projetos/${nextProject.id}`} className="group grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
               <div>
                 <p className="text-fog">{t.gallery.nextProject}</p>
@@ -188,7 +188,7 @@ export default function ProjectGallery({ project, nextProject }: ProjectGalleryP
                   {next.title}
                 </p>
               </div>
-              <div className="relative hidden aspect-[16/10] w-72 overflow-hidden rounded-[1.25rem] border border-white/[0.08] md:block">
+              <div className="relative hidden aspect-[16/10] w-72 overflow-hidden rounded-[1.25rem] border border-paper/[0.08] md:block">
                 <Image
                   src={nextProject.imageUrl}
                   alt=""

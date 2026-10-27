@@ -30,7 +30,7 @@ const About: React.FC = () => {
         </div>
 
         <Reveal delay={0.15} className="lg:col-span-5 lg:pt-6">
-          <div className="relative mx-auto aspect-square w-full max-w-[380px] overflow-hidden rounded-[1.75rem] border border-white/10 lg:ml-auto">
+          <div className="relative mx-auto aspect-square w-full max-w-[380px] overflow-hidden rounded-[1.75rem] border border-paper/10 lg:ml-auto">
             <Image
               src="/about/lucas.png"
               alt={t.about.photoAlt}

@@ -55,8 +55,14 @@ export default async function RootLayout({ children }: RootLayoutProps) {
     const forcedLocale = siteLocale === "en" ? "en" : siteLocale === "pt" ? "pt" : undefined;
 
     return (
-        <html lang={forcedLocale === "en" ? "en" : "pt-BR"} className={bricolage.variable}>
+        <html lang={forcedLocale === "en" ? "en" : "pt-BR"} className={bricolage.variable} data-theme="dark" suppressHydrationWarning>
             <head>
+                {/* Aplica o tema salvo antes da primeira pintura, para não piscar o escuro. */}
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}`,
+                    }}
+                />
                 <Script
                     id="google-tag-manager"
                     strategy="beforeInteractive"
