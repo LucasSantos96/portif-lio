@@ -12,7 +12,7 @@ export default function TableOfContents({ items, title }: TableOfContentsProps) 
   }
 
   return (
-    <nav aria-label={title} className="rounded-2xl border border-white/[0.08] bg-night-raised p-5">
+    <nav aria-label={title} className="rounded-2xl border border-paper/[0.08] bg-night-raised p-5">
       <p className="type-heading text-lg text-paper">{title}</p>
       <ol className="mt-3 space-y-2 text-sm">
         {items.map((item) => (

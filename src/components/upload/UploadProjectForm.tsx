@@ -146,7 +146,7 @@ function SortableProjectCard({
     <div
       ref={setNodeRef}
       style={style}
-      className={`rounded-2xl border border-white/10 bg-night/70 p-4 ${
+      className={`rounded-2xl border border-paper/10 bg-night/70 p-4 ${
         isDragging ? "opacity-60 shadow-2xl" : ""
       }`}
     >
@@ -155,7 +155,7 @@ function SortableProjectCard({
           <button
             type="button"
             aria-label={`Arrastar ${project.title}`}
-            className="mt-0.5 cursor-grab rounded-lg border border-white/10 bg-white/5 p-2 text-zinc-300 active:cursor-grabbing"
+            className="mt-0.5 cursor-grab rounded-lg border border-paper/10 bg-paper/5 p-2 text-zinc-300 active:cursor-grabbing"
             {...attributes}
             {...listeners}
           >
@@ -163,7 +163,7 @@ function SortableProjectCard({
           </button>
 
           <div>
-            <h3 className="font-medium text-white">{project.title}</h3>
+            <h3 className="font-medium text-paper">{project.title}</h3>
             {project.category === "tool" ? (
               <Badge variant="outline" className="mt-1 border-lamp/40 text-lamp">Ferramenta</Badge>
             ) : null}
@@ -672,7 +672,7 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
   }
 
   return (
-    <div className="mx-auto mt-10 mb-20 w-full max-w-6xl px-4 text-white">
+    <div className="mx-auto mt-10 mb-20 w-full max-w-6xl px-4 text-paper">
       <div className="mb-6 flex items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold md:text-3xl">Gerenciar projetos</h1>
@@ -687,7 +687,7 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
             variant="outline"
             onClick={handleLogout}
             disabled={logoutLoading}
-            className="border-white/20 bg-transparent text-white hover:bg-white/10"
+            className="border-paper/20 bg-transparent text-paper hover:bg-paper/10"
           >
             {logoutLoading ? "Saindo..." : "Sair"}
           </Button>
@@ -695,7 +695,7 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
       </div>
 
       <div className="grid gap-8 xl:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)]">
-        <Card className="bg-night-raised text-white ring-white/10">
+        <Card className="bg-night-raised text-paper ring-paper/10">
           <CardHeader>
             <CardTitle>{isEditing ? "Editar projeto" : "Novo item do portfólio"}</CardTitle>
             <CardDescription className="text-zinc-400">
@@ -709,7 +709,7 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
                 value={form.githubRepo}
                 onChange={(event) => updateField("githubRepo", event.target.value)}
                 placeholder="https://github.com/owner/repo"
-                className="border-white/15 bg-night text-white"
+                className="border-paper/15 bg-night text-paper"
               />
               <Button type="button" onClick={handleGithubImport} disabled={importLoading}>
                 {importLoading ? "Importando..." : "Importar do GitHub"}
@@ -726,7 +726,7 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
                       className={`cursor-pointer rounded-xl border px-4 py-3 transition has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-primary ${
                         form.category === option.value
                           ? "border-primary bg-primary/10"
-                          : "border-white/10 bg-night hover:border-white/25"
+                          : "border-paper/10 bg-night hover:border-paper/25"
                       }`}
                     >
                       <input
@@ -737,7 +737,7 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
                         onChange={() => updateField("category", option.value)}
                         className="sr-only"
                       />
-                      <span className="block text-sm font-medium text-white">{option.label}</span>
+                      <span className="block text-sm font-medium text-paper">{option.label}</span>
                       <span className="block text-xs text-zinc-400">{option.hint}</span>
                     </label>
                   ))}
@@ -752,7 +752,7 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
                     value={form.title}
                     onChange={(event) => updateField("title", event.target.value)}
                     placeholder="Ex.: API Barber"
-                    className="border-white/15 bg-night text-white"
+                    className="border-paper/15 bg-night text-paper"
                     required
                   />
                 </div>
@@ -764,7 +764,7 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
                     value={form.projectUrl}
                     onChange={(event) => updateField("projectUrl", event.target.value)}
                     placeholder="https://..."
-                    className="border-white/15 bg-night text-white"
+                    className="border-paper/15 bg-night text-paper"
                     required
                   />
                 </div>
@@ -792,10 +792,10 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
                         className={`flex cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border border-dashed px-6 py-8 text-center transition ${
                           isDraggingFile
                             ? "border-primary bg-primary/10"
-                            : "border-white/15 bg-night hover:border-white/30 hover:bg-white/5"
+                            : "border-paper/15 bg-night hover:border-paper/30 hover:bg-paper/5"
                         }`}
                       >
-                        <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white">
+                        <div className="rounded-full border border-paper/10 bg-paper/5 px-4 py-2 text-sm font-medium text-paper">
                           {imageUploading ? "Enviando capa..." : "Fazer upload da imagem"}
                         </div>
                         <p className="text-sm text-zinc-300">
@@ -826,7 +826,7 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
                     </div>
 
                     {form.imageUrl ? (
-                      <div className="overflow-hidden rounded-xl border border-white/10 bg-night">
+                      <div className="overflow-hidden rounded-xl border border-paper/10 bg-night">
                         <Image
                           src={form.imageUrl}
                           alt="Prévia da capa"
@@ -868,7 +868,7 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
                       className={`flex cursor-pointer items-center justify-center gap-3 rounded-2xl border border-dashed px-6 py-6 text-center text-sm transition ${
                         isDraggingGallery
                           ? "border-primary bg-primary/10"
-                          : "border-white/15 bg-night hover:border-white/30 hover:bg-white/5"
+                          : "border-paper/15 bg-night hover:border-paper/30 hover:bg-paper/5"
                       }`}
                     >
                       <ImageUp className="size-5 text-zinc-300" aria-hidden />
@@ -884,7 +884,7 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
                         {form.galleryImages.map((image, index) => (
                           <li
                             key={image}
-                            className="overflow-hidden rounded-xl border border-white/10 bg-night"
+                            className="overflow-hidden rounded-xl border border-paper/10 bg-night"
                           >
                             <div className="relative aspect-[4/3]">
                               <Image
@@ -966,9 +966,9 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
                           }
                         }}
                         placeholder="https://www.youtube.com/watch?v=..."
-                        className="border-white/15 bg-night text-white"
+                        className="border-paper/15 bg-night text-paper"
                       />
-                      <Button type="button" variant="outline" onClick={addVideo} className="border-white/20 bg-transparent text-white hover:bg-white/10">
+                      <Button type="button" variant="outline" onClick={addVideo} className="border-paper/20 bg-transparent text-paper hover:bg-paper/10">
                         <Plus />
                         Adicionar vídeo
                       </Button>
@@ -981,7 +981,7 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
                           return (
                             <li
                               key={url}
-                              className="flex items-center gap-3 rounded-xl border border-white/10 bg-night p-2"
+                              className="flex items-center gap-3 rounded-xl border border-paper/10 bg-night p-2"
                             >
                               {videoId ? (
                                 <div className="relative aspect-video w-24 shrink-0 overflow-hidden rounded-lg">
@@ -1021,7 +1021,7 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
                   value={form.description}
                   onChange={(event) => updateField("description", event.target.value)}
                   placeholder="Descreva o projeto e o impacto"
-                  className="min-h-32 border-white/15 bg-night text-white"
+                  className="min-h-32 border-paper/15 bg-night text-paper"
                   required
                 />
               </div>
@@ -1033,7 +1033,7 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
                   value={form.technologies}
                   onChange={(event) => updateField("technologies", event.target.value)}
                   placeholder="Next.js, TypeScript, Tailwind"
-                  className="border-white/15 bg-night text-white"
+                  className="border-paper/15 bg-night text-paper"
                   required
                 />
 
@@ -1051,8 +1051,8 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
                           onClick={() => addTechnology(technology)}
                           className={`rounded-full border px-3 py-1 text-xs transition ${
                             isSelected
-                              ? "border-primary bg-primary/15 text-white"
-                              : "border-white/10 bg-zinc-900 text-zinc-300 hover:border-white/25 hover:bg-white/5"
+                              ? "border-primary bg-primary/15 text-paper"
+                              : "border-paper/10 bg-zinc-900 text-zinc-300 hover:border-paper/25 hover:bg-paper/5"
                           }`}
                         >
                           {technology}
@@ -1073,9 +1073,9 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
                 ) : null}
               </div>
 
-              <div className="flex items-center justify-between rounded-xl border border-white/10 bg-night px-4 py-3">
+              <div className="flex items-center justify-between rounded-xl border border-paper/10 bg-night px-4 py-3">
                 <div>
-                  <Label htmlFor="published" className="text-white">Publicado</Label>
+                  <Label htmlFor="published" className="text-paper">Publicado</Label>
                   <p className="text-xs text-zinc-500">
                     Quando desligado, o projeto fica salvo como rascunho e some da home.
                   </p>
@@ -1106,7 +1106,7 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
                     type="button"
                     variant="outline"
                     onClick={resetForm}
-                    className="border-white/20 bg-transparent text-white hover:bg-white/10"
+                    className="border-paper/20 bg-transparent text-paper hover:bg-paper/10"
                   >
                     Cancelar edição
                   </Button>
@@ -1116,7 +1116,7 @@ export default function UploadProjectForm({ initialProjects }: UploadProjectForm
           </CardContent>
         </Card>
 
-        <Card className="bg-night-raised text-white ring-white/10">
+        <Card className="bg-night-raised text-paper ring-paper/10">
           <CardHeader>
             <CardTitle>Projetos cadastrados</CardTitle>
             <CardDescription className="text-zinc-400">

@@ -77,7 +77,7 @@ function Counter({ value, max, label }: { value: number; max: number; label: str
   );
 }
 
-const inputClass = "border-white/15 bg-night text-white";
+const inputClass = "border-paper/15 bg-night text-paper";
 
 export default function UploadArticleForm({ initialArticles }: { initialArticles: Article[] }) {
   const router = useRouter();
@@ -291,7 +291,7 @@ export default function UploadArticleForm({ initialArticles }: { initialArticles
   const completeness: Record<Lang, boolean> = { pt: isLangComplete(form.pt), en: isLangComplete(form.en) };
 
   return (
-    <div className="mx-auto mt-6 mb-20 w-full max-w-6xl px-4 text-white">
+    <div className="mx-auto mt-6 mb-20 w-full max-w-6xl px-4 text-paper">
       <div className="mb-6 flex items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold md:text-3xl">Artigos do blog</h1>
@@ -305,14 +305,14 @@ export default function UploadArticleForm({ initialArticles }: { initialArticles
           variant="outline"
           onClick={handleLogout}
           disabled={logoutLoading}
-          className="border-white/20 bg-transparent text-white hover:bg-white/10"
+          className="border-paper/20 bg-transparent text-paper hover:bg-paper/10"
         >
           {logoutLoading ? "Saindo..." : "Sair"}
         </Button>
       </div>
 
       <div className="grid gap-8 xl:grid-cols-[minmax(0,1.3fr)_minmax(0,0.8fr)]">
-        <Card className="bg-night-raised text-white ring-white/10">
+        <Card className="bg-night-raised text-paper ring-paper/10">
           <CardHeader>
             <CardTitle>{isEditing ? "Editar artigo" : "Novo artigo"}</CardTitle>
             <CardDescription className="text-zinc-400">
@@ -328,7 +328,7 @@ export default function UploadArticleForm({ initialArticles }: { initialArticles
                   <input id="coverFile" type="file" accept="image/*" onChange={handleCoverInput} disabled={uploading} className="sr-only" />
                   <Label
                     htmlFor="coverFile"
-                    className="inline-flex h-9 cursor-pointer items-center gap-2 rounded-full border border-white/15 px-4 text-sm hover:bg-white/10"
+                    className="inline-flex h-9 cursor-pointer items-center gap-2 rounded-full border border-paper/15 px-4 text-sm hover:bg-paper/10"
                   >
                     <ImageUp className="size-4" aria-hidden />
                     {uploading ? "Enviando..." : form.coverUrl ? "Trocar capa" : "Enviar capa"}
@@ -347,13 +347,13 @@ export default function UploadArticleForm({ initialArticles }: { initialArticles
                   )}
                 </div>
                 {form.coverUrl ? (
-                  <div className="overflow-hidden rounded-xl border border-white/10">
+                  <div className="overflow-hidden rounded-xl border border-paper/10">
                     <Image src={form.coverUrl} alt="Prévia da capa" width={900} height={450} className="h-48 w-full object-cover" />
                   </div>
                 ) : null}
               </div>
 
-              <div role="tablist" aria-label="Idioma do artigo" className="flex gap-1 rounded-full border border-white/10 bg-night p-1">
+              <div role="tablist" aria-label="Idioma do artigo" className="flex gap-1 rounded-full border border-paper/10 bg-night p-1">
                 {(["pt", "en"] as const).map((item) => (
                   <button
                     key={item}
@@ -363,7 +363,7 @@ export default function UploadArticleForm({ initialArticles }: { initialArticles
                     onClick={() => setLang(item)}
                     className={cn(
                       "flex flex-1 items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors",
-                      lang === item ? "bg-white/10 text-white" : "text-zinc-400 hover:text-white",
+                      lang === item ? "bg-paper/10 text-paper" : "text-zinc-400 hover:text-paper",
                     )}
                   >
                     {langLabel[item]}
@@ -432,7 +432,7 @@ export default function UploadArticleForm({ initialArticles }: { initialArticles
                       <input id="bodyImage" type="file" accept="image/*" onChange={handleBodyImageInput} disabled={uploading} className="sr-only" />
                       <Label
                         htmlFor="bodyImage"
-                        className="inline-flex h-8 cursor-pointer items-center gap-1.5 rounded-full border border-white/15 px-3 text-xs hover:bg-white/10"
+                        className="inline-flex h-8 cursor-pointer items-center gap-1.5 rounded-full border border-paper/15 px-3 text-xs hover:bg-paper/10"
                       >
                         <ImageUp className="size-3.5" aria-hidden />
                         Inserir imagem
@@ -442,7 +442,7 @@ export default function UploadArticleForm({ initialArticles }: { initialArticles
                         size="sm"
                         variant="outline"
                         onClick={() => setPreview((value) => !value)}
-                        className="border-white/20 bg-transparent text-white hover:bg-white/10"
+                        className="border-paper/20 bg-transparent text-paper hover:bg-paper/10"
                       >
                         {preview ? "Editar" : "Prévia"}
                       </Button>
@@ -450,7 +450,7 @@ export default function UploadArticleForm({ initialArticles }: { initialArticles
                   </div>
 
                   {preview ? (
-                    <div className="max-h-[32rem] overflow-y-auto rounded-xl border border-white/10 bg-night p-5">
+                    <div className="max-h-[32rem] overflow-y-auto rounded-xl border border-paper/10 bg-night p-5">
                       {current.body.trim() ? (
                         <ArticleBody markdown={current.body} />
                       ) : (
@@ -496,9 +496,9 @@ export default function UploadArticleForm({ initialArticles }: { initialArticles
                 </div>
               </div>
 
-              <div className="flex items-center justify-between rounded-xl border border-white/10 bg-night px-4 py-3">
+              <div className="flex items-center justify-between rounded-xl border border-paper/10 bg-night px-4 py-3">
                 <div>
-                  <Label htmlFor="published" className="text-white">Publicado</Label>
+                  <Label htmlFor="published" className="text-paper">Publicado</Label>
                   <p className="text-xs text-zinc-500">Desligado, o artigo fica como rascunho e não aparece no blog nem no Google.</p>
                 </div>
                 <Switch
@@ -518,7 +518,7 @@ export default function UploadArticleForm({ initialArticles }: { initialArticles
                   {loading ? "Salvando..." : isEditing ? "Salvar alterações" : "Salvar artigo"}
                 </Button>
                 {isEditing ? (
-                  <Button type="button" variant="outline" onClick={resetForm} className="border-white/20 bg-transparent text-white hover:bg-white/10">
+                  <Button type="button" variant="outline" onClick={resetForm} className="border-paper/20 bg-transparent text-paper hover:bg-paper/10">
                     Cancelar edição
                   </Button>
                 ) : null}
@@ -527,7 +527,7 @@ export default function UploadArticleForm({ initialArticles }: { initialArticles
           </CardContent>
         </Card>
 
-        <Card className="h-fit bg-night-raised text-white ring-white/10">
+        <Card className="h-fit bg-night-raised text-paper ring-paper/10">
           <CardHeader>
             <CardTitle>Artigos cadastrados</CardTitle>
             <CardDescription className="text-zinc-400">Edite, exclua ou abra o artigo publicado.</CardDescription>
@@ -536,9 +536,9 @@ export default function UploadArticleForm({ initialArticles }: { initialArticles
           <CardContent className="space-y-4">
             {articles.length ? (
               articles.map((article) => (
-                <div key={article.id} className="rounded-2xl border border-white/10 bg-night/70 p-4">
+                <div key={article.id} className="rounded-2xl border border-paper/10 bg-night/70 p-4">
                   <div className="flex items-start justify-between gap-3">
-                    <h3 className="font-medium text-white">{article.title}</h3>
+                    <h3 className="font-medium text-paper">{article.title}</h3>
                     <Badge className={article.published ? "bg-emerald-500/20 text-emerald-300" : "bg-zinc-800 text-zinc-300"}>
                       {article.published ? "Publicado" : "Rascunho"}
                     </Badge>
@@ -556,7 +556,7 @@ export default function UploadArticleForm({ initialArticles }: { initialArticles
                       <Link
                         href={`/blog/${article.slug}`}
                         target="_blank"
-                        className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-white/20 px-3 text-sm hover:bg-white/10"
+                        className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-paper/20 px-3 text-sm hover:bg-paper/10"
                       >
                         Abrir <ExternalLink className="size-3.5" aria-hidden />
                       </Link>

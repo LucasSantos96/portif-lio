@@ -26,7 +26,7 @@ const Contact: React.FC = () => {
 
                     <Reveal delay={0.05}>
                         <p className="mb-4 text-fog">{t.contact.channelsTitle}</p>
-                        <ul className="divide-y divide-white/[0.08] border-y border-white/[0.08]">
+                        <ul className="divide-y divide-paper/[0.08] border-y border-paper/[0.08]">
                             {channels.map((channel) => (
                                 <li key={channel.label}>
                                     <a
@@ -35,7 +35,7 @@ const Contact: React.FC = () => {
                                         rel="noopener noreferrer"
                                         className="group flex items-center gap-4 py-4"
                                     >
-                                        <span className="flex size-11 shrink-0 items-center justify-center rounded-full border border-white/10 text-monitor transition-colors group-hover:border-monitor/40 group-hover:bg-monitor/10">
+                                        <span className="flex size-11 shrink-0 items-center justify-center rounded-full border border-paper/10 text-monitor transition-colors group-hover:border-monitor/40 group-hover:bg-monitor/10">
                                             {channel.icon}
                                         </span>
                                         <span className="min-w-0">

@@ -43,15 +43,15 @@ const size = 28;
 const frontEndAndAi: Skill[] = [
     { name: "TypeScript", icon: <SiTypescript size={size} color="#3178C6" /> },
     { name: "React", icon: <SiReact size={size} color="#61DAFB" /> },
-    { name: "Next.js", icon: <SiNextdotjs size={size} color="#FFFFFF" /> },
+    { name: "Next.js", icon: <SiNextdotjs size={size} color="currentColor" /> },
     { name: "Tailwind CSS", icon: <SiTailwindcss size={size} color="#06B6D4" /> },
     { name: "JavaScript", icon: <SiJavascript size={size} color="#F7DF1E" /> },
     { name: "HTML5", icon: <SiHtml5 size={size} color="#E34F26" /> },
     { name: "CSS3", icon: <SiCss size={size} color="#1572B6" /> },
     { name: "Bootstrap", icon: <SiBootstrap size={size} color="#7952B3" /> },
     { name: "n8n", icon: <SiN8n size={size} color="#EA4B71" /> },
-    { name: "LangChain", icon: <SiLangchain size={size} color="#E8EEEC" /> },
-    { name: "LangGraph", icon: <SiLanggraph size={size} color="#E8EEEC" /> },
+    { name: "LangChain", icon: <SiLangchain size={size} color="currentColor" /> },
+    { name: "LangGraph", icon: <SiLanggraph size={size} color="currentColor" /> },
     { name: "Mastra", icon: <Bot size={size} /> },
     { name: "RAG e PGVector", icon: <DatabaseZap size={size} /> },
 ];
@@ -61,7 +61,7 @@ const backEndAndData: Skill[] = [
     { name: "Node.js", icon: <SiNodedotjs size={size} color="#339933" /> },
     { name: "NestJS", icon: <SiNestjs size={size} color="#E0234E" /> },
     { name: "PostgreSQL", icon: <SiPostgresql size={size} color="#4169E1" /> },
-    { name: "Prisma", icon: <SiPrisma size={size} color="#E8EEEC" /> },
+    { name: "Prisma", icon: <SiPrisma size={size} color="currentColor" /> },
     { name: "Redis", icon: <SiRedis size={size} color="#FF4438" /> },
     { name: "BullMQ", icon: <ListOrdered size={size} /> },
     { name: "WebSockets", icon: <Cable size={size} /> },
@@ -74,8 +74,8 @@ const backEndAndData: Skill[] = [
 
 function SkillPill({ skill }: { skill: Skill }) {
     return (
-        <div className="group/item flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-night-raised px-5 py-4 text-paper transition-colors duration-300 hover:border-white/20">
-            <span className="flex text-paper opacity-70 grayscale brightness-150 transition duration-300 group-hover/item:opacity-100 group-hover/item:grayscale-0 group-hover/item:brightness-100">
+        <div className="group/item flex items-center gap-3 rounded-2xl border border-paper/[0.08] bg-night-raised px-5 py-4 text-paper transition-colors duration-300 hover:border-paper/20">
+            <span className="flex text-paper opacity-70 grayscale brightness-150 transition duration-300 group-hover/item:opacity-100 group-hover/item:grayscale-0 group-hover/item:brightness-100 in-data-[theme=light]:opacity-90 in-data-[theme=light]:brightness-50 in-data-[theme=light]:group-hover/item:brightness-100">
                 {skill.icon}
             </span>
             <span className="text-base font-medium whitespace-nowrap">{skill.name}</span>

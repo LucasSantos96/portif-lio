@@ -43,7 +43,7 @@ export default function ToolsClient({ tools }: ToolsClientProps) {
                   href={link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex h-full flex-col rounded-[1.5rem] border border-white/[0.08] bg-night-raised p-6 transition-colors duration-300 hover:border-white/20 md:p-7"
+                  className="group flex h-full flex-col rounded-[1.5rem] border border-paper/[0.08] bg-night-raised p-6 transition-colors duration-300 hover:border-paper/20 md:p-7"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <h3 className="type-heading text-2xl text-paper">{title}</h3>
@@ -59,7 +59,7 @@ export default function ToolsClient({ tools }: ToolsClientProps) {
                     {tool.technologies.map((technology) => (
                       <li
                         key={technology}
-                        className="rounded-full border border-white/10 px-2.5 py-0.5 text-xs text-paper/85"
+                        className="rounded-full border border-paper/10 px-2.5 py-0.5 text-xs text-paper/85"
                       >
                         {technology}
                       </li>

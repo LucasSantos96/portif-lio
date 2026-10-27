@@ -83,7 +83,7 @@ const Hero: React.FC = () => {
                 style={reduceMotion ? { y: 0, opacity: 1 } : { y: contentY, opacity: contentOpacity }}
             >
                 <motion.p
-                    className="mb-5 text-base text-monitor md:text-lg"
+                    className="mb-5 hidden text-base text-monitor md:block md:text-lg"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.1 }}
@@ -135,7 +135,7 @@ const Hero: React.FC = () => {
                             href="/Lucas-Santos-Full-stack.pdf"
                             download
                             aria-label={t.hero.ctaResumeAria}
-                            className="inline-flex h-13 items-center justify-center gap-2.5 rounded-full border border-white/20 bg-white/5 px-7 text-base font-medium text-paper backdrop-blur-md transition-colors duration-300 hover:border-white/40 hover:bg-white/10"
+                            className="inline-flex h-13 items-center justify-center gap-2.5 rounded-full border border-paper/20 bg-paper/5 px-7 text-base font-medium text-paper backdrop-blur-md transition-colors duration-300 hover:border-paper/40 hover:bg-paper/10"
                         >
                             <Download className="size-5" aria-hidden />
                             {t.hero.ctaResume}
@@ -148,7 +148,7 @@ const Hero: React.FC = () => {
                 type="button"
                 onClick={toggleVideo}
                 aria-label={playing ? t.hero.pauseVideo : t.hero.playVideo}
-                className="absolute top-20 right-4 z-10 flex size-10 items-center justify-center rounded-full border border-white/15 bg-night/50 text-paper/80 backdrop-blur-md transition-colors hover:text-paper md:top-auto md:right-8 md:bottom-20"
+                className="absolute top-20 right-4 z-10 flex size-10 items-center justify-center rounded-full border border-paper/15 bg-night/50 text-paper/80 backdrop-blur-md transition-colors hover:text-paper md:top-auto md:right-8 md:bottom-20"
             >
                 {playing ? <Pause className="size-4" aria-hidden /> : <Play className="size-4" aria-hidden />}
             </button>

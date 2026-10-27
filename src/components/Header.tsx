@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { BookOpen, Briefcase, FolderOpen, Layers, Mail, UserRound } from "lucide-react";
 
 import { TubelightNavbar, type TubelightNavItem } from "@/components/ui/tubelight-navbar";
+import ThemeToggle from "@/components/ThemeToggle";
 import { useLocale } from "@/i18n/useLocale";
 import { cn } from "@/lib/utils";
 
@@ -105,7 +106,7 @@ const Header: React.FC = () => {
 
                 setLocale(next);
             }}
-            className="flex h-11 items-center gap-1 rounded-full border border-white/10 bg-night/70 px-4 text-sm font-medium backdrop-blur-xl transition-colors hover:border-white/25"
+            className="flex h-11 items-center gap-1 rounded-full border border-paper/10 bg-night/70 px-4 text-sm font-medium backdrop-blur-xl transition-colors hover:border-paper/25"
         >
             <span className={locale === "pt" ? "text-lamp" : "text-fog"}>PT</span>
             <span className="text-fog/50">/</span>
@@ -136,7 +137,10 @@ const Header: React.FC = () => {
                         <TubelightNavbar items={items} activeId={activeId} />
                     </nav>
 
-                    {langToggle}
+                    <div className="flex items-center gap-2">
+                        <ThemeToggle />
+                        {langToggle}
+                    </div>
                 </div>
             </header>
 

@@ -37,6 +37,29 @@
   --radius: 0.875rem;
 }
 
+/*
+ * Tema claro: o mesmo escritório, de dia. A luz do monitor vira um azul-petróleo
+ * e a da luminária um âmbar queimado, escuros o bastante para ler sobre o fundo
+ * claro (contraste mínimo de 4.5:1 no texto).
+ */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --night: #eef3f3;
+  --night-raised: #ffffff;
+  --night-high: #e1eaea;
+  --line: #cbd8d9;
+  --paper: #0e191c;
+  --fog: #4a6065;
+  --monitor: #1c6f7a;
+  --lamp: #b35708;
+  --destructive: #c4412f;
+  --input: #b4c5c7;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
 @theme inline {
   --font-sans: var(--font-bricolage);
   --font-heading: var(--font-bricolage);

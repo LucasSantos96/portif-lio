@@ -43,7 +43,7 @@ export default function ProjectsClient({ projects }: ProjectsClientProps) {
                 >
                     <Link
                       href={`/projetos/${project.id}`}
-                      className="group flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-white/[0.08] bg-night-raised transition-colors duration-300 hover:border-white/20"
+                      className="group flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-paper/[0.08] bg-night-raised transition-colors duration-300 hover:border-paper/20"
                     >
                       <div
                         className={cn(
@@ -93,7 +93,7 @@ export default function ProjectsClient({ projects }: ProjectsClientProps) {
                             {project.technologies.slice(0, 4).map((technology) => (
                               <li
                                 key={technology}
-                                className="rounded-full border border-white/10 px-2.5 py-0.5 text-xs text-paper/85"
+                                className="rounded-full border border-paper/10 px-2.5 py-0.5 text-xs text-paper/85"
                               >
                                 {technology}
                               </li>

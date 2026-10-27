@@ -47,7 +47,7 @@ export default function UploadLoginCard() {
   }
 
   return (
-    <Card className="mx-auto mt-16 w-full max-w-md bg-night-raised text-white ring-white/10">
+    <Card className="mx-auto mt-16 w-full max-w-md bg-night-raised text-paper ring-paper/10">
       <CardHeader>
         <CardTitle>Acesso privado</CardTitle>
         <CardDescription className="text-zinc-400">
@@ -66,7 +66,7 @@ export default function UploadLoginCard() {
               onChange={(event) => setPassword(event.target.value)}
               placeholder="********"
               required
-              className="border-white/15 bg-night text-white"
+              className="border-paper/15 bg-night text-paper"
             />
           </div>
 

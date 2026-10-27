@@ -72,7 +72,7 @@ export default async function ArticlePage({ locale, slug }: { locale: ArticleLoc
           {article.tags.length ? (
             <ul className="mt-4 flex flex-wrap gap-2" aria-label={t.tags}>
               {article.tags.map((tag) => (
-                <li key={tag} className="rounded-full border border-white/10 px-2.5 py-0.5 text-xs text-paper/85">
+                <li key={tag} className="rounded-full border border-paper/10 px-2.5 py-0.5 text-xs text-paper/85">
                   {tag}
                 </li>
               ))}
@@ -81,7 +81,7 @@ export default async function ArticlePage({ locale, slug }: { locale: ArticleLoc
         </header>
 
         {article.coverUrl ? (
-          <div className="relative mt-10 aspect-[16/8] overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-night-high">
+          <div className="relative mt-10 aspect-[16/8] overflow-hidden rounded-[1.75rem] border border-paper/[0.08] bg-night-high">
             <Image
               src={article.coverUrl}
               alt={article.coverAlt}

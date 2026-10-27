@@ -24,7 +24,7 @@ export function GlowCard({
   return (
     <div
       className={cn(
-        "group/glow relative isolate overflow-hidden rounded-[1.5rem] border border-white/[0.08] bg-night-raised",
+        "group/glow relative isolate overflow-hidden rounded-[1.5rem] border border-paper/[0.08] bg-night-raised",
         className,
       )}
       onPointerMove={handlePointerMove}

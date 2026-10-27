@@ -17,7 +17,7 @@ export function YoutubeEmbed({ videoId, title, playLabel }: YoutubeEmbedProps) {
   const [active, setActive] = React.useState(false);
 
   return (
-    <div className="relative aspect-video overflow-hidden rounded-[1.25rem] border border-white/[0.08] bg-night-high">
+    <div className="relative aspect-video overflow-hidden rounded-[1.25rem] border border-paper/[0.08] bg-night-high">
       {active ? (
         <iframe
           src={getYoutubeEmbedUrl(videoId)}

@@ -117,7 +117,7 @@ export function Lightbox({ images, index, onIndexChange, labels }: LightboxProps
               type="button"
               onClick={close}
               aria-label={labels.close}
-              className="flex size-11 items-center justify-center rounded-full border border-white/15 text-paper transition-colors hover:bg-white/10"
+              className="flex size-11 items-center justify-center rounded-full border border-paper/15 text-paper transition-colors hover:bg-paper/10"
             >
               <X className="size-5" aria-hidden />
             </button>
@@ -158,7 +158,7 @@ export function Lightbox({ images, index, onIndexChange, labels }: LightboxProps
                   type="button"
                   onClick={() => go(-1)}
                   aria-label={labels.previous}
-                  className="absolute left-3 flex size-12 items-center justify-center rounded-full border border-white/15 bg-night/60 text-paper backdrop-blur-md transition-colors hover:bg-white/10 md:left-8"
+                  className="absolute left-3 flex size-12 items-center justify-center rounded-full border border-paper/15 bg-night/60 text-paper backdrop-blur-md transition-colors hover:bg-paper/10 md:left-8"
                 >
                   <ChevronLeft className="size-6" aria-hidden />
                 </button>
@@ -166,7 +166,7 @@ export function Lightbox({ images, index, onIndexChange, labels }: LightboxProps
                   type="button"
                   onClick={() => go(1)}
                   aria-label={labels.next}
-                  className="absolute right-3 flex size-12 items-center justify-center rounded-full border border-white/15 bg-night/60 text-paper backdrop-blur-md transition-colors hover:bg-white/10 md:right-8"
+                  className="absolute right-3 flex size-12 items-center justify-center rounded-full border border-paper/15 bg-night/60 text-paper backdrop-blur-md transition-colors hover:bg-paper/10 md:right-8"
                 >
                   <ChevronRight className="size-6" aria-hidden />
                 </button>

@@ -22,7 +22,7 @@ export default function ArticleCard({ article, featured = false, headingLevel: H
     <article className={cn("h-full", className)}>
       <Link
         href={article.path}
-        className="group flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-white/[0.08] bg-night-raised transition-colors duration-300 hover:border-white/20"
+        className="group flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-paper/[0.08] bg-night-raised transition-colors duration-300 hover:border-paper/20"
       >
         {article.coverUrl ? (
           <div className={cn("relative overflow-hidden bg-night-high", featured ? "aspect-[16/8]" : "aspect-[16/10]")}>
