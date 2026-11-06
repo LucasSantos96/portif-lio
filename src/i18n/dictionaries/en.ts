@@ -102,6 +102,7 @@ const en: Dictionary = {
     toc: "In this article",
     tags: "Topics",
     related: "Keep reading",
+    share: { prompt: "Liked this article?", label: "Share", copyLink: "Copy link", copied: "Link copied" },
     cta: {
       title: "Want to apply this in your business?",
       text: "Tell me about your operation and I'll reply with next steps. No strings attached.",
