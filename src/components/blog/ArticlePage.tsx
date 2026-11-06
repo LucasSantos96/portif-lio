@@ -8,6 +8,7 @@ import ArticleCard from "@/components/blog/ArticleCard";
 import ArticleCta from "@/components/blog/ArticleCta";
 import BlogLocaleBridge from "@/components/blog/BlogLocaleBridge";
 import { formatArticleDate } from "@/components/blog/format";
+import ShareButton from "@/components/blog/ShareButton";
 import TableOfContents from "@/components/blog/TableOfContents";
 import JsonLd from "@/components/JsonLd";
 import { sectionContainer } from "@/components/SectionHeading";
@@ -78,6 +79,10 @@ export default async function ArticlePage({ locale, slug }: { locale: ArticleLoc
               ))}
             </ul>
           ) : null}
+
+          <div className="mt-6">
+            <ShareButton title={article.title} text={article.excerpt} url={absoluteUrl(article.path)} />
+          </div>
         </header>
 
         {article.coverUrl ? (
@@ -96,6 +101,10 @@ export default async function ArticlePage({ locale, slug }: { locale: ArticleLoc
         <div className="mt-10 grid grid-cols-[minmax(0,1fr)] gap-12 lg:grid-cols-[minmax(0,1fr)_18rem] lg:gap-16">
           <div className="min-w-0">
             <ArticleBody markdown={article.body} />
+            <div className="mt-12 flex items-center gap-4 border-t border-paper/[0.08] pt-6">
+              <span className="text-sm text-fog">{t.share.prompt}</span>
+              <ShareButton title={article.title} text={article.excerpt} url={absoluteUrl(article.path)} />
+            </div>
             <ArticleCta title={article.title} url={absoluteUrl(article.path)} />
           </div>
 

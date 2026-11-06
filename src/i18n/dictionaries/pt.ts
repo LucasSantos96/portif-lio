@@ -101,6 +101,7 @@ const pt = {
     toc: "Neste artigo",
     tags: "Assuntos",
     related: "Continue lendo",
+    share: { prompt: "Gostou do artigo?", label: "Compartilhar", copyLink: "Copiar link", copied: "Link copiado" },
     cta: {
       title: "Quer aplicar isso na sua empresa?",
       text: "Conte o cenário da sua operação e eu respondo com os próximos passos. Sem compromisso.",
