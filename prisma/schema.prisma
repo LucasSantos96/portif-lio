@@ -26,6 +26,7 @@ model PortfolioProject {
   sortOrder    Int      @default(0) @map("sort_order")
   createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt    DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  updates      ProjectUpdate[]
 
   @@map("portfolio_projects")
 }
@@ -51,4 +52,24 @@ model Article {
   updatedAt   DateTime  @updatedAt @map("updated_at") @db.Timestamptz(6)
 
   @@map("articles")
+}
+
+model ProjectUpdate {
+  id            BigInt           @id @default(autoincrement())
+  projectId     BigInt           @map("project_id")
+  project       PortfolioProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  slug          String
+  occurredAt    DateTime         @map("occurred_at") @db.Date
+  title         String
+  titleEn       String?          @map("title_en")
+  description   String
+  descriptionEn String?          @map("description_en")
+  images        String[]         @default([])
+  sortOrder     Int              @default(0) @map("sort_order")
+  createdAt     DateTime         @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt     DateTime         @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@unique([projectId, slug])
+  @@index([projectId, occurredAt(sort: Desc)])
+  @@map("project_updates")
 }

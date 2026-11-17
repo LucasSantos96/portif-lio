@@ -1,0 +1,162 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Lucas Santos, voltar ao início" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - text: Lucas Santos
+      - generic [ref=e5]:
+        - button "Mudar para o tema claro" [ref=e6]
+        - button "PT / EN Mudar idioma para inglês" [ref=e13]:
+          - generic [ref=e14]: PT
+          - generic [ref=e15]: /
+          - generic [ref=e16]: EN
+          - generic [ref=e17]: Mudar idioma para inglês
+  - navigation "Principal" [ref=e18]:
+    - list [ref=e19]:
+      - listitem [ref=e20]:
+        - link "Sobre" [ref=e21] [cursor=pointer]:
+          - /url: /#sobre
+      - listitem [ref=e25]:
+        - link "Serviços" [ref=e26] [cursor=pointer]:
+          - /url: /#servicos
+      - listitem [ref=e30]:
+        - link "Stack" [ref=e31] [cursor=pointer]:
+          - /url: /#habilidades
+      - listitem [ref=e36]:
+        - link "Projetos" [ref=e37] [cursor=pointer]:
+          - /url: /#projetos
+      - listitem [ref=e45]:
+        - link "Blog" [ref=e46] [cursor=pointer]:
+          - /url: /blog
+      - listitem [ref=e49]:
+        - link "Contato" [ref=e50] [cursor=pointer]:
+          - /url: /#contato
+  - main [ref=e55]:
+    - generic [ref=e56]:
+      - link "Todos os projetos" [ref=e57] [cursor=pointer]:
+        - /url: /#projetos
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - heading "MeuAssis" [level=1] [ref=e62]
+          - paragraph [ref=e63]: "Plataforma completa para escritórios de advocacia: CRM, atendimento omnichannel em WhatsApp e Instagram, IA atendente, contratos com assinatura eletrônica, agenda e dashboard comercial. SaaS multi-tenant com planos Basic e Pro, hoje na V2 com design system novo."
+        - generic [ref=e64]:
+          - link "Abrir projeto" [ref=e66] [cursor=pointer]:
+            - /url: https://meuassis.com/
+          - generic [ref=e71]:
+            - paragraph [ref=e72]: Tecnologias
+            - list [ref=e73]:
+              - listitem [ref=e74]: Next.js
+              - listitem [ref=e75]: NestJS
+              - listitem [ref=e76]: TypeScript
+              - listitem [ref=e77]: PostgreSQL
+              - listitem [ref=e78]: Prisma
+              - listitem [ref=e79]: Redis
+              - listitem [ref=e80]: BullMQ
+              - listitem [ref=e81]: LangGraph
+              - listitem [ref=e82]: Docker
+              - listitem [ref=e83]: WhatsApp
+      - button "Ampliar foto 1" [ref=e85]:
+        - img "MeuAssis, foto 1" [ref=e86]
+      - region "Linha do tempo" [ref=e87]:
+        - generic [ref=e88]:
+          - heading "Linha do tempo" [level=2] [ref=e89]
+          - paragraph [ref=e90]: As principais atualizações do projeto, da mais recente para a mais antiga.
+        - list [ref=e91]:
+          - listitem [ref=e92]:
+            - time [ref=e94]: novembro de 2026
+            - 'heading "Novo atendimento omnichannel: painel do lead e mídia rica" [level=3] [ref=e95]'
+            - paragraph [ref=e96]: "A tela de conversas foi refeita no visual da V2: cabeçalho e caixa de mensagem flutuantes, painel lateral com a etapa do funil, os dados do atendimento e a mídia compartilhada, e mensagens da IA identificadas. Áudios ganham player com onda e transcrição, imagens viram álbum com zoom, documentos mostram tipo e páginas, e dá para enviar vários anexos de uma vez, arrastando para a conversa."
+            - list [ref=e97]:
+              - listitem [ref=e98]:
+                - 'button "Ampliar imagem de Novo atendimento omnichannel: painel do lead e mídia rica" [ref=e99]':
+                  - 'img "MeuAssis: Novo atendimento omnichannel: painel do lead e mídia rica" [ref=e100]'
+          - listitem [ref=e101]:
+            - time [ref=e103]: novembro de 2026
+            - heading "Onboarding guiado, suporte com feedback e tutoriais em vídeo" [level=3] [ref=e104]
+            - paragraph [ref=e105]: Assistente de primeiro acesso passo a passo com checklist, convites de equipe por e-mail, suporte com áudio, anexos e avaliação da resposta, e uma biblioteca de aulas em vídeo da V2 produzidas de forma programática (roteiro, narração e capturas de tela geradas por script).
+          - listitem [ref=e106]:
+            - time [ref=e108]: novembro de 2026
+            - heading "Planos Basic e Pro e contratos assinados no Google Drive" [level=3] [ref=e109]
+            - paragraph [ref=e110]: "Modelo de planos por escritório: o Basic entrega CRM e atendimento sem IA, o Pro libera automações e leitura de mídia. Integração com o Google Drive para arquivar automaticamente os contratos assinados na pasta escolhida."
+            - list [ref=e111]:
+              - listitem [ref=e112]:
+                - button "Ampliar imagem de Planos Basic e Pro e contratos assinados no Google Drive" [ref=e113]:
+                  - 'img "MeuAssis: Planos Basic e Pro e contratos assinados no Google Drive" [ref=e114]'
+          - listitem [ref=e115]:
+            - time [ref=e117]: outubro de 2026
+            - heading "App instalável com notificações e observabilidade" [level=3] [ref=e118]
+            - paragraph [ref=e119]: A plataforma vira PWA, com notificações push de contratos e reuniões no celular. Do lado da operação, entram auditoria das ações da gerência e métricas de saúde do sistema para diagnosticar problemas antes que o cliente perceba.
+          - listitem [ref=e120]:
+            - time [ref=e122]: outubro de 2026
+            - heading "IA reescrita em LangGraph, com agentes por área" [level=3] [ref=e123]
+            - paragraph [ref=e124]: A IA atendente passa a ser um grafo de agentes dedicados por área do direito, com transferência (handoff) entre eles, cadeia de modelos com fallback e saída estruturada por schema. Mais previsível, mais fácil de testar e de evoluir.
+          - listitem [ref=e125]:
+            - time [ref=e127]: outubro de 2026
+            - 'heading "V2: redesign completo e design system novo" [level=3] [ref=e128]'
+            - paragraph [ref=e129]: "Nove fases de trabalho: tokens de design, componentes primitivos, nova navegação, tour de novidades, dashboard, login, contratos e automações. A V2 chega com tema claro e escuro, contraste WCAG AA, foco visível, respeito a movimento reduzido e testes de responsividade e acessibilidade."
+            - list [ref=e130]:
+              - listitem [ref=e131]:
+                - 'button "Ampliar imagem de V2: redesign completo e design system novo" [ref=e132]':
+                  - 'img "MeuAssis: V2: redesign completo e design system novo" [ref=e133]'
+          - listitem [ref=e134]:
+            - time [ref=e136]: setembro de 2026
+            - heading "Origem do anúncio e conversões no Meta Ads" [level=3] [ref=e137]
+            - paragraph [ref=e138]: O CRM passa a registrar de qual anúncio veio cada conversa e devolve as conversões (lead qualificado) ao Pixel pela Conversions API. O escritório enxerga o retorno real do tráfego pago, não só cliques.
+          - listitem [ref=e139]:
+            - time [ref=e141]: agosto de 2026
+            - heading "Terceiro canal, histórico sincronizado e quadro de tarefas" [level=3] [ref=e142]
+            - paragraph [ref=e143]: Suporte a um terceiro número de WhatsApp com permissões próprias (parcerias e correspondentes), sincronização do histórico de conversas e um quadro Kanban de tarefas por colaborador, com contato vinculado.
+          - listitem [ref=e144]:
+            - time [ref=e146]: junho de 2026
+            - heading "Instagram no mesmo atendimento e transcrição de áudios" [level=3] [ref=e147]
+            - paragraph [ref=e148]: Mensagens do Instagram passam a cair na mesma caixa do WhatsApp, atendidas pela IA e pela equipe. Áudios recebidos são transcritos automaticamente antes de a IA responder, em filas assíncronas (BullMQ) para não travar o atendimento.
+          - listitem [ref=e149]:
+            - time [ref=e151]: maio de 2026
+            - heading "IA atendente e follow-up automático" [level=3] [ref=e152]
+            - paragraph [ref=e153]: Um atendente virtual faz a triagem, qualifica o lead por área do direito e agenda a reunião; a equipe assume quando necessário. Follow-ups programados retomam conversas paradas, com proteção (circuit breaker) que pausa a IA se houver falhas seguidas.
+          - listitem [ref=e154]:
+            - time [ref=e156]: abril de 2026
+            - heading "Contratos com assinatura eletrônica (ZapSign)" [level=3] [ref=e157]
+            - paragraph [ref=e158]: Geração de contratos a partir de modelos e acompanhamento do status de assinatura dentro da plataforma, sincronizado com a ZapSign. O fechamento do cliente deixa de depender de e-mail e planilha.
+          - listitem [ref=e159]:
+            - time [ref=e161]: abril de 2026
+            - heading "Atendimento omnichannel no WhatsApp e agenda integrada" [level=3] [ref=e162]
+            - paragraph [ref=e163]: Conexão do WhatsApp por QR Code, caixa de conversas em tempo real com atribuição a atendentes, e sincronização bidirecional com o Google Calendar. Cada conversa vira um lead acompanhado no funil, sem trocar de ferramenta.
+          - listitem [ref=e164]:
+            - time [ref=e166]: março de 2026
+            - 'heading "Nasce a plataforma: ERP, CRM e IA em um só lugar" [level=3] [ref=e167]'
+            - paragraph [ref=e168]: Primeira versão com navegação, login, dashboard, CRM em funil, atendimento, contratos, relacionamento e suporte. Em seguida a arquitetura foi consolidada em um monólito modular (NestJS + PostgreSQL + Prisma) com front em Next.js e isolamento por escritório (multi-tenant).
+      - region "Fotos" [ref=e169]:
+        - heading "Fotos" [level=2] [ref=e171]
+        - list [ref=e172]:
+          - listitem [ref=e173]:
+            - button "Ampliar foto 2" [ref=e174]:
+              - img "MeuAssis, foto 2" [ref=e175]
+          - listitem [ref=e176]:
+            - button "Ampliar foto 3" [ref=e177]:
+              - img "MeuAssis, foto 3" [ref=e178]
+      - link [ref=e180] [cursor=pointer]:
+        - /url: /projetos/10
+        - generic [ref=e181]:
+          - paragraph [ref=e182]: Próximo projeto
+          - paragraph [ref=e183]: Links Seu Beca
+  - contentinfo [ref=e184]:
+    - generic [ref=e185]:
+      - generic [ref=e186]:
+        - paragraph [ref=e187]: Lucas Santos
+        - paragraph [ref=e188]: Desenvolvedor full-stack
+      - list [ref=e189]:
+        - listitem [ref=e190]:
+          - link "Entrar em contato via WhatsApp" [ref=e191] [cursor=pointer]:
+            - /url: https://wa.me/5522981073895
+        - listitem [ref=e194]:
+          - link "Enviar e-mail" [ref=e195] [cursor=pointer]:
+            - /url: mailto:homeoficelucas@gmail.com
+        - listitem [ref=e199]:
+          - link "Visitar perfil no LinkedIn" [ref=e200] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/lucassantosdeoliveira-dev/
+        - listitem [ref=e205]:
+          - link "Visitar perfil no GitHub" [ref=e206] [cursor=pointer]:
+            - /url: https://github.com/LucasSantos96
+      - paragraph [ref=e210]: © 2026 Lucas Santos. Todos os direitos reservados.
+  - alert [ref=e211]

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import JsonLd from "@/components/JsonLd";
 import ProjectGallery from "@/components/project/ProjectGallery";
 import { projectJsonLd } from "@/lib/structured-data";
+import { getProjectUpdates } from "@/lib/project-updates";
 import { getPortfolioProjectById, getPortfolioProjects } from "@/lib/projects";
 
 export const dynamic = "force-dynamic";
@@ -68,11 +69,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const nextProject = projects.length > 1 ? projects[(index + 1) % projects.length] : null;
 
   const project = projects[index];
+  const updates = await getProjectUpdates(project.id);
 
   return (
     <>
       <JsonLd data={projectJsonLd(project)} />
-      <ProjectGallery project={project} nextProject={nextProject} />
+      <ProjectGallery project={project} nextProject={nextProject} updates={updates} />
     </>
   );
 }
