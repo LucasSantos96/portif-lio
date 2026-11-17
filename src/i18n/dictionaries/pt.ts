@@ -126,6 +126,10 @@ const pt = {
     previous: "Foto anterior",
     next: "Próxima foto",
     counter: (current: number, total: number) => `${current} de ${total}`,
+    timelineTitle: "Linha do tempo",
+    timelineIntro: "As principais atualizações do projeto, da mais recente para a mais antiga.",
+    timelineImageAlt: (title: string, update: string) => `${title}: ${update}`,
+    openUpdateImage: (update: string) => `Ampliar imagem de ${update}`,
     nextProject: "Próximo projeto",
   },
   contact: {

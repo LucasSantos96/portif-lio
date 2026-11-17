@@ -127,6 +127,10 @@ const en: Dictionary = {
     previous: "Previous photo",
     next: "Next photo",
     counter: (current: number, total: number) => `${current} of ${total}`,
+    timelineTitle: "Timeline",
+    timelineIntro: "The main updates to the project, from the most recent to the oldest.",
+    timelineImageAlt: (title: string, update: string) => `${title}: ${update}`,
+    openUpdateImage: (update: string) => `Enlarge image for ${update}`,
     nextProject: "Next project",
   },
   contact: {
