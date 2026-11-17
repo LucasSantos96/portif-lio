@@ -8,15 +8,17 @@ import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 
 import Reveal, { revealProps } from "@/components/motion/Reveal";
 import { sectionContainer } from "@/components/SectionHeading";
+import ProjectTimeline from "@/components/project/ProjectTimeline";
 import { Lightbox } from "@/components/ui/lightbox";
 import { YoutubeEmbed } from "@/components/ui/youtube-embed";
 import { useLocale } from "@/i18n/useLocale";
 import { getYoutubeId } from "@/lib/youtube";
-import type { PortfolioProject } from "@/types";
+import type { PortfolioProject, ProjectUpdate } from "@/types";
 
 interface ProjectGalleryProps {
   project: PortfolioProject;
   nextProject: PortfolioProject | null;
+  updates?: ProjectUpdate[];
 }
 
 function localized(project: PortfolioProject, locale: "pt" | "en") {
@@ -26,7 +28,7 @@ function localized(project: PortfolioProject, locale: "pt" | "en") {
   };
 }
 
-export default function ProjectGallery({ project, nextProject }: ProjectGalleryProps) {
+export default function ProjectGallery({ project, nextProject, updates = [] }: ProjectGalleryProps) {
   const { locale, t } = useLocale();
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
@@ -35,6 +37,15 @@ export default function ProjectGallery({ project, nextProject }: ProjectGalleryP
     src,
     alt: t.gallery.photoAlt(title, index + 1),
   }));
+  // Imagens da linha do tempo entram no mesmo lightbox, depois das fotos da galeria.
+  const updateImages = [...new Set(updates.flatMap((update) => update.images))]
+    .filter((src) => !photos.some((photo) => photo.src === src))
+    .map((src) => ({ src, alt: t.gallery.timelineImageAlt(title, t.gallery.timelineTitle) }));
+  const lightboxImages = [...photos, ...updateImages];
+  const openImage = (src: string) => {
+    const found = lightboxImages.findIndex((image) => image.src === src);
+    setLightboxIndex(found === -1 ? null : found);
+  };
   // Links diferentes podem apontar para o mesmo vídeo (watch?v=, youtu.be, ?t=).
   const videoIds = [
     ...new Set(
@@ -144,6 +155,8 @@ export default function ProjectGallery({ project, nextProject }: ProjectGalleryP
           </section>
         ) : null}
 
+        <ProjectTimeline projectTitle={title} updates={updates} onOpenImage={openImage} />
+
         {photos.length > 1 ? (
           <section aria-labelledby="fotos-title" className="mt-20 md:mt-28">
             <Reveal>
@@ -203,7 +216,7 @@ export default function ProjectGallery({ project, nextProject }: ProjectGalleryP
       </div>
 
       <Lightbox
-        images={photos}
+        images={lightboxImages}
         index={lightboxIndex}
         onIndexChange={setLightboxIndex}
         labels={{

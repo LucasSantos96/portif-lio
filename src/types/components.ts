@@ -22,6 +22,20 @@ export interface PortfolioProject {
     updatedAt: string;
 }
 
+export interface ProjectUpdate {
+    id: number;
+    projectId: number;
+    slug: string;
+    /** Data do marco, AAAA-MM-DD. */
+    occurredAt: string;
+    title: string;
+    titleEn: string | null;
+    description: string;
+    descriptionEn: string | null;
+    images: string[];
+    sortOrder: number;
+}
+
 export interface NewPortfolioProjectInput {
     title: string;
     description: string;

@@ -1,6 +1,7 @@
 export type {
     PortfolioProject,
     ProjectCategory,
+    ProjectUpdate,
     NewPortfolioProjectInput,
     RootLayoutProps,
 } from './components';
