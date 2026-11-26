@@ -4,9 +4,11 @@ import { cookies } from "next/headers";
 import UploadArticleForm from "@/components/upload/UploadArticleForm";
 import UploadLoginCard from "@/components/upload/UploadLoginCard";
 import UploadProjectForm from "@/components/upload/UploadProjectForm";
-import UploadTabs from "@/components/upload/UploadTabs";
+import RoadmapParticipantsPanel from "@/components/upload/RoadmapParticipantsPanel";
+import UploadTabs, { type UploadTab } from "@/components/upload/UploadTabs";
 import { getAllArticles } from "@/lib/articles";
 import { getPortfolioProjects } from "@/lib/projects";
+import { getAllRoadmapParticipants } from "@/lib/roadmap";
 import { isUploadSessionValid, UPLOAD_SESSION_COOKIE } from "@/lib/upload-auth";
 
 // Painel privado: fora da busca e sem passar autoridade para os links.
@@ -23,7 +25,9 @@ export default async function UploadPage({
   const cookieStore = await cookies();
   const sessionCookie = cookieStore.get(UPLOAD_SESSION_COOKIE)?.value;
   const isAuthenticated = isUploadSessionValid(sessionCookie);
-  const tab = (await searchParams).tab === "artigos" ? "artigos" : "projetos";
+  const rawTab = (await searchParams).tab;
+  const tab: UploadTab =
+    rawTab === "artigos" ? "artigos" : rawTab === "roadmap" ? "roadmap" : "projetos";
 
   if (!isAuthenticated) {
     return (
@@ -38,6 +42,8 @@ export default async function UploadPage({
       <UploadTabs active={tab} />
       {tab === "artigos" ? (
         <UploadArticleForm initialArticles={await getAllArticles()} />
+      ) : tab === "roadmap" ? (
+        <RoadmapParticipantsPanel initialParticipants={await getAllRoadmapParticipants()} />
       ) : (
         <UploadProjectForm initialProjects={await getPortfolioProjects()} />
       )}

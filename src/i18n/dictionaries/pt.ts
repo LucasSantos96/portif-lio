@@ -7,6 +7,7 @@ const pt = {
       skills: "Stack",
       projects: "Projetos",
       blog: "Blog",
+      roadmap: "Roadmap",
       contact: "Contato",
     },
     langToggleLabel: "Mudar idioma para inglês",

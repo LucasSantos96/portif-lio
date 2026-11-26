@@ -9,6 +9,7 @@ const en: Dictionary = {
       skills: "Stack",
       projects: "Projects",
       blog: "Blog",
+      roadmap: "Roadmap",
       contact: "Contact",
     },
     langToggleLabel: "Switch language to Portuguese",
