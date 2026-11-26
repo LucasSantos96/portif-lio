@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { BookOpen, Briefcase, FolderOpen, Layers, Mail, UserRound } from "lucide-react";
+import { BookOpen, Briefcase, FolderOpen, GitFork, Layers, Mail, UserRound } from "lucide-react";
 
 import { TubelightNavbar, type TubelightNavItem } from "@/components/ui/tubelight-navbar";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -61,13 +61,16 @@ const Header: React.FC = () => {
     const isHome = pathname === "/";
     const sectionInView = useActiveSection(isHome);
     const isBlog = pathname === "/blog" || pathname.startsWith("/blog/") || pathname.startsWith("/en/blog");
+    const isRoadmap = pathname === "/roadmap" || pathname === "/en/roadmap";
     const activeId = isHome
         ? sectionInView
         : isBlog
             ? "blog"
-            : pathname.startsWith("/projetos")
-                ? "projetos"
-                : null;
+            : isRoadmap
+                ? "roadmap"
+                : pathname.startsWith("/projetos")
+                    ? "projetos"
+                    : null;
 
     const [scrolled, setScrolled] = useState(false);
 
@@ -89,6 +92,7 @@ const Header: React.FC = () => {
         { id: "habilidades", name: t.header.nav.skills, href: `${prefix}#habilidades`, icon: Layers },
         { id: "projetos", name: t.header.nav.projects, href: `${prefix}#projetos`, icon: FolderOpen },
         { id: "blog", name: t.header.nav.blog, href: locale === "en" ? "/en/blog" : "/blog", icon: BookOpen },
+        { id: "roadmap", name: t.header.nav.roadmap, href: locale === "en" ? "/en/roadmap" : "/roadmap", icon: GitFork },
         { id: "contato", name: t.header.nav.contact, href: `${prefix}#contato`, icon: Mail },
     ];
 

@@ -2,11 +2,12 @@ import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 
-export type UploadTab = "projetos" | "artigos";
+export type UploadTab = "projetos" | "artigos" | "roadmap";
 
 const tabs: { id: UploadTab; label: string; href: string }[] = [
   { id: "projetos", label: "Projetos e ferramentas", href: "/upload" },
   { id: "artigos", label: "Artigos do blog", href: "/upload?tab=artigos" },
+  { id: "roadmap", label: "Roadmap 2027", href: "/upload?tab=roadmap" },
 ];
 
 export default function UploadTabs({ active }: { active: UploadTab }) {

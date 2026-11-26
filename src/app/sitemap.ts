@@ -36,6 +36,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.5,
     },
+    {
+      url: absoluteUrl("/roadmap"),
+      changeFrequency: "weekly",
+      priority: 0.9,
+      alternates: {
+        languages: {
+          "pt-BR": absoluteUrl("/roadmap"),
+          en: absoluteUrl("/en/roadmap"),
+        },
+      },
+    },
+    {
+      url: absoluteUrl("/en/roadmap"),
+      changeFrequency: "weekly",
+      priority: 0.9,
+      alternates: {
+        languages: {
+          "pt-BR": absoluteUrl("/roadmap"),
+          en: absoluteUrl("/en/roadmap"),
+        },
+      },
+    },
     // Blog: cada página existe em PT e EN e aponta para a outra via hreflang.
     ...(articles.length
       ? [

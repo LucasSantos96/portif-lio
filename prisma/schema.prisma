@@ -73,3 +73,29 @@ model ProjectUpdate {
   @@index([projectId, occurredAt(sort: Desc)])
   @@map("project_updates")
 }
+
+model RoadmapParticipant {
+  id           BigInt              @id @default(autoincrement())
+  token        String              @unique
+  name         String
+  email        String              @unique
+  locale       String              @default("pt")
+  createdAt    DateTime            @default(now()) @map("created_at") @db.Timestamptz(6)
+  lastActiveAt DateTime            @default(now()) @map("last_active_at") @db.Timestamptz(6)
+  completions  RoadmapCompletion[]
+
+  @@index([lastActiveAt(sort: Desc)])
+  @@map("roadmap_participants")
+}
+
+model RoadmapCompletion {
+  id            BigInt             @id @default(autoincrement())
+  participantId BigInt             @map("participant_id")
+  participant   RoadmapParticipant @relation(fields: [participantId], references: [id], onDelete: Cascade)
+  nodeId        String             @map("node_id")
+  completedAt   DateTime           @default(now()) @map("completed_at") @db.Timestamptz(6)
+
+  @@unique([participantId, nodeId])
+  @@index([participantId])
+  @@map("roadmap_completions")
+}
